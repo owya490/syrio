@@ -11,9 +11,9 @@ export default function Home() {
           alt="Background"
           fill
           priority
-          className="object-cover opacity-100"
+          className="object-contain md:object-cover opacity-100"
         />
-        <div className="relative z-10 flex w-full items-end justify-center pb-8">
+        <div className="relative z-10 flex w-full items-end justify-center pb-72 md:pb-8">
           <p className="text-sm font-light tracking-wide text-white">
             UNDER CONSTRUCTION | SYRIO.COM.AU
           </p>
