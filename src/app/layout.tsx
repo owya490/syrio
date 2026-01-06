@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Orbitron } from "next/font/google"; // using Orbitron as Bank Gothic stand-in
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Using Orbitron as a temporary alternative to Bank Gothic for the "tech/sport" look
+// You can replace this with localFont if you have the actual Bank Gothic files later
+const bankGothic = Orbitron({
+  variable: "--font-bank-gothic",
   subsets: ["latin"],
 });
 
@@ -25,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${montserrat.variable} ${bankGothic.variable} antialiased font-sans`}
       >
         {children}
       </body>
