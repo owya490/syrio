@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "@/components/navigation/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+});
+
+const bankGothic = localFont({
+  src: "../../public/fonts/bankgothic-md-bt/BankGothic Md BT.ttf",
+  variable: "--font-bank-gothic",
+});
+
+const geekTrend = localFont({
+  src: "../../public/fonts/geek-trend-demo.regular.ttf",
+  variable: "--font-geek-trend",
+});
+
+const serif12 = localFont({
+  src: "../../public/fonts/Serif12_Beta_Rg/Serif12Beta-Italic.otf",
+  variable: "--font-serif12",
+});
+
+const youSheBiaoTiHei = localFont({
+  src: "../../public/fonts/YouSheBiaoTiHei/YouSheBiaoTiHei-2.ttf",
+  variable: "--font-youshe",
 });
 
 export const metadata: Metadata = {
@@ -25,8 +47,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
