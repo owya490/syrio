@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ReactNode } from "react";
+import ContentContainer from "./ContentContainer";
 
 interface ModuleProps {
   children?: ReactNode;
@@ -38,11 +39,9 @@ export default function Module({
       {backgroundComponent}
 
       {/* Content container with responsive max-widths */}
-      <div
-        className={`relative z-10 w-full md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 md:px-6 lg:px-8 ${contentClassName}`}
-      >
+      <ContentContainer className={contentClassName}>
         {children}
-      </div>
+      </ContentContainer>
     </section>
   );
 }
