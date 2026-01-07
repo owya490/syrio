@@ -8,19 +8,6 @@ This directory contains standardized, reusable components for the Syrio Volleyba
 
 ## Components
 
-### Layout Components
-
-#### `PageContainer`
-Wraps page content with standardized layout and spacing.
-
-```tsx
-import PageContainer from "@/components/layout/PageContainer";
-
-<PageContainer>
-  {/* Your page content */}
-</PageContainer>
-```
-
 ### Typography Components
 
 #### `Heading`
@@ -76,18 +63,17 @@ Component for displaying font samples (used on home page).
 ## Example Page Structure
 
 ```tsx
-import PageContainer from "@/components/layout/PageContainer";
 import Heading from "@/components/typography/Heading";
 import Text from "@/components/typography/Text";
 
 export default function MyPage() {
   return (
-    <PageContainer>
+    <div>
       <Heading level={1}>Page Title</Heading>
       <Text>
         Your content here.
       </Text>
-    </PageContainer>
+    </div>
   );
 }
 ```

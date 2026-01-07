@@ -1,8 +1,8 @@
+import Navbar from "@/components/navigation/Navbar";
 import type { Metadata } from "next";
 import { Archivo, Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/navigation/Navbar";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -50,7 +50,9 @@ export default function RootLayout({
         className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        {/* <div className="w-full md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 md:px-6 lg:px-8"> */}
+          {children}
+        {/* </div> */}
       </body>
     </html>
   );

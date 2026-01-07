@@ -42,12 +42,14 @@ body {
 .hover\:bg-syrio-white:hover { background-color: var(--syrio-white); }
 .hover\:bg-syrio-pink:hover { background-color: var(--syrio-pink); }
 .hover\:text-syrio-white:hover { color: var(--syrio-white); }
+.hover\:text-syrio-blue:hover { color: var(--syrio-blue); }
 .hover\:text-syrio-pink:hover { color: var(--syrio-pink); }
 
 /* Group hover states */
 .group:hover .group-hover\:bg-syrio-white { background-color: var(--syrio-white); }
 .group:hover .group-hover\:bg-syrio-pink { background-color: var(--syrio-pink); }
 .group:hover .group-hover\:text-syrio-white { color: var(--syrio-white); }
+.group:hover .group-hover\:text-syrio-blue { color: var(--syrio-blue); }
 .group:hover .group-hover\:text-syrio-pink { color: var(--syrio-pink); }
 
 /* Font Family Classes - These are needed for custom fonts */
