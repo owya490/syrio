@@ -61,6 +61,8 @@ export const accentImages = {
 // =============================================================================
 
 export const iconImages = {
+  /** Quotation mark */
+  quotationMark: "/misc/quotation-mark-white-icon.png",
   /** Feature tap icons */
   featureTap:
     "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_FEATURE TAP_ICONS_FEATURE TAP.png",

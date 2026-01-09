@@ -42,7 +42,7 @@ export default function ContactModule() {
   return (
     <Module
       className="py-20 min-h-[80vh]"
-      backgroundImage={backgroundImages.homePage}
+      backgroundImage={backgroundImages.background}
       backgroundImageAlt="Contact background"
       contentClassName="px-4 md:px-8"
     >

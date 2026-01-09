@@ -1,6 +1,7 @@
 import ContactModule from "@/components/modules/contact/ContactModule";
 import LandingAboutHero from "@/components/modules/hero/LandingAboutHero";
 import LandingHero from "@/components/modules/hero/LandingHero";
+import QuoteModule from "@/components/modules/misc/QuoteModule";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import Image from "next/image";
@@ -46,6 +47,9 @@ export default function Home() {
 
       {/* Contact Section */}
       <ContactModule />
+
+      {/* Quote Section */}
+      <QuoteModule />
 
       {/* Partners Section */}
       <section className="py-16 px-4 md:px-8 bg-syrio-black border-t border-syrio-blue/30">
