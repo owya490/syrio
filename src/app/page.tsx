@@ -1,7 +1,10 @@
+import ContactModule from "@/components/modules/contact/ContactModule";
 import LandingAboutHero from "@/components/modules/hero/LandingAboutHero";
 import LandingHero from "@/components/modules/hero/LandingHero";
 import ProgramBanner from "@/components/modules/ProgramBanner";
+import QuoteModule from "@/components/modules/misc/QuoteModule";
 import { tracking } from "@/config/design";
+import { backgroundImages } from "@/config/images";
 import Image from "next/image";
 import { homeMessages } from "./messages";
 
@@ -25,7 +28,7 @@ export default function Home() {
           {/* Session image */}
           <div className="relative mx-auto w-full max-w-lg aspect-4/3 mb-12 border-l-4 border-syrio-pink">
             <Image
-              src="/WEBSITE MATERIAL/Screenshot SYRIO WEBSITE SESSIONS.png"
+              src={backgroundImages.sessions}
               alt="Public Sessions"
               fill
               className="object-cover object-top"
@@ -60,6 +63,21 @@ export default function Home() {
           subtitle={homeMessages.programs.subtitle}
           cards={homeMessages.programs.cards}
         />
+      </section>
+
+      {/* Contact Section */}
+      <ContactModule />
+
+      {/* Quote Section */}
+      <QuoteModule />
+
+      {/* Partners Section */}
+      <section className="py-16 px-4 md:px-8 bg-syrio-black border-t border-syrio-blue/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className="font-montserrat text-2xl tracking-wider">
+            {homeMessages.partners.title}
+          </h3>
+        </div>
       </section>
     </main>
   );
