@@ -1,5 +1,3 @@
-"use client";
-
 import LandingAboutHero from "@/components/modules/hero/LandingAboutHero";
 import LandingHero from "@/components/modules/hero/LandingHero";
 import { tracking } from "@/config/design";
