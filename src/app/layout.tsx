@@ -1,17 +1,37 @@
+import Navbar from "@/components/navigation/Navbar";
 import type { Metadata } from "next";
-import { Montserrat, Orbitron } from "next/font/google"; // using Orbitron as Bank Gothic stand-in
+import { Archivo, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+});
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-// Using Orbitron as a temporary alternative to Bank Gothic for the "tech/sport" look
-// You can replace this with localFont if you have the actual Bank Gothic files later
-const bankGothic = Orbitron({
+const bankGothic = localFont({
+  src: "../../public/fonts/bankgothic-md-bt/BankGothic Md BT.ttf",
   variable: "--font-bank-gothic",
-  subsets: ["latin"],
+});
+
+const geekTrend = localFont({
+  src: "../../public/fonts/geek-trend-demo.regular.ttf",
+  variable: "--font-geek-trend",
+});
+
+const serif12 = localFont({
+  src: "../../public/fonts/Serif12_Beta_Rg/Serif12Beta-Italic.otf",
+  variable: "--font-serif12",
+});
+
+const youSheBiaoTiHei = localFont({
+  src: "../../public/fonts/YouSheBiaoTiHei/YouSheBiaoTiHei-2.ttf",
+  variable: "--font-youshe",
 });
 
 export const metadata: Metadata = {
@@ -27,9 +47,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${bankGothic.variable} antialiased font-sans`}
+        className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased`}
       >
-        {children}
+        <Navbar />
+        {/* <div className="w-full md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 md:px-6 lg:px-8"> */}
+          {children}
+        {/* </div> */}
       </body>
     </html>
   );
