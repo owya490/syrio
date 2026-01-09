@@ -1,4 +1,4 @@
-import Navbar from "@/components/navigation/Navbar";
+import AppContent from "@/components/loading/AppContent";
 import type { Metadata } from "next";
 import { Archivo, Montserrat } from "next/font/google";
 import localFont from "next/font/local";
@@ -49,10 +49,7 @@ export default function RootLayout({
       <body
         className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased`}
       >
-        <Navbar />
-        {/* <div className="w-full md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 md:px-6 lg:px-8"> */}
-          {children}
-        {/* </div> */}
+        <AppContent>{children}</AppContent>
       </body>
     </html>
   );
