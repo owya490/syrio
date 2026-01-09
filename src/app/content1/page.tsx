@@ -1,5 +1,5 @@
-import ContentBlockOne from "@/components/modules/content/ContentBlockOne";
 import LoadingOverlay from "@/components/loading/LoadingOverlay";
+import ContentBlockOne from "@/components/modules/content/ContentBlockOne";
 
 export default function ContentPageOne() {
   return (
