@@ -1,4 +1,4 @@
-import ContentBlockThree from "@/components/modules/content/ContentBlockThree";
+import ContentBlockProfile from "@/components/modules/content/ContentBlockProfile";
 import LoadingOverlay from "@/components/loading/LoadingOverlay";
 
 export default function ContentPageThree() {
@@ -6,7 +6,9 @@ export default function ContentPageThree() {
     <>
       <LoadingOverlay />
       <div className="bg-zinc-950 min-h-screen">
-        <ContentBlockThree
+        <ContentBlockProfile
+          theme="dark"
+          alignment="image-right"
           name="YAO"
           role="MENS HEAD COACH PROGRAM DIRECTOR"
           achievements={[
@@ -14,10 +16,10 @@ export default function ContentPageThree() {
             "HENGYANG NO.8 HIGHSCHOOL BOYS VOLLEYBALL TEAM HEAD COACH",
             "CHINA NATIONAL HIGH SCHOOL LEAGUE MEDALIST",
           ]}
-          imageSrc="/branding/under-construction-background.png" // Placeholder for Yao's photo
+          imageSrc="/branding/logo.jpg" // Placeholder
+          // backgroundImage removed as requested
         />
       </div>
     </>
   );
 }
-

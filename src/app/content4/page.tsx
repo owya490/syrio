@@ -1,12 +1,14 @@
-import ContentBlockFour from "@/components/modules/content/ContentBlockFour";
 import LoadingOverlay from "@/components/loading/LoadingOverlay";
+import ContentBlockProfile from "@/components/modules/content/ContentBlockProfile";
 
 export default function ContentPageFour() {
   return (
     <>
       <LoadingOverlay />
       <div className="bg-white min-h-screen">
-        <ContentBlockFour
+        <ContentBlockProfile
+          theme="light"
+          alignment="image-left"
           name="ROGER FU"
           role="MENS HEAD COACH PROGRAM DIRECTOR"
           achievements={[
@@ -14,10 +16,9 @@ export default function ContentPageFour() {
             "HENGYANG NO.8 HIGHSCHOOL BOYS VOLLEYBALL TEAM HEAD COACH",
             "CHINA NATIONAL HIGH SCHOOL LEAGUE MEDALIST",
           ]}
-          imageSrc="/branding/logo.jpg" // Placeholder for Roger's photo
+          imageSrc="/branding/logo.jpg" // Placeholder
         />
       </div>
     </>
   );
 }
-
