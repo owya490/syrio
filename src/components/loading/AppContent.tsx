@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
+import Footer from "../footer/Footer";
 import Navbar from "../navigation/Navbar";
 import LoadingOverlay from "./LoadingOverlay";
 
@@ -19,6 +20,7 @@ export default function AppContent({ children }: { children: ReactNode }) {
         <>
           <Navbar />
           {children}
+          <Footer />
         </>
       )}
     </>
