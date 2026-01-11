@@ -36,14 +36,14 @@ export default function ProgramBanner({
         )}
       </div>
 
-      {/* Program Cards - Carousel: 1 visible at a time on mobile, horizontal scroll on desktop */}
+      {/* Program Cards - Carousel: 1 visible at a time on mobile, horizontal scroll on desktop, grid on large screens */}
       <div className="relative -mx-4 md:mx-0">
-        <div className="flex gap-0 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-track-transparent scrollbar-thumb-syrio-white/20 scroll-smooth md:snap-none">
+        <div className="flex gap-0 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-track-transparent scrollbar-thumb-syrio-white/20 scroll-smooth md:snap-none lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0 lg:gap-6">
           {cards.map((card, index) => (
             <Link
               key={card.label}
               href={card.href}
-              className="group relative flex flex-col shrink-0 min-w-full md:min-w-0 md:w-72 snap-center md:snap-none px-4 md:px-0"
+              className="group relative flex flex-col shrink-0 min-w-full md:min-w-0 md:w-72 lg:w-auto lg:shrink snap-center md:snap-none px-4 md:px-0"
             >
             {/* Card Image - fixed aspect ratio, crops any image to fit */}
             <div className="relative aspect-3/4 w-full overflow-hidden">
