@@ -13,7 +13,7 @@ export default function LandingAboutHero() {
       backgroundImageAlt="Background"
       contentClassName="px-4 md:px-8 max-w-7xl"
       backgroundComponent={
-        <div className="absolute top-1/10 -right-13/16 w-[160%] h-[160%] pointer-events-none -rotate-95 scale-y-[-1] z-20">
+        <div className="absolute top-1/10 -right-13/16 w-[160%] h-[160%] pointer-events-none -rotate-95 scale-y-[-1] z-10">
           <Image
             src={accentImages.goldAccent}
             alt=""

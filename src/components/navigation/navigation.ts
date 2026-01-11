@@ -1,4 +1,4 @@
-export const navMessages = {
+export const navigation = {
   menu: {
     open: "MENU",
     close: "CLOSE",
@@ -45,7 +45,6 @@ export const navMessages = {
     },
     { english: "SHOP", chinese: "SHOP", route: "shop" },
     { english: "ABOUT", chinese: "ABOUT", route: "about" },
-    { english: "GALLERY", chinese: "GALLERY", route: "gallery" },
     { english: "HISTORY", chinese: "HISTORY", route: "history" },
   ],
 

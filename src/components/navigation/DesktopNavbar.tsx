@@ -3,7 +3,7 @@
 import { animation, tracking } from "@/config/design";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { navMessages } from "./messages";
+import { navigation } from "./navigation";
 
 interface DesktopNavbarProps {
   openSubNav: string | null;
@@ -16,7 +16,7 @@ export function DesktopNavbarLinks({
 }: DesktopNavbarProps) {
   const handleTabClick = (
     e: React.MouseEvent,
-    tab: (typeof navMessages.navigationTabs)[0]
+    tab: (typeof navigation.navigationTabs)[0]
   ) => {
     e.preventDefault();
     if (tab.subNav) {
@@ -31,7 +31,7 @@ export function DesktopNavbarLinks({
     <>
       {/* Desktop Navigation - Hidden on lg and below */}
       <div className="hidden lg:flex items-center gap-6 lg:gap-8 flex-1 justify-center">
-        {navMessages.navigationTabs.map((tab) => (
+        {navigation.navigationTabs.map((tab) => (
           <button
             key={tab.english}
             onClick={(e) => handleTabClick(e, tab)}
@@ -65,7 +65,7 @@ export function DesktopNavbarOverlay({
   setOpenSubNav,
 }: DesktopNavbarProps) {
   const activeTab = openSubNav
-    ? navMessages.navigationTabs.find((tab) => tab.english === openSubNav)
+    ? navigation.navigationTabs.find((tab) => tab.english === openSubNav)
     : null;
 
   return (
