@@ -45,20 +45,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <ContactModule />
-
       {/* Quote Section */}
       <QuoteModule />
-
-      {/* Partners Section */}
-      <section className="py-16 px-4 md:px-8 bg-syrio-black border-t border-syrio-blue/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="font-montserrat text-2xl tracking-wider">
-            {homeMessages.partners.title}
-          </h3>
-        </div>
-      </section>
+      {/* Contact Section */}
+      <ContactModule />
     </main>
   );
 }
