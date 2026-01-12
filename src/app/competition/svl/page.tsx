@@ -48,7 +48,7 @@ export default function SVLPage() {
           </div>
 
           {/* Description Text */}
-          <div className="text-center space-y-4 mb-6 md:mb-8">
+          <div className="text-center space-y-4 mb-6 md:mb-8 max-w-full md:max-w-3xl lg:max-w-4xl mx-auto px-4 md:px-0">
             <Text
               size="base"
               className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed"
