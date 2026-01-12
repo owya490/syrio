@@ -12,7 +12,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [openSubNav, setOpenSubNav] = useState<string | null>(null);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [isOverWhiteSection, setIsOverWhiteSection] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,69 +24,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Intersection Observer to detect white sections
-  useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-
-    // Small delay to ensure DOM is ready
-    const timeoutId = setTimeout(() => {
-      const whiteSections = document.querySelectorAll("[data-white-section]");
-
-      if (whiteSections.length === 0) {
-        setIsOverWhiteSection(false);
-        return;
-      }
-
-      const observerOptions = {
-        root: null,
-        rootMargin: "-96px 0px 0px 0px", // Offset by navbar height (h-24 = 96px)
-        threshold: [0, 0.1, 0.5, 1],
-      };
-
-      const observerCallback = (entries: IntersectionObserverEntry[]) => {
-        // Check if any white section is intersecting with the navbar area
-        const isIntersecting = entries.some(
-          (entry) => entry.isIntersecting && entry.intersectionRatio > 0
-        );
-        setIsOverWhiteSection(isIntersecting);
-      };
-
-      observer = new IntersectionObserver(observerCallback, observerOptions);
-
-      whiteSections.forEach((section) => {
-        observer!.observe(section);
-      });
-
-      // Also check initial state
-      whiteSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const navbarHeight = 96; // h-24 = 96px
-        if (rect.top <= navbarHeight && rect.bottom > 0) {
-          setIsOverWhiteSection(true);
-        }
-      });
-    }, 100);
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (observer) {
-        const whiteSections = document.querySelectorAll("[data-white-section]");
-        whiteSections.forEach((section) => {
-          observer!.unobserve(section);
-        });
-      }
-    };
-  }, []);
-
   return (
     <>
       {/* Fixed Navbar */}
       <nav
         className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
-          openSubNav || hasScrolled ? "bg-syrio-blue/90 backdrop-blur-sm" : ""
+          openSubNav || hasScrolled
+            ? "bg-black/30 backdrop-blur-md shadow-lg"
+            : ""
         }`}
       >
-        <ContentContainer className="flex items-center justify-between h-20 md:h-24">
+        <ContentContainer className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="relative z-101 shrink-0 group">
             <Image
@@ -95,7 +42,7 @@ export default function Navbar() {
               alt="Syrio"
               width={imageSizes.navbarLogo.width}
               height={imageSizes.navbarLogo.height}
-              className="w-16 h-16 md:w-20 md:h-20 object-contain group-hover-syrio-white-glow-image"
+              className="w-16 h-16 object-contain group-hover-syrio-white-glow-image"
             />
           </Link>
 
@@ -103,7 +50,6 @@ export default function Navbar() {
           <DesktopNavbarLinks
             openSubNav={openSubNav}
             setOpenSubNav={setOpenSubNav}
-            isOverWhiteSection={isOverWhiteSection}
           />
 
           {/* Mobile Menu Button */}
