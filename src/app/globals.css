@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-syrio-black: #000d18;
+  --color-syrio-blue: #212f5e;
+  --color-syrio-white: #ffffff;
+  --color-syrio-pink: #d39ca6;
+  --color-syrio-red: #90302d;
+  --font-montserrat: var(--font-montserrat);
+  --font-bank-gothic: var(--font-bank-gothic);
+  --font-archivo: var(--font-archivo);
+  --font-geek-trend: var(--font-geek-trend);
+  --font-serif12: var(--font-serif12);
+  --font-youshe: var(--font-youshe);
+}
+
 :root {
   --syrio-black: #000d18;
   --syrio-blue: #212f5e;
