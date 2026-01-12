@@ -44,13 +44,13 @@ export default function CardModule({
           )}
         </div>
 
-        {/* Program Cards - Equal width for all cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Program Cards - Mobile: 1 per row with snap scroll, Desktop: 4 per row scrollable */}
+        <div className="flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory md:snap-none pb-2 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
           {cards.map((card) => (
             <Link
               key={card.label}
               href={card.href}
-              className="group relative flex flex-col"
+              className="group relative flex flex-col shrink-0 w-full min-w-full snap-center md:min-w-0 md:w-[calc((100%-4.5rem)/4)] md:snap-none"
             >
               {/* Card Image - fixed aspect ratio, crops any image to fit */}
               <div className="relative aspect-3/4 w-full overflow-hidden">
