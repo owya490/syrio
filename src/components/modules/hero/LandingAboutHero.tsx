@@ -1,6 +1,7 @@
 import { homeMessages } from "@/app/messages";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
+import { accentImages, backgroundImages, promoImages } from "@/config/images";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,13 +9,13 @@ export default function LandingAboutHero() {
   return (
     <Module
       className="py-20 overflow-visible"
-      backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+      backgroundImage={backgroundImages.background}
       backgroundImageAlt="Background"
       contentClassName="px-4 md:px-8 max-w-7xl"
       backgroundComponent={
-        <div className="absolute top-1/10 -right-13/16 w-[160%] h-[160%] pointer-events-none -rotate-95 scale-y-[-1] z-20">
+        <div className="absolute top-1/10 -right-13/16 w-[160%] h-[160%] pointer-events-none -rotate-95 scale-y-[-1] z-10">
           <Image
-            src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GOLD ACCENT_SHOP 副本.png"
+            src={accentImages.goldAccent}
             alt=""
             fill
             className="object-contain opacity-30"
@@ -27,7 +28,7 @@ export default function LandingAboutHero() {
         <div className="relative -mt-[32vh] -ml-75">
           <div className="relative w-[1200px] h-[1200px]">
             <Image
-              src="/MULTIMEDIA ASSETS/2025M2/2026 promo.png"
+              src={promoImages.promo2026}
               alt="Syrio 2026 Promo"
               fill
               className="object-contain"
@@ -56,7 +57,7 @@ export default function LandingAboutHero() {
             <div className="relative w-72 shrink-0 py-2 -ml-6">
               <div className="relative w-full h-full">
                 <Image
-                  src="/WEBSITE MATERIAL/TEMP HOME PHOTO.png"
+                  src={promoImages.tempHomePhoto}
                   alt="Syrio Team"
                   fill
                   className="object-cover"

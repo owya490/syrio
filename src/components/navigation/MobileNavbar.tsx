@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navMessages } from "./messages";
+import { navigation } from "./navigation";
 
 interface MobileNavbarProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ export function MobileNavbarButton({ isOpen, setIsOpen }: MobileNavbarProps) {
       <span
         className={`font-montserrat text-[10px] tracking-[${tracking.wide}] text-syrio-white group-hover:text-syrio-white transition-colors`}
       >
-        {isOpen ? navMessages.menu.close : navMessages.menu.open}
+        {isOpen ? navigation.menu.close : navigation.menu.open}
       </span>
       {/* Hamburger icon - transforms to X when open */}
       <div className="flex flex-col justify-center items-center w-4 h-4 relative">
@@ -58,7 +58,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
 
   const handleMobileTabClick = (
     e: React.MouseEvent,
-    tab: (typeof navMessages.navigationTabs)[0]
+    tab: (typeof navigation.navigationTabs)[0]
   ) => {
     e.preventDefault();
     if (tab.subNav) {
@@ -70,7 +70,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
   };
 
   const activeMobileSubNav = mobileSubNav
-    ? navMessages.navigationTabs.find((tab) => tab.english === mobileSubNav)
+    ? navigation.navigationTabs.find((tab) => tab.english === mobileSubNav)
     : null;
 
   return (
@@ -113,7 +113,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
                   }}
                   className="space-y-6 text-center"
                 >
-                  {navMessages.navigationTabs.map((navTab) => (
+                  {navigation.navigationTabs.map((navTab) => (
                     <motion.li
                       key={navTab.route}
                       variants={{
@@ -195,7 +195,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
               <p
                 className={`font-montserrat text-xs tracking-[${tracking.normal}] text-syrio-white`}
               >
-                {navMessages.tagline}
+                {navigation.tagline}
               </p>
             </motion.div>
           </div>
