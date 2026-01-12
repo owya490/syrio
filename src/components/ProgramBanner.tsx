@@ -36,7 +36,7 @@ export default function ProgramBanner({
         )}
       </div>
 
-      {/* Program Cards - Carousel: 1 visible at a time on mobile, horizontal scroll on desktop */}
+      {/* Program Cards - Carousel: 1 visible at a time on mobile, horizontal scroll on all desktop sizes */}
       <div className="relative -mx-4 md:mx-0">
         <div className="flex gap-0 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-track-transparent scrollbar-thumb-syrio-white/20 scroll-smooth md:snap-none">
           {cards.map((card, index) => (
