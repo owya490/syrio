@@ -23,7 +23,10 @@ export default function ContentBlockOne({
   images,
 }: ContentBlockOneProps) {
   return (
-    <Module className="bg-white py-16 md:py-24 text-black">
+    <Module
+      className="bg-white py-16 md:py-24 text-black"
+      data-white-section="true"
+    >
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
         {/* Images Column */}
         <div className="relative mx-auto h-80 md:h-96 w-full max-w-lg lg:h-[600px]">

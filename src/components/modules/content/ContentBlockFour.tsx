@@ -41,6 +41,7 @@ export default function ContentBlockFour({
   return (
     <Module
       className={`overflow-visible py-16 md:py-24 ${bgColorClass} ${textColor}`}
+      data-white-section="true"
     >
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
         {/* Image Column (Left) */}

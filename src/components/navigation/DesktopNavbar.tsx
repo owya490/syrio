@@ -8,11 +8,13 @@ import { navigation } from "./navigation";
 interface DesktopNavbarProps {
   openSubNav: string | null;
   setOpenSubNav: (value: string | null) => void;
+  isOverWhiteSection?: boolean;
 }
 
 export function DesktopNavbarLinks({
   openSubNav,
   setOpenSubNav,
+  isOverWhiteSection = false,
 }: DesktopNavbarProps) {
   const handleTabClick = (
     e: React.MouseEvent,
@@ -37,9 +39,15 @@ export function DesktopNavbarLinks({
             onClick={(e) => handleTabClick(e, tab)}
             className={`font-bank-gothic text-sm lg:text-base tracking-[${
               tracking.normal
-            }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] ${
+            }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
+              isOverWhiteSection
+                ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,1)] font-semibold"
+                : "drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+            } ${
               openSubNav === tab.english
-                ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                ? isOverWhiteSection
+                  ? "drop-shadow-[0_0_12px_rgba(255,255,255,1)]"
+                  : "drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
                 : ""
             }`}
           >
@@ -51,7 +59,11 @@ export function DesktopNavbarLinks({
       {/* Language Selector - Hidden on lg and below */}
       <div className="hidden lg:flex items-center shrink-0">
         <button
-          className={`font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]`}
+          className={`font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
+            isOverWhiteSection
+              ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,1)] font-semibold"
+              : "drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+          }`}
         >
           中文/EN
         </button>
