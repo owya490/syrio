@@ -28,11 +28,11 @@ export default function Navbar() {
   // Intersection Observer to detect white sections
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
-    
+
     // Small delay to ensure DOM is ready
     const timeoutId = setTimeout(() => {
       const whiteSections = document.querySelectorAll("[data-white-section]");
-      
+
       if (whiteSections.length === 0) {
         setIsOverWhiteSection(false);
         return;
@@ -52,10 +52,7 @@ export default function Navbar() {
         setIsOverWhiteSection(isIntersecting);
       };
 
-      observer = new IntersectionObserver(
-        observerCallback,
-        observerOptions
-      );
+      observer = new IntersectionObserver(observerCallback, observerOptions);
 
       whiteSections.forEach((section) => {
         observer!.observe(section);
@@ -87,26 +84,18 @@ export default function Navbar() {
       {/* Fixed Navbar */}
       <nav
         className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
-          openSubNav || hasScrolled || isOverWhiteSection
-            ? isOverWhiteSection
-              ? "bg-syrio-blue backdrop-blur-md shadow-xl border-b-2 border-syrio-blue/30"
-              : "bg-syrio-blue/90 backdrop-blur-sm"
-            : ""
+          openSubNav || hasScrolled ? "bg-syrio-blue/90 backdrop-blur-sm" : ""
         }`}
       >
         <ContentContainer className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link href="/" className="relative z-101 shrink-0">
+          <Link href="/" className="relative z-101 shrink-0 group">
             <Image
               src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
               alt="Syrio"
               width={imageSizes.navbarLogo.width}
               height={imageSizes.navbarLogo.height}
-              className={`w-16 h-16 md:w-20 md:h-20 object-contain transition-all duration-300 ${
-                isOverWhiteSection
-                  ? "drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]"
-                  : "drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-              }`}
+              className="w-16 h-16 md:w-20 md:h-20 object-contain group-hover-syrio-white-glow-image"
             />
           </Link>
 

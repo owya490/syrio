@@ -41,15 +41,9 @@ export function DesktopNavbarLinks({
               tracking.normal
             }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
               isOverWhiteSection
-                ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,1)] font-semibold"
-                : "drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-            } ${
-              openSubNav === tab.english
-                ? isOverWhiteSection
-                  ? "drop-shadow-[0_0_12px_rgba(255,255,255,1)]"
-                  : "drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-                : ""
-            }`}
+                ? "syrio-white-glow-active hover-syrio-white-glow font-semibold"
+                : "hover-syrio-white-glow"
+            } ${openSubNav === tab.english ? "syrio-white-glow-active" : ""}`}
           >
             {tab.english}
           </button>
@@ -59,10 +53,12 @@ export function DesktopNavbarLinks({
       {/* Language Selector - Hidden on lg and below */}
       <div className="hidden lg:flex items-center shrink-0">
         <button
-          className={`font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
+          className={`font-bank-gothic text-sm lg:text-base tracking-[${
+            tracking.normal
+          }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
             isOverWhiteSection
-              ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,1)] font-semibold"
-              : "drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+              ? "syrio-white-glow-active hover-syrio-white-glow font-semibold"
+              : "hover-syrio-white-glow"
           }`}
         >
           中文/EN
@@ -124,7 +120,7 @@ export function DesktopNavbarOverlay({
                     alt={subItem.logo}
                     width={200}
                     height={100}
-                    className="w-48 md:w-48 lg:w-64 object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.8)] transition-all duration-300"
+                    className="w-48 md:w-48 lg:w-64 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
                   />
                 </div>
               </div>

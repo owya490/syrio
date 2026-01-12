@@ -31,40 +31,94 @@ body {
 }
 
 /* Syrio Color Utility Classes */
-.bg-syrio-black { background-color: var(--syrio-black); }
-.bg-syrio-blue { background-color: var(--syrio-blue); }
-.bg-syrio-white { background-color: var(--syrio-white); }
-.bg-syrio-pink { background-color: var(--syrio-pink); }
-.bg-syrio-red { background-color: var(--syrio-red); }
+.bg-syrio-black {
+  background-color: var(--syrio-black);
+}
+.bg-syrio-blue {
+  background-color: var(--syrio-blue);
+}
+.bg-syrio-white {
+  background-color: var(--syrio-white);
+}
+.bg-syrio-pink {
+  background-color: var(--syrio-pink);
+}
+.bg-syrio-red {
+  background-color: var(--syrio-red);
+}
 
-.text-syrio-black { color: var(--syrio-black); }
-.text-syrio-blue { color: var(--syrio-blue); }
-.text-syrio-white { color: var(--syrio-white); }
-.text-syrio-pink { color: var(--syrio-pink); }
-.text-syrio-red { color: var(--syrio-red); }
+.text-syrio-black {
+  color: var(--syrio-black);
+}
+.text-syrio-blue {
+  color: var(--syrio-blue);
+}
+.text-syrio-white {
+  color: var(--syrio-white);
+}
+.text-syrio-pink {
+  color: var(--syrio-pink);
+}
+.text-syrio-red {
+  color: var(--syrio-red);
+}
 
-.border-syrio-black { border-color: var(--syrio-black); }
-.border-syrio-blue { border-color: var(--syrio-blue); }
-.border-syrio-white { border-color: var(--syrio-white); }
-.border-syrio-pink { border-color: var(--syrio-pink); }
-.border-syrio-red { border-color: var(--syrio-red); }
+.border-syrio-black {
+  border-color: var(--syrio-black);
+}
+.border-syrio-blue {
+  border-color: var(--syrio-blue);
+}
+.border-syrio-white {
+  border-color: var(--syrio-white);
+}
+.border-syrio-pink {
+  border-color: var(--syrio-pink);
+}
+.border-syrio-red {
+  border-color: var(--syrio-red);
+}
 
-.stroke-syrio-pink { stroke: var(--syrio-pink); }
-.stroke-syrio-white { stroke: var(--syrio-white); }
+.stroke-syrio-pink {
+  stroke: var(--syrio-pink);
+}
+.stroke-syrio-white {
+  stroke: var(--syrio-white);
+}
 
 /* Hover states */
-.hover\:bg-syrio-white:hover { background-color: var(--syrio-white); }
-.hover\:bg-syrio-pink:hover { background-color: var(--syrio-pink); }
-.hover\:text-syrio-white:hover { color: var(--syrio-white); }
-.hover\:text-syrio-blue:hover { color: var(--syrio-blue); }
-.hover\:text-syrio-pink:hover { color: var(--syrio-pink); }
+.hover\:bg-syrio-white:hover {
+  background-color: var(--syrio-white);
+}
+.hover\:bg-syrio-pink:hover {
+  background-color: var(--syrio-pink);
+}
+.hover\:text-syrio-white:hover {
+  color: var(--syrio-white);
+}
+.hover\:text-syrio-blue:hover {
+  color: var(--syrio-blue);
+}
+.hover\:text-syrio-pink:hover {
+  color: var(--syrio-pink);
+}
 
 /* Group hover states */
-.group:hover .group-hover\:bg-syrio-white { background-color: var(--syrio-white); }
-.group:hover .group-hover\:bg-syrio-pink { background-color: var(--syrio-pink); }
-.group:hover .group-hover\:text-syrio-white { color: var(--syrio-white); }
-.group:hover .group-hover\:text-syrio-blue { color: var(--syrio-blue); }
-.group:hover .group-hover\:text-syrio-pink { color: var(--syrio-pink); }
+.group:hover .group-hover\:bg-syrio-white {
+  background-color: var(--syrio-white);
+}
+.group:hover .group-hover\:bg-syrio-pink {
+  background-color: var(--syrio-pink);
+}
+.group:hover .group-hover\:text-syrio-white {
+  color: var(--syrio-white);
+}
+.group:hover .group-hover\:text-syrio-blue {
+  color: var(--syrio-blue);
+}
+.group:hover .group-hover\:text-syrio-pink {
+  color: var(--syrio-pink);
+}
 
 /* Font Family Classes - These are needed for custom fonts */
 .font-archivo {
@@ -89,4 +143,47 @@ body {
 
 .font-youshe {
   font-family: var(--font-youshe), sans-serif;
+}
+
+/* Syrio White Glow Hover Effects */
+.hover-syrio-white-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-syrio-white-glow:hover {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.5);
+}
+
+.group-hover-syrio-white-glow {
+  transition: all 0.3s ease;
+}
+
+.group:hover .group-hover-syrio-white-glow {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.5);
+}
+
+.hover-syrio-white-glow-image {
+  transition: all 0.3s ease;
+}
+
+.hover-syrio-white-glow-image:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 16px rgba(255, 255, 255, 0.5));
+}
+
+.group-hover-syrio-white-glow-image {
+  transition: all 0.3s ease;
+}
+
+.group:hover .group-hover-syrio-white-glow-image {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 16px rgba(255, 255, 255, 0.5));
+}
+
+/* Active state glow (for navigation items) */
+.syrio-white-glow-active {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.5);
 }
