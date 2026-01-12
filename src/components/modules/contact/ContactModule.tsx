@@ -50,9 +50,6 @@ export default function ContactModule() {
         {/* Left side - Title and description */}
         <div className="space-y-6 pr-3">
           <div className="h-[1px] bg-syrio-white w-1/3 hidden md:block"></div>
-          {/* Decorative line */}
-          <div className="w-12 h-0.5 bg-syrio-white/50 -ml-16 hidden md:block" />
-
           <h2
             className={`font-bank-gothic text-4xl lg:text-5xl font-bold tracking-[${tracking.wide}] leading-tight`}
           >
