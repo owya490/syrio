@@ -10,6 +10,7 @@ interface ModuleProps {
   backgroundComponent?: ReactNode;
   className?: string;
   contentClassName?: string;
+  "data-white-section"?: string;
 }
 
 export default function Module({
@@ -20,9 +21,13 @@ export default function Module({
   backgroundComponent,
   className = "",
   contentClassName = "",
+  "data-white-section": dataWhiteSection,
 }: ModuleProps) {
   return (
-    <section className={`relative ${className}`}>
+    <section
+      className={`relative ${className}`}
+      {...(dataWhiteSection && { "data-white-section": dataWhiteSection })}
+    >
       {/* Full-width background */}
       {backgroundImage && (
         <div className="absolute inset-0">
