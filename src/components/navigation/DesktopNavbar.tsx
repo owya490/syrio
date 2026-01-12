@@ -37,7 +37,7 @@ export function DesktopNavbarLinks({
             onClick={(e) => handleTabClick(e, tab)}
             className={`font-bank-gothic text-sm lg:text-base tracking-[${
               tracking.normal
-            }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
+            }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 hover-syrio-white-glow ${
               openSubNav === tab.english ? "syrio-white-glow-active" : ""
             }`}
           >
@@ -51,7 +51,7 @@ export function DesktopNavbarLinks({
         <button
           className={`font-bank-gothic text-sm lg:text-base tracking-[${
             tracking.normal
-          }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
+          }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 hover-syrio-white-glow ${
             openSubNav === "中文/EN" ? "syrio-white-glow-active" : ""
           }`}
         >
