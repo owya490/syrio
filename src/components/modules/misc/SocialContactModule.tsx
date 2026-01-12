@@ -88,7 +88,7 @@ export default function SocialContactModule() {
           </div>
 
           {/* @SYRIOVOLLEY handle */}
-          <p className="font-bank-gothic text-sm md:text-base text-syrio-white tracking-wider hover-syrio-white-glow">
+          <p className="font-bank-gothic text-sm md:text-base text-syrio-white tracking-wider hover-syrio-white-glow cursor-pointer">
             @SYRIOVOLLEY
           </p>
         </div>

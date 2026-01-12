@@ -8,13 +8,11 @@ import { navigation } from "./navigation";
 interface DesktopNavbarProps {
   openSubNav: string | null;
   setOpenSubNav: (value: string | null) => void;
-  isOverWhiteSection?: boolean;
 }
 
 export function DesktopNavbarLinks({
   openSubNav,
   setOpenSubNav,
-  isOverWhiteSection = false,
 }: DesktopNavbarProps) {
   const handleTabClick = (
     e: React.MouseEvent,
@@ -40,10 +38,8 @@ export function DesktopNavbarLinks({
             className={`font-bank-gothic text-sm lg:text-base tracking-[${
               tracking.normal
             }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
-              isOverWhiteSection
-                ? "syrio-white-glow-active hover-syrio-white-glow font-semibold"
-                : "hover-syrio-white-glow"
-            } ${openSubNav === tab.english ? "syrio-white-glow-active" : ""}`}
+              openSubNav === tab.english ? "syrio-white-glow-active" : ""
+            }`}
           >
             {tab.english}
           </button>
@@ -56,9 +52,7 @@ export function DesktopNavbarLinks({
           className={`font-bank-gothic text-sm lg:text-base tracking-[${
             tracking.normal
           }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 ${
-            isOverWhiteSection
-              ? "syrio-white-glow-active hover-syrio-white-glow font-semibold"
-              : "hover-syrio-white-glow"
+            openSubNav === "中文/EN" ? "syrio-white-glow-active" : ""
           }`}
         >
           中文/EN
@@ -88,7 +82,7 @@ export function DesktopNavbarOverlay({
             duration: animation.duration.slow,
             ease: "easeOut",
           }}
-          className="fixed top-20 md:top-24 left-0 right-0 bottom-0 z-[90] hidden lg:block"
+          className="fixed top-20 md:top-20 left-0 right-0 bottom-0 z-[90] hidden lg:block"
           onClick={() => setOpenSubNav(null)}
         >
           <div className="h-full flex">
