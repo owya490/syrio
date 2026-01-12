@@ -13,7 +13,7 @@ export default function QuoteModule({
 }: QuoteModuleProps) {
   return (
     <Module
-      className="py-24 md:py-32 h-[90vh]"
+      className="py-24 md:py-32 h-[90vh] flex justify-center items-center"
       backgroundImage={backgroundImages.svl}
       backgroundImageAlt="Quote background"
       contentClassName="px-4 md:px-8"

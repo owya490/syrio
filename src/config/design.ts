@@ -9,7 +9,7 @@
 
 export const imageSizes = {
   /** Hero logo - large prominent display */
-  heroLogo: { width: 600, height: 300 },
+  heroLogo: { width: 500, height: 250 },
   /** Navbar logo - small header display */
   navbarLogo: { width: 80, height: 80 },
 } as const;

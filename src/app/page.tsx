@@ -3,6 +3,7 @@ import ContactModule from "@/components/modules/contact/ContactModule";
 import LandingAboutHero from "@/components/modules/hero/LandingAboutHero";
 import LandingHero from "@/components/modules/hero/LandingHero";
 import QuoteModule from "@/components/modules/misc/QuoteModule";
+import SocialContactModule from "@/components/modules/misc/SocialContactModule";
 import { homeMessages } from "./messages";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         cards={homeMessages.programs.cards}
       />
 
+      <SocialContactModule />
       {/* Quote Section */}
       <QuoteModule />
 

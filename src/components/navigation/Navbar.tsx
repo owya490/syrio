@@ -34,13 +34,13 @@ export default function Navbar() {
       >
         <ContentContainer className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link href="/" className="relative z-101 shrink-0">
+          <Link href="/" className="relative z-101 shrink-0 group">
             <Image
               src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
               alt="Syrio"
               width={imageSizes.navbarLogo.width}
               height={imageSizes.navbarLogo.height}
-              className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+              className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8),0_0_20px_rgba(255,255,255,0.5)]"
             />
           </Link>
 

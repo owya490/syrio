@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { imageSizes } from "@/config/design";
+import Image from "next/image";
 
 interface SyrioLogoProps {
   size?: "sm" | "md" | "lg";
@@ -8,9 +8,9 @@ interface SyrioLogoProps {
 }
 
 const sizeClasses = {
-  sm: "h-48 md:h-64",
-  md: "h-80 md:h-[26rem]",
-  lg: "h-[26rem] md:h-[36rem]",
+  sm: "h-36 md:h-48",
+  md: "h-60 md:h-[20rem]",
+  lg: "h-[16rem] md:h-[24rem]",
 };
 
 const textSizeClasses = {
@@ -21,9 +21,9 @@ const textSizeClasses = {
 
 // Text position from bottom of logo (using transform so it doesn't affect bounding box)
 const textOffsetClasses = {
-  sm: "bottom-6 md:bottom-8",
-  md: "bottom-12 md:bottom-16",
-  lg: "bottom-20 md:bottom-28",
+  sm: "bottom-4 md:bottom-6",
+  md: "bottom-8 md:bottom-12",
+  lg: "bottom-8 md:bottom-16",
 };
 
 export default function SyrioLogo({
@@ -42,7 +42,7 @@ export default function SyrioLogo({
         className={`w-auto object-contain ${sizeClasses[size]}`}
       />
       {showText && (
-        <h1 
+        <h1
           className={`absolute left-1/2 -translate-x-1/2 font-geek-trend tracking-wide whitespace-nowrap ${textSizeClasses[size]} ${textOffsetClasses[size]}`}
         >
           SYRIOVOLLEY

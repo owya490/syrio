@@ -37,10 +37,8 @@ export function DesktopNavbarLinks({
             onClick={(e) => handleTabClick(e, tab)}
             className={`font-bank-gothic text-sm lg:text-base tracking-[${
               tracking.normal
-            }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] ${
-              openSubNav === tab.english
-                ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-                : ""
+            }] text-syrio-white uppercase hover:text-syrio-white hover-syrio-white-glow ${
+              openSubNav === tab.english ? "syrio-white-glow-active" : ""
             }`}
           >
             {tab.english}
@@ -51,7 +49,7 @@ export function DesktopNavbarLinks({
       {/* Language Selector - Hidden on lg and below */}
       <div className="hidden lg:flex items-center shrink-0">
         <button
-          className={`font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]`}
+          className={`font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white hover-syrio-white-glow`}
         >
           中文/EN
         </button>

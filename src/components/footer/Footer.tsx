@@ -24,7 +24,7 @@ export default function Footer() {
                 alt="Syrio Volley Logo"
                 width={imageSizes.navbarLogo.width * 1.5}
                 height={imageSizes.navbarLogo.height * 1.5}
-                className="w-20 h-20 md:w-24 md:h-24 object-contain"
+                className="w-20 h-20 md:w-20 md:h-20 object-contain"
               />
             </Link>
           </div>
@@ -37,7 +37,7 @@ export default function Footer() {
                 <Link
                   key={tab.route}
                   href={tab.route}
-                  className="font-bank-gothic text-sm md:text-base uppercase tracking-wider text-syrio-white hover:text-syrio-white transition-all duration-300 mb-2 last:mb-0 hover:[text-shadow:0_0_8px_rgba(255,255,255,0.8),0_0_16px_rgba(255,255,255,0.5)]"
+                  className="font-bank-gothic text-sm md:text-base uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow"
                 >
                   {tab.english}
                 </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
                   alt="Instagram"
                   width={24}
                   height={24}
-                  className="w-6 h-6 brightness-0 invert transition-all duration-300 group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0_0_8px_rgba(255,255,255,0.8))_drop-shadow(0_0_16px_rgba(255,255,255,0.5))]"
+                  className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
                 />
               </a>
 
@@ -76,7 +76,7 @@ export default function Footer() {
                   alt="Facebook"
                   width={24}
                   height={24}
-                  className="w-6 h-6 brightness-0 invert transition-all duration-300 group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0_0_8px_rgba(255,255,255,0.8))_drop-shadow(0_0_16px_rgba(255,255,255,0.5))]"
+                  className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
                 />
               </a>
 
@@ -91,7 +91,7 @@ export default function Footer() {
                   alt="Link Tree"
                   width={24}
                   height={24}
-                  className="w-6 h-6 brightness-0 invert transition-all duration-300 group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0_0_8px_rgba(255,255,255,0.8))_drop-shadow(0_0_16px_rgba(255,255,255,0.5))]"
+                  className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
                 />
               </a>
             </div>
