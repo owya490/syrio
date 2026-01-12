@@ -1,14 +1,12 @@
-import ContentBlockProfile from "@/components/modules/content/ContentBlockProfile";
 import LoadingOverlay from "@/components/loading/LoadingOverlay";
+import ContentBlockThree from "@/components/modules/content/ContentBlockThree";
 
 export default function ContentPageThree() {
   return (
     <>
       <LoadingOverlay />
-      <div className="bg-zinc-950 min-h-screen">
-        <ContentBlockProfile
-          theme="dark"
-          alignment="image-right"
+      <div className="min-h-screen">
+        <ContentBlockThree
           name="YAO"
           role="MENS HEAD COACH PROGRAM DIRECTOR"
           achievements={[
@@ -16,8 +14,12 @@ export default function ContentPageThree() {
             "HENGYANG NO.8 HIGHSCHOOL BOYS VOLLEYBALL TEAM HEAD COACH",
             "CHINA NATIONAL HIGH SCHOOL LEAGUE MEDALIST",
           ]}
-          imageSrc="/branding/logo.jpg" // Placeholder
-          // backgroundImage removed as requested
+          imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
+          backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+          // Fully customized layout via props
+          imageScale="scale-110 md:scale-125"
+          imageTranslate="translate-y-[-5%] md:translate-y-[-5%] translate-x-[5%] lg:md:translate-x-[15%]"
+          boxSize="h-[85%] w-[75%]"
         />
       </div>
     </>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Module from "../Module";
 
 interface ContentBlockOneProps {
   subtitle: string;
@@ -22,10 +23,10 @@ export default function ContentBlockOne({
   images,
 }: ContentBlockOneProps) {
   return (
-    <section className="bg-white py-24 text-black">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-24">
+    <Module className="bg-white py-16 md:py-24 text-black">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
         {/* Images Column */}
-        <div className="relative mx-auto h-96 w-full max-w-lg lg:h-[600px]">
+        <div className="relative mx-auto h-80 md:h-96 w-full max-w-lg lg:h-[600px]">
           {/* Main Back Image */}
           <div className="absolute right-0 top-0 h-4/5 w-3/4 rotate-6 transform overflow-hidden rounded-lg shadow-xl transition-transform duration-500 hover:rotate-3">
             <div className="relative h-full w-full bg-gray-200">
@@ -56,22 +57,22 @@ export default function ContentBlockOne({
         {/* Content Column */}
         <div className="flex flex-col justify-center space-y-8">
           <div className="space-y-2">
-            {/* Overline: Bank Gothic Medium BT, Uppercase, Black or White */}
-            <h3 className="font-bank-gothic text-xl font-medium uppercase tracking-widest text-gray-800">
+            {/* Overline */}
+            <h3 className="font-bank-gothic text-lg md:text-xl font-medium uppercase tracking-widest text-gray-800">
               {subtitle}
             </h3>
-            {/* Headline: Montserrat Bold, Uppercase, Any Colour */}
-            <h2 className="font-montserrat text-4xl font-bold uppercase tracking-wider text-black md:text-5xl lg:text-6xl">
+            {/* Headline */}
+            <h2 className="font-montserrat text-3xl md:text-4xl font-bold uppercase tracking-wider text-black lg:text-5xl xl:text-6xl">
               {title}
             </h2>
           </div>
 
-          <ul className="space-y-6">
-            {/* Subhead: Montserrat Bold, Standard Case, Black or White */}
+          <ul className="space-y-4 md:space-y-6">
+            {/* Subhead */}
             {features.map((feature, index) => (
               <li
                 key={index}
-                className="font-montserrat text-sm font-bold tracking-wide text-gray-800 md:text-base"
+                className="font-montserrat text-sm md:text-base font-bold tracking-wide text-gray-800"
               >
                 {feature}
               </li>
@@ -81,7 +82,7 @@ export default function ContentBlockOne({
           <div className="pt-4">
             <Link
               href={ctaHref}
-              className="group inline-flex items-center gap-2 border-b-2 border-black pb-1 font-bank-gothic text-lg font-medium uppercase tracking-wider text-black transition-colors hover:border-gray-600 hover:text-gray-600"
+              className="group inline-flex items-center gap-2 border-b-2 border-black pb-1 font-bank-gothic text-base md:text-lg font-medium uppercase tracking-wider text-black transition-colors hover:border-gray-600 hover:text-gray-600"
             >
               {ctaLabel}
               <svg
@@ -103,6 +104,6 @@ export default function ContentBlockOne({
           </div>
         </div>
       </div>
-    </section>
+    </Module>
   );
 }

@@ -17,8 +17,11 @@ export default function ContentPageOne() {
           ctaLabel="ENQUIRE MORE"
           ctaHref="#"
           images={{
-            main: "/branding/under-construction-background.png", // Using existing placeholder
-            secondary: "/branding/logo.jpg", // Using existing placeholder
+            // Main image: likely the SVL team photo or graphic
+            main: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213227_644_5.jpg",
+            // Secondary image: likely a related icon or smaller photo
+            secondary:
+              "/MULTIMEDIA ASSETS/2025M2/图片_20260101211321_642_5.jpg",
           }}
         />
       </div>

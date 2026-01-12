@@ -1,14 +1,12 @@
 import LoadingOverlay from "@/components/loading/LoadingOverlay";
-import ContentBlockProfile from "@/components/modules/content/ContentBlockProfile";
+import ContentBlockFour from "@/components/modules/content/ContentBlockFour";
 
 export default function ContentPageFour() {
   return (
     <>
       <LoadingOverlay />
-      <div className="bg-white min-h-screen">
-        <ContentBlockProfile
-          theme="light"
-          alignment="image-left"
+      <div className="min-h-screen">
+        <ContentBlockFour
           name="ROGER FU"
           role="MENS HEAD COACH PROGRAM DIRECTOR"
           achievements={[
@@ -16,7 +14,13 @@ export default function ContentPageFour() {
             "HENGYANG NO.8 HIGHSCHOOL BOYS VOLLEYBALL TEAM HEAD COACH",
             "CHINA NATIONAL HIGH SCHOOL LEAGUE MEDALIST",
           ]}
-          imageSrc="/branding/logo.jpg" // Placeholder
+          imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
+          // Fully customized layout via props
+          // Setting base scale to 85 (mobile) and 95 for md+ (desktop)
+          imageScale="scale-85 md:scale-95"
+          // IMPORTANT: translate-y-[5%] pushes image DOWN to align with bottom on ALL screens
+          imageTranslate="translate-y-[5%] md:translate-y-[5%] translate-x-[3%] lg:md:translate-x-[-15%]"
+          boxSize="h-[85%] w-[75%]"
         />
       </div>
     </>
