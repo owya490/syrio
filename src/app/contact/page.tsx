@@ -1,11 +1,9 @@
-import Heading from "@/components/typography/Heading";
-import Text from "@/components/typography/Text";
+import ContactModule from "@/components/modules/contact/ContactModule";
 
 export default function Contact() {
   return (
-    <div>
-      <Heading level={1}>Contact</Heading>
-      <Text>Get in touch with us.</Text>
-    </div>
+    <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
+      <ContactModule />
+    </main>
   );
 }

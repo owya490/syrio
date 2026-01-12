@@ -188,6 +188,16 @@ body {
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
+/* Button/Component Glow Hover Effect */
+.hover-syrio-glow-white {
+  transition: all 0.3s ease;
+}
+
+.hover-syrio-glow-white:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.5);
+}
+
 /* Star twinkle animation */
 @keyframes twinkle {
   0%,
