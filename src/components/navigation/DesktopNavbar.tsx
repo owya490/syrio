@@ -101,7 +101,7 @@ export function DesktopNavbarOverlay({
                     src={subItem.image}
                     alt={subItem.logo}
                     fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 b"
                   />
                   {/* Dark overlay */}
                   <div className="absolute inset-0 bg-syrio-black/40 group-hover:bg-syrio-black/20 transition-all duration-300" />

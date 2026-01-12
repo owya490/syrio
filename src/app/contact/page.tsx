@@ -1,11 +1,11 @@
-import Heading from "@/components/typography/Heading";
-import Text from "@/components/typography/Text";
+import ContactModule from "@/components/modules/contact/ContactModule";
+import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 
 export default function Contact() {
   return (
-    <div>
-      <Heading level={1}>Contact</Heading>
-      <Text>Get in touch with us.</Text>
-    </div>
+    <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
+      <HeroBannerModule title="CONTACT" />
+      <ContactModule />
+    </main>
   );
 }
