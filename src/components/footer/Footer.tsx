@@ -110,7 +110,10 @@ export default function Footer() {
 
           {/* Developer attribution - bottom right */}
           <div className="text-xs text-syrio-white font-montserrat">
-            BUILT BY CDG
+            BUILT BY{" "}
+            <a href="https://compassdigital.app" className="hover:underline" target="_blank" rel="noopener noreferrer">
+              CDG
+            </a>
           </div>
         </div>
       </div>
