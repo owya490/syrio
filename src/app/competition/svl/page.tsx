@@ -117,7 +117,7 @@ export default function SVLPage() {
       {/* "GOT WHAT IT TAKES?" Section with Image Asset */}
       <Module className="py-0 bg-syrio-black" contentClassName="px-0">
         <div className="w-full">
-          <Link
+          <a
             href="/competition/svl/join"
             className="block hover:opacity-90 transition-opacity duration-300"
           >
@@ -128,7 +128,7 @@ export default function SVLPage() {
               height={1080}
               className="w-full h-auto"
             />
-          </Link>
+          </a>
         </div>
       </Module>
     </main>
