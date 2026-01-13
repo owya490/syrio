@@ -36,7 +36,11 @@ export default function Navbar() {
       >
         <ContentContainer className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="relative z-101 shrink-0 group">
+          <Link
+            href="/"
+            className="relative z-101 shrink-0 group"
+            onClick={() => setOpenSubNav(null)}
+          >
             <Image
               src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
               alt="Syrio"
