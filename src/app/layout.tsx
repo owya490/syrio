@@ -37,6 +37,10 @@ const youSheBiaoTiHei = localFont({
 export const metadata: Metadata = {
   title: "Syrio Volleyball Academy",
   description: "Syrio Volleyball Academy, Sydney's premier volleyball academy",
+  themeColor: "#0a0a0a",
+  appleWebApp: {
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export default function RootLayout({
@@ -47,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased`}
+        className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased bg-syrio-black`}
       >
         <AppContent>{children}</AppContent>
       </body>

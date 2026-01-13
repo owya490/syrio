@@ -24,10 +24,12 @@
 
 html {
   font-size: 18px; /* Scaled up from 16px default */
+  background-color: var(--syrio-black);
 }
 
 body {
   font-family: var(--font-archivo), sans-serif;
+  background-color: var(--syrio-black);
 }
 
 /* Syrio Color Utility Classes */
@@ -188,6 +190,16 @@ body {
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
+/* Button/Component Glow Hover Effect */
+.hover-syrio-glow-white {
+  transition: all 0.3s ease;
+}
+
+.hover-syrio-glow-white:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.5);
+}
+
 /* Star twinkle animation */
 @keyframes twinkle {
   0%,
@@ -203,4 +215,31 @@ body {
 
 .animate-twinkle {
   animation: twinkle ease-in-out infinite;
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 20s linear infinite;
 }

@@ -2,17 +2,17 @@ import CardModule from "@/components/modules/cards/CardModule";
 import ContentBlockTwo from "@/components/modules/content/ContentBlockTwo";
 import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 
-export default function Sessions() {
+export default function Competitions() {
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
       <HeroBannerModule
-        title="SESSIONS"
+        title="COMPETITIONS"
         backgroundImage="/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg"
       />
       <ContentBlockTwo
-        description="Syrio Volley Academy offers a range of training sessions to help you improve your skills and reach your full potential. Our sessions are designed to be fun and challenging, and are led by our experienced coaches."
-        ctaLabel="VIEW OUR PROGRAMS"
-        ctaHref="#session-cards"
+        description="Syrio Volley Academy participates and provides a structured pathway for our players to compete at the highest level of the game. We offer a range of competitive programs to help you improve your skills and reach your full potential."
+        ctaLabel="VIEW OUR COMPETITIONS"
+        ctaHref="#competition-cards"
         backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
         images={{
           // Primary: Large landscape image (e.g. general about/team photo)
@@ -22,19 +22,24 @@ export default function Sessions() {
           secondary: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
         }}
       />
-      <div id="session-cards">
+      <div id="competition-cards">
         <CardModule
-          title="OUR PROGRAMS"
-          subtitle="TRAINING SESSIONS"
+          title="OUR COMPETITIONS"
+          subtitle="COMPETITIVE PROGRAMS"
           cards={[
             {
-              label: "SVC",
-              href: "/sessions/svc",
+              label: "SVL",
+              href: "/svl",
+              image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213227_644_5.jpg",
+            },
+            {
+              label: "VAL",
+              href: "/competition/val",
               image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
             },
             {
-              label: "INTENSIVE SKILL DEVELOPMENT",
-              href: "/sessions/intensive-skill-development",
+              label: "SVC",
+              href: "/sessions/svc",
               image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
             },
           ]}

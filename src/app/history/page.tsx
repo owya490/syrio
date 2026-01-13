@@ -2,11 +2,11 @@ import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 import ComingSoonModule from "@/components/modules/misc/ComingSoonModule";
 import { backgroundImages } from "@/config/images";
 
-export default function Shop() {
+export default function History() {
   return (
     <main>
       <HeroBannerModule
-        title="SHOP"
+        title="HISTORY"
         backgroundImage={backgroundImages.highPerformance2}
       />
       <ComingSoonModule />

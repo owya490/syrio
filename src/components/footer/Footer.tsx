@@ -18,13 +18,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12 mb-12">
           {/* Logo section - upper left */}
           <div className="shrink-0 hidden md:block">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-block group">
               <Image
                 src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
                 alt="Syrio Volley Logo"
                 width={imageSizes.navbarLogo.width * 1.5}
                 height={imageSizes.navbarLogo.height * 1.5}
-                className="w-20 h-20 md:w-20 md:h-20 object-contain"
+                className="w-20 h-20 md:w-20 md:h-20 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
               />
             </Link>
           </div>
@@ -110,7 +110,15 @@ export default function Footer() {
 
           {/* Developer attribution - bottom right */}
           <div className="text-xs text-syrio-white font-montserrat">
-            BUILT BY CDG
+            BUILT BY{" "}
+            <a
+              href="https://compassdigital.app"
+              className="hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              CDG
+            </a>
           </div>
         </div>
       </div>
