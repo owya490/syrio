@@ -22,7 +22,7 @@ export default function LandingHero() {
       }
       contentClassName="absolute inset-0 h-screen flex items-center justify-center"
     >
-      <SyrioLogo size="lg" />
+      <SyrioLogo size="lg" className="mt-6" />
     </Module>
   );
 }

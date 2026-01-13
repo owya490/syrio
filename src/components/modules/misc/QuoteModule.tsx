@@ -8,8 +8,8 @@ interface QuoteModuleProps {
 }
 
 export default function QuoteModule({
-  quote = "There are six people around the court and it's literally like a ballet. And fundamentals are at the core of everything you do.",
-  author = "Caren Kemner",
+  quote = "Commitment unlocks the doors of imagination, allows vision and gives us the right stuff to turn our dreams into reality.",
+  author = "James Womack",
 }: QuoteModuleProps) {
   return (
     <Module
