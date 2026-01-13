@@ -4,7 +4,6 @@ import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function SVLJoinPage() {
   return (
@@ -53,12 +52,12 @@ export default function SVLJoinPage() {
         <div className="text-center space-y-8">
           {/* Direct to Team Page */}
           <div>
-            <Link
+            <a
               href="/competition/svl"
               className={`inline-block font-bank-gothic text-2xl md:text-3xl lg:text-4xl tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-pink transition-colors duration-300`}
             >
               DIRECT TO TEAM PAGE
-            </Link>
+            </a>
           </div>
 
           {/* Form Application */}
