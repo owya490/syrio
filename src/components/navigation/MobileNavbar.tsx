@@ -65,7 +65,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
       setMobileSubNav(tab.english);
     } else {
       setIsOpen(false);
-      window.location.href = `/${tab.route}`;
+      window.location.href = tab.route;
     }
   };
 
@@ -166,7 +166,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
                         transition={{ delay: index * animation.stagger }}
                       >
                         <Link
-                          href={`/${subItem.route}`}
+                          href={subItem.route}
                           onClick={() => setIsOpen(false)}
                           className="block"
                         >

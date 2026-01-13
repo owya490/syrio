@@ -35,23 +35,6 @@ export default function SocialContactModule() {
         <div className="flex flex-col items-center gap-4">
           {/* Social Icons */}
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            {/* Link Tree / Star Icon */}
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Link Tree"
-              className="group transition-all duration-300"
-            >
-              <Image
-                src="/svg/link-tree.svg"
-                alt="Link Tree"
-                width={24}
-                height={24}
-                className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert group-hover-syrio-white-glow-image"
-              />
-            </a>
-
             {/* Facebook Icon */}
             <a
               href="https://facebook.com"
@@ -80,6 +63,23 @@ export default function SocialContactModule() {
               <Image
                 src="/svg/instagram.svg"
                 alt="Instagram"
+                width={24}
+                height={24}
+                className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert group-hover-syrio-white-glow-image"
+              />
+            </a>
+
+            {/* Link Tree / Star Icon */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Link Tree"
+              className="group transition-all duration-300"
+            >
+              <Image
+                src="/svg/link-tree.svg"
+                alt="Link Tree"
                 width={24}
                 height={24}
                 className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert group-hover-syrio-white-glow-image"

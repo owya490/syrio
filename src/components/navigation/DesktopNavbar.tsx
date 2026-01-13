@@ -22,8 +22,7 @@ export function DesktopNavbarLinks({
     if (tab.subNav) {
       setOpenSubNav(openSubNav === tab.english ? null : tab.english);
     } else {
-      const href = `/${tab.route}`;
-      window.location.href = href;
+      window.location.href = tab.route;
     }
   };
 
@@ -92,7 +91,7 @@ export function DesktopNavbarOverlay({
                 className="flex-[1] hover:flex-[1.4] relative group cursor-pointer overflow-hidden transition-all duration-300"
                 onClick={(e) => {
                   e.stopPropagation();
-                  window.location.href = `/${subItem.route}`;
+                  window.location.href = subItem.route;
                 }}
               >
                 {/* Image with grayscale filter */}
