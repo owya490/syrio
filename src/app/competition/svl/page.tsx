@@ -117,13 +117,18 @@ export default function SVLPage() {
       {/* "GOT WHAT IT TAKES?" Section with Image Asset */}
       <Module className="py-0 bg-syrio-black" contentClassName="px-0">
         <div className="w-full">
-          <Image
-            src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP.png"
-            alt="Got What It Takes? Join The Team"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
+          <Link
+            href="/competition/svl/join"
+            className="block hover:opacity-90 transition-opacity duration-300"
+          >
+            <Image
+              src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP.png"
+              alt="Got What It Takes? Join The Team"
+              width={1920}
+              height={1080}
+              className="w-full h-auto"
+            />
+          </Link>
         </div>
       </Module>
     </main>
