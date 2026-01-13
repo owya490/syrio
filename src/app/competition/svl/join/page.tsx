@@ -1,5 +1,6 @@
 "use client";
 
+import SVLJoinLandingHero from "@/components/modules/hero/SVLJoinLandingHero";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
@@ -8,31 +9,7 @@ import Image from "next/image";
 export default function SVLJoinPage() {
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
-      {/* Welcome Section - "WELCOME TO SYRIO REP" */}
-      <Module
-        className="py-0 min-h-[80vh] md:min-h-[85vh] relative"
-        backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP2.png"
-        backgroundImageAlt="SYRIO REP Welcome"
-        backgroundImageClassName="object-cover"
-        contentClassName="hidden"
-        backgroundComponent={
-          <>
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-syrio-black/70 z-10" />
-
-            {/* Icon - Fills entire module */}
-            <div className="absolute inset-0 z-20">
-              <Image
-                src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP2_ICON_HIGHP2.png"
-                alt="SYRIO REP Icon"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </>
-        }
-      />
+      <SVLJoinLandingHero />
 
       {/* Categories Section - WOMEN, MEN, YOUTH */}
       <Module className="py-0 bg-syrio-black" contentClassName="px-0">
