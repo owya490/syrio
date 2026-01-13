@@ -26,7 +26,7 @@ export default function AboutUs() {
           {
             label: "MEN'S",
             href: "/competition/mens",
-            image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
+            image: "/MULTIMEDIA ASSETS/2025M2/图片_20251121010945_451_5.jpg",
           },
           {
             label: "WOMEN'S",
@@ -36,12 +36,12 @@ export default function AboutUs() {
           {
             label: "YOUTH",
             href: "/competition/youth",
-            image: "/MULTIMEDIA ASSETS/2025M2/图片_20251120021438_448_5.jpg",
+            image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
           },
           {
             label: "COACHING",
             href: "/coaching",
-            image: "/MULTIMEDIA ASSETS/CLUB/33.png",
+            image: "/MULTIMEDIA ASSETS/2025M2/DSCN0080.JPG",
           },
         ]}
         className="bg-syrio-black"

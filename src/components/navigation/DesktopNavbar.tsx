@@ -34,7 +34,7 @@ export function DesktopNavbarLinks({
           <button
             key={tab.english}
             onClick={(e) => handleTabClick(e, tab)}
-            className={`font-bank-gothic text-sm lg:text-base tracking-[${
+            className={`font-bank-gothic text-sm lg:text-base cursor-pointer tracking-[${
               tracking.normal
             }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 hover-syrio-white-glow ${
               openSubNav === tab.english ? "syrio-white-glow-active" : ""
@@ -48,7 +48,7 @@ export function DesktopNavbarLinks({
       {/* Language Selector - Hidden on lg and below */}
       <div className="hidden lg:flex items-center shrink-0">
         <button
-          className={`font-bank-gothic text-sm lg:text-base tracking-[${
+          className={`font-bank-gothic text-sm lg:text-base cursor-pointer tracking-[${
             tracking.normal
           }] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 hover-syrio-white-glow ${
             openSubNav === "中文/EN" ? "syrio-white-glow-active" : ""

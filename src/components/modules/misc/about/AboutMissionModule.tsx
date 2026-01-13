@@ -5,16 +5,13 @@ import Image from "next/image";
 
 export default function AboutMissionModule() {
   return (
-    <Module
-      className="py-20 bg-syrio-black"
-      contentClassName="px-4 md:px-8"
-    >
+    <Module className="py-20 bg-syrio-black" contentClassName="px-4 md:px-8">
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left side - Image */}
         <div className="relative">
           <div className="relative w-full aspect-square max-w-md mx-auto">
             <Image
-              src="/MULTIMEDIA ASSETS/CLUB/33.png"
+              src="/MULTIMEDIA ASSETS/2025M2/图片_20260101211321_642_5.jpg"
               alt="Syrio Player"
               fill
               className="object-contain"

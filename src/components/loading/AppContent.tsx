@@ -18,13 +18,12 @@ export default function AppContent({ children }: { children: ReactNode }) {
 
   return (
     <>
+      {/* Loading overlay slides up to reveal content */}
+      <AnimatePresence>{isLoading && <LoadingOverlay />}</AnimatePresence>
       {/* Site content renders behind the overlay */}
       <Navbar />
       {children}
       <Footer />
-
-      {/* Loading overlay slides up to reveal content */}
-      <AnimatePresence>{isLoading && <LoadingOverlay />}</AnimatePresence>
     </>
   );
 }
