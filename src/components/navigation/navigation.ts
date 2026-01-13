@@ -12,12 +12,12 @@ export const navigation = {
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVC.png",
           image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-          route: "/sessions/svc",
+          route: "https://forms.gle/pynVqkYGaKJsoh9p7",
         },
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_DEVELOPMENT INTENSIVE SKILL DEVELOPMENT.png",
           image: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-          route: "/sessions/development",
+          route: "https://www.sportshub.net.au/user/syriovolleyacademy",
         },
       ],
     },
@@ -39,7 +39,7 @@ export const navigation = {
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVC.png",
           image: "/MULTIMEDIA ASSETS/2025W3/图片_20260102021847_1380_27.jpg",
-          route: "/competition/svc",
+          route: "https://forms.gle/pynVqkYGaKJsoh9p7",
         },
       ],
     },

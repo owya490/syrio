@@ -36,7 +36,7 @@ export default function Navbar() {
       >
         <ContentContainer className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link
+          <a
             href="/"
             className="relative z-101 shrink-0 group"
             onClick={() => setOpenSubNav(null)}
@@ -48,7 +48,7 @@ export default function Navbar() {
               height={imageSizes.navbarLogo.height}
               className="w-16 h-16 object-contain group-hover-syrio-white-glow-image"
             />
-          </Link>
+          </a>
 
           {/* Desktop Navigation Links */}
           <DesktopNavbarLinks

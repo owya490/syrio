@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12 mb-12">
           {/* Logo section - upper left */}
           <div className="shrink-0 hidden md:block">
-            <Link href="/" className="inline-block group">
+            <a href="/" className="inline-block group">
               <Image
                 src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
                 alt="Syrio Volley Logo"
@@ -26,7 +26,7 @@ export default function Footer() {
                 height={imageSizes.navbarLogo.height * 1.5}
                 className="w-20 h-20 md:w-20 md:h-20 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
               />
-            </Link>
+            </a>
           </div>
 
           {/* Navigation and Social section - upper right */}
@@ -39,7 +39,7 @@ export default function Footer() {
                   onClick={() => {
                     window.location.href = tab.route;
                   }}
-                  className="font-bank-gothic text-sm md:text-base uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow text-left"
+                  className="font-bank-gothic text-sm md:text-base cursor-pointer uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow text-left"
                 >
                   {tab.english}
                 </button>
