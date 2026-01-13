@@ -37,7 +37,7 @@ export default function SocialContactModule() {
           <div className="flex items-center justify-center gap-4 md:gap-6">
             {/* Facebook Icon */}
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/groups/901217364345574"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -54,7 +54,7 @@ export default function SocialContactModule() {
 
             {/* Instagram Icon */}
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/syriovolleyacademy/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -71,7 +71,7 @@ export default function SocialContactModule() {
 
             {/* Link Tree / Star Icon */}
             <a
-              href="#"
+              href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Link Tree"
