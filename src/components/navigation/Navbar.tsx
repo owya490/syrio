@@ -46,7 +46,7 @@ export default function Navbar() {
               alt="Syrio"
               width={imageSizes.navbarLogo.width}
               height={imageSizes.navbarLogo.height}
-              className="w-16 h-16 object-contain group-hover-syrio-white-glow-image"
+              className="w-20 h-20 object-contain group-hover-syrio-white-glow-image"
             />
           </UnifiedLink>
 
