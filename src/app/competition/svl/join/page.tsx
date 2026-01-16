@@ -1,5 +1,6 @@
 "use client";
 
+import UnifiedLink from "@/components/elements/Link";
 import SVLJoinLandingHero from "@/components/modules/hero/SVLJoinLandingHero";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
@@ -29,12 +30,12 @@ export default function SVLJoinPage() {
         <div className="text-center space-y-8">
           {/* Direct to Team Page */}
           <div>
-            <a
+            <UnifiedLink
               href="/competition/svl"
               className={`inline-block font-bank-gothic text-2xl md:text-3xl lg:text-4xl tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-pink transition-colors duration-300`}
             >
               DIRECT TO TEAM PAGE
-            </a>
+            </UnifiedLink>
           </div>
 
           {/* Form Application */}

@@ -1,10 +1,10 @@
 "use client";
 
 import { DecorativeLines } from "@/components/decorative";
+import UnifiedLink from "@/components/elements/Link";
 import { animation, tracking } from "@/config/design";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navigation } from "./navigation";
 
@@ -165,7 +165,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * animation.stagger }}
                       >
-                        <Link
+                        <UnifiedLink
                           href={subItem.route}
                           onClick={() => setIsOpen(false)}
                           className="block"
@@ -177,7 +177,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
                             height={100}
                             className="w-48 mx-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] transition-all duration-300"
                           />
-                        </Link>
+                        </UnifiedLink>
                       </motion.li>
                     ))}
                   </ul>

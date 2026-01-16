@@ -1,12 +1,12 @@
 "use client";
 
 import { DecorativeLines } from "@/components/decorative";
+import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import Text from "@/components/typography/Text";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function SVLPage() {
   return (
@@ -82,10 +82,8 @@ export default function SVLPage() {
 
           {/* VNSW SVL/YSVL Button - Bottom part of image asset */}
           <div className="flex justify-center mt-6 md:mt-8">
-            <Link
+            <UnifiedLink
               href="https://www.volleyballnsw.com.au/"
-              target="_blank"
-              rel="noopener noreferrer"
               className="hover:opacity-90 transition-opacity duration-300 relative w-full max-w-7xl aspect-[16/4] overflow-hidden block"
             >
               <div
@@ -98,7 +96,7 @@ export default function SVLPage() {
                   backgroundRepeat: "no-repeat",
                 }}
               />
-            </Link>
+            </UnifiedLink>
           </div>
 
           {/* Representative Team Section */}
@@ -117,7 +115,7 @@ export default function SVLPage() {
       {/* "GOT WHAT IT TAKES?" Section with Image Asset */}
       <Module className="py-0 bg-syrio-black" contentClassName="px-0">
         <div className="w-full">
-          <a
+          <UnifiedLink
             href="/competition/svl/join"
             className="block hover:opacity-90 transition-opacity duration-300"
           >
@@ -128,7 +126,7 @@ export default function SVLPage() {
               height={1080}
               className="w-full h-auto"
             />
-          </a>
+          </UnifiedLink>
         </div>
       </Module>
     </main>

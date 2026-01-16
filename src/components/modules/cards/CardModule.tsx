@@ -1,9 +1,9 @@
 "use client";
 
+import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { backgroundImages } from "@/config/images";
 import Image from "next/image";
-import Link from "next/link";
 
 interface ProgramCard {
   label: string;
@@ -71,7 +71,7 @@ export default function CardModule({
         {/* Program Cards - Mobile: 1 per row with snap scroll, Desktop: responsive based on card count */}
         <div className="flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory md:snap-none pb-2 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
           {cards.map((card) => (
-            <Link
+            <UnifiedLink
               key={card.label}
               href={card.href}
               className={`group relative flex flex-col shrink-0 w-full min-w-full snap-center md:min-w-0 ${getCardWidth()} md:snap-none`}
@@ -97,7 +97,7 @@ export default function CardModule({
                   →
                 </span>
               </div>
-            </Link>
+            </UnifiedLink>
           ))}
         </div>
       </div>

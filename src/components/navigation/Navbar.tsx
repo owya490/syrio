@@ -1,9 +1,9 @@
 "use client";
 
+import UnifiedLink from "@/components/elements/Link";
 import ContentContainer from "@/components/modules/ContentContainer";
 import { imageSizes } from "@/config/design";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { DesktopNavbarLinks, DesktopNavbarOverlay } from "./DesktopNavbar";
 import { MobileNavbarButton, MobileNavbarOverlay } from "./MobileNavbar";
@@ -36,7 +36,7 @@ export default function Navbar() {
       >
         <ContentContainer className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a
+          <UnifiedLink
             href="/"
             className="relative z-101 shrink-0 group"
             onClick={() => setOpenSubNav(null)}
@@ -48,7 +48,7 @@ export default function Navbar() {
               height={imageSizes.navbarLogo.height}
               className="w-16 h-16 object-contain group-hover-syrio-white-glow-image"
             />
-          </a>
+          </UnifiedLink>
 
           {/* Desktop Navigation Links */}
           <DesktopNavbarLinks

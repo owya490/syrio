@@ -1,6 +1,7 @@
 "use client";
 
 import { animation, tracking } from "@/config/design";
+import { isExternalLink } from "@/utils/links";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { navigation } from "./navigation";
@@ -85,39 +86,51 @@ export function DesktopNavbarOverlay({
           onClick={() => setOpenSubNav(null)}
         >
           <div className="h-full flex">
-            {activeTab.subNav.map((subItem) => (
-              <div
-                key={subItem.logo}
-                className="flex-[1] hover:flex-[1.4] relative group cursor-pointer overflow-hidden transition-all duration-300"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.location.href = subItem.route;
-                }}
-              >
-                {/* Image with grayscale filter */}
-                <div className="absolute inset-0">
-                  <Image
-                    src={subItem.image}
-                    alt={subItem.logo}
-                    fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 b"
-                  />
-                  {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-syrio-black/40 group-hover:bg-syrio-black/20 transition-all duration-300" />
-                </div>
+            {activeTab.subNav.map((subItem) => {
+              const isExternal = isExternalLink(subItem.route);
 
-                {/* Logo */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Image
-                    src={`/${subItem.logo}`}
-                    alt={subItem.logo}
-                    width={200}
-                    height={100}
-                    className="w-48 md:w-48 lg:w-64 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
-                  />
+              return (
+                <div
+                  key={subItem.logo}
+                  className="flex-[1] hover:flex-[1.4] relative group cursor-pointer overflow-hidden transition-all duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (isExternal) {
+                      window.open(
+                        subItem.route,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    } else {
+                      window.location.href = subItem.route;
+                    }
+                  }}
+                >
+                  {/* Image with grayscale filter */}
+                  <div className="absolute inset-0">
+                    <Image
+                      src={subItem.image}
+                      alt={subItem.logo}
+                      fill
+                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 b"
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-syrio-black/40 group-hover:bg-syrio-black/20 transition-all duration-300" />
+                  </div>
+
+                  {/* Logo */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Image
+                      src={`/${subItem.logo}`}
+                      alt={subItem.logo}
+                      width={200}
+                      height={100}
+                      className="w-48 md:w-48 lg:w-64 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
       )}

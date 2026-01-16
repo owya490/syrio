@@ -1,5 +1,5 @@
+import UnifiedLink from "@/components/elements/Link";
 import Image from "next/image";
-import Link from "next/link";
 import Module from "../Module";
 
 interface ContentBlockThreeProps {
@@ -85,7 +85,7 @@ export default function ContentBlockThree({
           </ul>
 
           <div className="pt-4">
-            <Link
+            <UnifiedLink
               href={ctaHref}
               className={`group inline-flex items-center gap-2 border-b-2 pb-1 font-bank-gothic text-base md:text-lg font-medium uppercase tracking-wider transition-colors ${borderColor} ${textColor} ${hoverColor}`}
             >
@@ -105,7 +105,7 @@ export default function ContentBlockThree({
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
               </svg>
-            </Link>
+            </UnifiedLink>
           </div>
         </div>
 
