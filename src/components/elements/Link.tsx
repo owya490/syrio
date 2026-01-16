@@ -14,8 +14,6 @@ interface LinkProps {
 
 /**
  * A unified Link component that automatically handles both internal and external links.
- * External links (http:// or https://) will open in a new tab with proper security attributes.
- * Internal links will use Next.js Link for client-side navigation.
  */
 export default function UnifiedLink({
   href,
@@ -26,7 +24,6 @@ export default function UnifiedLink({
 }: LinkProps) {
   const isExternal = isExternalLink(href);
 
-  // External links: use regular anchor tag with target="_blank"
   if (isExternal) {
     return (
       <a
@@ -42,7 +39,6 @@ export default function UnifiedLink({
     );
   }
 
-  // Internal links: use Next.js Link component
   return (
     <Link href={href} className={className} onClick={onClick} {...otherProps}>
       {children}
