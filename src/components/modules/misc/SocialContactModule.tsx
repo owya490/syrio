@@ -1,3 +1,4 @@
+import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { imageSizes } from "@/config/design";
 import { backgroundImages } from "@/config/images";
@@ -36,10 +37,8 @@ export default function SocialContactModule() {
           {/* Social Icons */}
           <div className="flex items-center justify-center gap-4 md:gap-6">
             {/* Facebook Icon */}
-            <a
+            <UnifiedLink
               href="https://www.facebook.com/groups/901217364345574"
-              target="_blank"
-              rel="noopener noreferrer"
               aria-label="Facebook"
               className="group transition-all duration-300"
             >
@@ -50,13 +49,11 @@ export default function SocialContactModule() {
                 height={24}
                 className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert group-hover-syrio-white-glow-image"
               />
-            </a>
+            </UnifiedLink>
 
             {/* Instagram Icon */}
-            <a
+            <UnifiedLink
               href="https://www.instagram.com/syriovolleyacademy/?hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
               aria-label="Instagram"
               className="group transition-all duration-300"
             >
@@ -67,13 +64,11 @@ export default function SocialContactModule() {
                 height={24}
                 className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert group-hover-syrio-white-glow-image"
               />
-            </a>
+            </UnifiedLink>
 
             {/* Link Tree / Star Icon */}
-            <a
+            <UnifiedLink
               href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
-              target="_blank"
-              rel="noopener noreferrer"
               aria-label="Link Tree"
               className="group transition-all duration-300"
             >
@@ -84,7 +79,7 @@ export default function SocialContactModule() {
                 height={24}
                 className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert group-hover-syrio-white-glow-image"
               />
-            </a>
+            </UnifiedLink>
           </div>
 
           {/* @SYRIOVOLLEY handle */}

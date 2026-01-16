@@ -1,9 +1,9 @@
 import { homeMessages } from "@/app/messages";
+import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { accentImages, backgroundImages, promoImages } from "@/config/images";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function LandingAboutHero() {
   return (
@@ -73,14 +73,14 @@ export default function LandingAboutHero() {
               </p>
 
               {/* Button - visible on mobile and desktop */}
-              <Link
+              <UnifiedLink
                 href="/about-us"
                 className="group font-montserrat tracking-wider text-lg hover:text-syrio-white transition-colors mx-0 lg:mx-4 self-center lg:self-start mt-24 lg:mt-0"
               >
                 <span className="border-b border-transparent group-hover:border-current pb-px">
                   {homeMessages.about.cta} <span className="text-3xl">→</span>
                 </span>
-              </Link>
+              </UnifiedLink>
             </div>
           </div>
         </div>

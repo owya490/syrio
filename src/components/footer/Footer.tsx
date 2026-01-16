@@ -1,6 +1,6 @@
+import UnifiedLink from "@/components/elements/Link";
 import { imageSizes } from "@/config/design";
 import Image from "next/image";
-import Link from "next/link";
 import Module from "../modules/Module";
 import { navigation } from "../navigation/navigation";
 
@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12 mb-12">
           {/* Logo section - upper left */}
           <div className="shrink-0 hidden md:block">
-            <a href="/" className="inline-block group">
+            <UnifiedLink href="/" className="inline-block group">
               <Image
                 src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
                 alt="Syrio Volley Logo"
@@ -26,7 +26,7 @@ export default function Footer() {
                 height={imageSizes.navbarLogo.height * 1.5}
                 className="w-20 h-20 md:w-20 md:h-20 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
               />
-            </a>
+            </UnifiedLink>
           </div>
 
           {/* Navigation and Social section - upper right */}
@@ -49,10 +49,8 @@ export default function Footer() {
             {/* Social Media Icons */}
             <div className="flex items-start gap-4">
               {/* Instagram Icon */}
-              <a
+              <UnifiedLink
                 href="https://www.instagram.com/syriovolleyacademy/?hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="group transition-all duration-300"
               >
@@ -63,13 +61,11 @@ export default function Footer() {
                   height={24}
                   className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
                 />
-              </a>
+              </UnifiedLink>
 
               {/* Facebook Icon */}
-              <a
+              <UnifiedLink
                 href="https://www.facebook.com/groups/901217364345574"
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="group transition-all duration-300"
               >
@@ -80,10 +76,10 @@ export default function Footer() {
                   height={24}
                   className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
                 />
-              </a>
+              </UnifiedLink>
 
               {/* Link Tree Icon */}
-              <a
+              <UnifiedLink
                 href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
                 aria-label="Link Tree"
                 className="group transition-all duration-300"
@@ -95,7 +91,7 @@ export default function Footer() {
                   height={24}
                   className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
                 />
-              </a>
+              </UnifiedLink>
             </div>
           </div>
         </div>
@@ -113,14 +109,12 @@ export default function Footer() {
           {/* Developer attribution - bottom right */}
           <div className="text-xs text-syrio-white font-montserrat">
             BUILT BY{" "}
-            <a
+            <UnifiedLink
               href="https://compassdigital.app"
               className="hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               CDG
-            </a>
+            </UnifiedLink>
           </div>
         </div>
       </div>
