@@ -9,7 +9,15 @@ export default function LoadingOverlay() {
       initial={{ y: 0 }}
       exit={{ y: "-100%" }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className="fixed inset-0 z-[200] flex flex-col items-center justify-center"
+      className="fixed z-[200] flex flex-col items-center justify-center bg-syrio-black"
+      style={{
+        top: "-100px",
+        left: 0,
+        right: 0,
+        bottom: "-100px",
+        paddingTop: "100px",
+        paddingBottom: "100px",
+      }}
     >
       {/* Background Image */}
       <Image
