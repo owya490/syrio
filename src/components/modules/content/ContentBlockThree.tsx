@@ -1,5 +1,10 @@
+"use client";
+
 import UnifiedLink from "@/components/elements/Link";
+import { animation } from "@/config/design";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 import Module from "../Module";
 
 interface ContentBlockThreeProps {
@@ -32,6 +37,30 @@ export default function ContentBlockThree({
   boxPosition = "lg:right-0",
   boxSize = "h-[85%] w-[75%]",
 }: ContentBlockThreeProps) {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
+  const easing = [0.4, 0, 0.2, 1] as const;
+
+  const fadeInLeft = {
+    initial: { opacity: 0, x: -30 },
+    animate: isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 },
+    transition: {
+      duration: animation.duration.slow,
+      ease: easing,
+    },
+  };
+
+  const fadeInRight = {
+    initial: { opacity: 0, x: 30 },
+    animate: isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 },
+    transition: {
+      duration: animation.duration.slow,
+      delay: animation.stagger,
+      ease: easing,
+    },
+  };
+
   // Dark Theme, Image Right (Yao Style)
   const bgColorClass = "bg-[#020617]"; // Custom Navy
   const textColor = "text-white";
@@ -50,10 +79,25 @@ export default function ContentBlockThree({
         ) : undefined
       }
     >
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
+      <div
+        ref={containerRef}
+        className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24"
+      >
         {/* Text Column (Left) */}
-        <div className="flex flex-col space-y-8 md:space-y-12 order-2 lg:order-1">
-          <div className="space-y-4">
+        <motion.div
+          className="flex flex-col space-y-8 md:space-y-12 order-2 lg:order-1"
+          {...fadeInLeft}
+        >
+          <motion.div
+            className="space-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{
+              duration: animation.duration.slow,
+              delay: animation.stagger,
+              ease: easing,
+            }}
+          >
             {subtitle && (
               <h3
                 className={`font-bank-gothic text-lg md:text-xl font-medium uppercase tracking-widest ${textColor}`}
@@ -71,20 +115,48 @@ export default function ContentBlockThree({
             >
               {role}
             </h2>
-          </div>
+          </motion.div>
 
-          <ul className="space-y-4">
+          <motion.ul
+            className="space-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{
+              duration: animation.duration.slow,
+              delay: animation.stagger * 2,
+              ease: easing,
+            }}
+          >
             {achievements.map((item, index) => (
-              <li
+              <motion.li
                 key={index}
                 className={`font-montserrat text-sm md:text-base font-normal tracking-wide ${subTextColor}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                }
+                transition={{
+                  duration: animation.duration.slow,
+                  delay: animation.stagger * 2 + index * animation.stagger,
+                  ease: easing,
+                }}
               >
                 {item}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
 
-          <div className="pt-4">
+          <motion.div
+            className="pt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{
+              duration: animation.duration.slow,
+              delay:
+                animation.stagger * 3 + achievements.length * animation.stagger,
+              ease: easing,
+            }}
+          >
             <UnifiedLink
               href={ctaHref}
               className={`group inline-flex items-center gap-2 border-b-2 pb-1 font-bank-gothic text-base md:text-lg font-medium uppercase tracking-wider transition-colors ${borderColor} ${textColor} ${hoverColor}`}
@@ -106,11 +178,14 @@ export default function ContentBlockThree({
                 <path d="m12 5 7 7-7 7" />
               </svg>
             </UnifiedLink>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Image Column (Right) */}
-        <div className="relative mx-auto flex w-full max-w-sm md:max-w-md items-center justify-center lg:max-w-full order-1 lg:order-2">
+        <motion.div
+          className="relative mx-auto flex w-full max-w-sm md:max-w-md items-center justify-center lg:max-w-full order-1 lg:order-2"
+          {...fadeInRight}
+        >
           {/* White Background Box */}
           <div
             className={`absolute top-1/2 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto ${boxPosition} ${boxSize} -translate-y-1/2 shadow-2xl ${inputBoxColor}`}
@@ -129,7 +204,7 @@ export default function ContentBlockThree({
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </Module>
   );

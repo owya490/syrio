@@ -13,7 +13,7 @@ export default function HeroBannerModule({
 }: HeroBannerModuleProps) {
   return (
     <Module
-      className="h-48 relative"
+      className="h-48 md:min-h-[20vh] relative"
       backgroundImage={backgroundImage}
       backgroundImageAlt={backgroundImageAlt}
       backgroundImageClassName="object-cover"
