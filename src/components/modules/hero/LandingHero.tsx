@@ -24,7 +24,7 @@ export default function LandingHero() {
     >
       <div className="w-full max-w-full flex justify-center px-2">
         <div className="scale-90 sm:scale-100">
-          <SyrioLogo size="lg" className="mt-6" />
+          <SyrioLogo size="lg" className="mt-6 md:mt-18" />
         </div>
       </div>
     </Module>

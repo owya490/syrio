@@ -2,7 +2,8 @@
 
 import UnifiedLink from "@/components/elements/Link";
 import ContentContainer from "@/components/modules/ContentContainer";
-import { imageSizes } from "@/config/design";
+import { animation, imageSizes } from "@/config/design";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { DesktopNavbarLinks, DesktopNavbarOverlay } from "./DesktopNavbar";
@@ -24,10 +25,19 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const easing = [0.4, 0, 0.2, 1] as const;
+
   return (
     <>
       {/* Fixed Navbar */}
-      <nav
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: animation.duration.slow,
+          delay: animation.delay.short,
+          ease: easing,
+        }}
         className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
           openSubNav || hasScrolled
             ? "bg-black/30 backdrop-blur-md shadow-lg"
@@ -59,7 +69,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <MobileNavbarButton isOpen={isOpen} setIsOpen={setIsOpen} />
         </ContentContainer>
-      </nav>
+      </motion.nav>
 
       {/* Desktop Sub-Navigation Overlay - Outside nav for full-screen */}
       <DesktopNavbarOverlay
