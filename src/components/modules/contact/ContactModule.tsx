@@ -8,7 +8,12 @@ import {
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import emailjs from "@emailjs/browser";
 import { FormEvent, useState } from "react";
+
+const EMAILJS_SERVICE_ID = "syrio";
+const EMAILJS_TEMPLATE_ID = "contact_us_template";
+const EMAILJS_PUBLIC_KEY = "4zeAGzs0RgwF9Vt60";
 
 interface FormData {
   name: string;
@@ -18,6 +23,8 @@ interface FormData {
   message: string;
 }
 
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+
 export default function ContactModule() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -26,10 +33,42 @@ export default function ContactModule() {
     telephone: "",
     message: "",
   });
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    setSubmitStatus("loading");
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          phone: formData.telephone,
+          country: formData.country,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setSubmitStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        country: "",
+        telephone: "",
+        message: "",
+      });
+
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    }
   };
 
   const handleChange = (
@@ -112,7 +151,15 @@ export default function ContactModule() {
               className="text-sm"
             />
 
-            <SubmitButton className="mt-4">Submit</SubmitButton>
+            <SubmitButton
+              className="mt-4"
+              disabled={submitStatus === "loading"}
+            >
+              {submitStatus === "loading" && "Sending..."}
+              {submitStatus === "success" && "Message Sent!"}
+              {submitStatus === "error" && "Error - Try Again"}
+              {submitStatus === "idle" && "Submit"}
+            </SubmitButton>
           </form>
         </div>
       </div>
