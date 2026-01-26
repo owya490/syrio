@@ -17,7 +17,7 @@ export const navigation = {
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_DEVELOPMENT INTENSIVE SKILL DEVELOPMENT.png",
           image: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-          route: "https://www.sportshub.net.au/user/syriovolleyacademy",
+          route: "/sessions/intensive-skill-development",
         },
       ],
     },
