@@ -24,7 +24,7 @@ export default function IntensiveSkillDevelopment() {
   }, []);
 
   return (
-    <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
+    <main className="bg-syrio-black text-syrio-white overflow-x-hidden pt-20">
       <Module
         className="h-48 md:min-h-[20vh] relative"
         backgroundImage="/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg"
