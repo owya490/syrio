@@ -14,7 +14,6 @@ interface SessionsCalendarProps {
 export default function SessionsCalendar({ events }: SessionsCalendarProps) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [month, setMonth] = useState<Date>(new Date());
-  const [showEventsList, setShowEventsList] = useState(false);
 
   // Initialize on mount
   useEffect(() => {
@@ -32,14 +31,9 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
         upcomingEvents.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
         const closestEventDate = startOfDay(upcomingEvents[0].startDate);
 
-        if (typeof window !== "undefined" && window.innerWidth < 768) {
-          // On mobile/tablet: navigate to first event month but don't select date
-          setMonth(closestEventDate);
-        } else {
-          // On desktop: select the date and navigate to its month
-          setSelectedDate(closestEventDate);
-          setMonth(closestEventDate);
-        }
+        // Select the date and navigate to its month on all screen sizes
+        setSelectedDate(closestEventDate);
+        setMonth(closestEventDate);
       }
     }
   }, [events]);
@@ -72,254 +66,153 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
     });
   }, [selectedDate, events]);
 
-  // Handle date selection - show events list on mobile
+  // Handle date selection
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
     if (date) {
       setMonth(date);
     }
-    // Show events list on mobile/tablet when a date is selected
-    if (typeof window !== "undefined" && window.innerWidth < 768 && date) {
-      setShowEventsList(true);
-    }
   };
-
-  // Handle back to calendar on mobile
-  const handleBackToCalendar = () => {
-    setShowEventsList(false);
-  };
-
-  // Custom styles for the calendar
-  const calendarStyles = `
-    .rdp {
-      --rdp-cell-size: 40px;
-      --rdp-accent-color: #ffffff;
-      --rdp-background-color: rgba(255, 255, 255, 0.1);
-      --rdp-accent-color-dark: #ffffff;
-      --rdp-background-color-dark: rgba(255, 255, 255, 0.1);
-      --rdp-outline: 2px solid var(--rdp-accent-color);
-      --rdp-outline-selected: 2px solid var(--rdp-accent-color);
-      margin: 0;
-    }
-    
-    .rdp-day {
-      color: rgba(255, 255, 255, 0.7);
-      font-family: var(--font-archivo), sans-serif;
-    }
-    
-    .rdp-day:hover:not([disabled]):not(.rdp-day_selected) {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-    }
-    
-    .rdp-day_selected,
-    .rdp-day_selected:focus-visible,
-    .rdp-day_selected:hover {
-      background-color: #ffffff;
-      color: #000d18;
-      font-weight: bold;
-    }
-    
-    .rdp-day_today:not(.rdp-day_selected) {
-      font-weight: bold;
-      color: #ffffff;
-    }
-    
-    .rdp-day_disabled {
-      color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .rdp-button:hover:not([disabled]) {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .rdp-button_reset {
-      color: #ffffff;
-    }
-    
-    .rdp-nav_button {
-      color: #ffffff;
-    }
-    
-    .rdp-nav_button:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .rdp-caption_label {
-      font-family: var(--font-bank-gothic), sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #ffffff;
-    }
-    
-    .rdp-head_cell {
-      font-family: var(--font-bank-gothic), sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.75rem;
-    }
-  `;
 
   return (
-    <div className="pt-8">
-      <style>{calendarStyles}</style>
-      <div className="md:flex gap-8 md:max-h-[600px]">
-        {/* Mobile: Sliding View */}
-        <div
-          className="md:hidden w-full overflow-hidden transition-all duration-300"
-          style={{ height: showEventsList ? "auto" : "380px" }}
-        >
+    <div className="pt-4 sm:pt-6 md:pt-8 px-2 sm:px-4 md:px-0">
+      
+      {/* Mobile & Tablet: Stacked Layout */}
+      <div className="md:hidden space-y-6">
+        {/* Calendar */}
+        <div className="flex justify-center">
           {events.length === 0 && (
             <p className="text-sm font-archivo text-syrio-white/60 mb-4">
               No upcoming sessions available
             </p>
           )}
-          <div
-            className={`flex transition-transform duration-300 ease-in-out ${
-              showEventsList ? "-translate-x-1/2" : "translate-x-0"
-            }`}
-            style={{ width: "200%" }}
-          >
-            {/* Calendar View */}
-            <div className="w-1/2 flex-shrink-0">
-              <div className="flex justify-center">
-                <DayPicker
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={handleDateSelect}
-                  month={month}
-                  onMonthChange={setMonth}
-                  startMonth={startMonth}
-                  endMonth={endMonth}
-                  disabled={(date) => {
-                    if (events.length === 0) return true;
-                    const dateStart = startOfDay(date);
-                    const today = startOfDay(new Date());
-                    if (dateStart < today) return true;
-                    return !eventDates.some((eventDate) => isSameDay(eventDate, dateStart));
-                  }}
-                  modifiers={{
-                    hasEvent: eventDates,
-                  }}
-                  modifiersStyles={{
-                    hasEvent: {
-                      fontWeight: "bold",
-                      textDecoration: "underline",
-                    },
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Events List View */}
-            <div className="w-1/2 flex-shrink-0 px-4">
-              <button
-                type="button"
-                onClick={handleBackToCalendar}
-                className="mb-4 flex items-center gap-2 text-sm font-bank-gothic uppercase tracking-wider text-syrio-white hover:text-syrio-white/80 transition-colors"
-              >
-                <span>←</span> Back to Calendar
-              </button>
-              <div>
-                <h3 className="font-bank-gothic text-xl uppercase tracking-wider mb-4 text-syrio-white">
-                  {selectedDate
-                    ? `Sessions on ${selectedDate.toLocaleDateString("en-US", {
-                        weekday: "long",
-                        month: "long",
-                        day: "numeric",
-                      })}`
-                    : "Select a date"}
-                </h3>
-
-                {eventsForSelectedDate.length === 0 ? (
-                  <div className="text-center py-12">
-                    <p className="font-archivo text-syrio-white/60">
-                      {selectedDate ? "No sessions on this day" : "Please select a date to view sessions"}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-4 pb-12">
-                    {eventsForSelectedDate.map((event) => (
-                      <SessionEventCard key={event.id} event={event} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          {events.length > 0 && (
+            <DayPicker
+              mode="single"
+              selected={selectedDate}
+              onSelect={handleDateSelect}
+              month={month}
+              onMonthChange={setMonth}
+              startMonth={startMonth}
+              endMonth={endMonth}
+              disabled={(date) => {
+                if (events.length === 0) return true;
+                const dateStart = startOfDay(date);
+                const today = startOfDay(new Date());
+                if (dateStart < today) return true;
+                return !eventDates.some((eventDate) => isSameDay(eventDate, dateStart));
+              }}
+              modifiers={{
+                hasEvent: eventDates,
+              }}
+              modifiersStyles={{
+                hasEvent: {
+                  fontWeight: "bold",
+                  textDecoration: "underline",
+                },
+              }}
+            />
+          )}
         </div>
 
-        {/* Desktop: Side by Side View */}
-        <div className="hidden md:flex gap-8 w-full">
-          {/* Calendar */}
-          <div className="flex-shrink-0">
-            <div className="flex md:pr-8">
-              <DayPicker
-                mode="single"
-                selected={selectedDate}
-                onSelect={handleDateSelect}
-                month={month}
-                onMonthChange={setMonth}
-                startMonth={startMonth}
-                endMonth={endMonth}
-                disabled={(date) => {
-                  if (events.length === 0) return true;
-                  const dateStart = startOfDay(date);
-                  const today = startOfDay(new Date());
-                  if (dateStart < today) return true;
-                  return !eventDates.some((eventDate) => isSameDay(eventDate, dateStart));
-                }}
-                modifiers={{
-                  hasEvent: eventDates,
-                }}
-                modifiersStyles={{
-                  hasEvent: {
-                    fontWeight: "bold",
-                    textDecoration: "underline",
-                  },
-                }}
-              />
-            </div>
-          </div>
+        {/* Events List */}
+        {events.length > 0 && (
+          <div className="px-2 sm:px-0">
+            <h3 className="font-bank-gothic text-base sm:text-lg uppercase tracking-wider mb-3 sm:mb-4 text-syrio-white">
+              {selectedDate
+                ? `Sessions on ${selectedDate.toLocaleDateString("en-US", {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                  })}`
+                : "Select a date"}
+            </h3>
 
-          {/* Events List */}
-          <div className="flex-1">
-            {events.length === 0 ? (
-              <div className="min-h-[300px] flex items-start pt-12">
-                <p className="text-sm font-archivo text-syrio-white/60">
-                  No upcoming sessions available
+            {eventsForSelectedDate.length === 0 ? (
+              <div className="text-center py-8 sm:py-12">
+                <p className="font-archivo text-sm text-syrio-white/60">
+                  {selectedDate ? "No sessions on this day" : "Please select a date to view sessions"}
                 </p>
               </div>
             ) : (
-              <div className="min-h-[300px]">
-                <h3 className="font-bank-gothic text-xl uppercase tracking-wider mb-6 text-syrio-white">
-                  {selectedDate
-                    ? `Sessions on ${selectedDate.toLocaleDateString("en-US", {
-                        weekday: "long",
-                        month: "long",
-                        day: "numeric",
-                      })}`
-                    : "Select a date"}
-                </h3>
-
-                {eventsForSelectedDate.length === 0 ? (
-                  <div className="text-center py-12">
-                    <p className="font-archivo text-syrio-white/60">
-                      {selectedDate ? "No sessions on this day" : "Please select a date to view sessions"}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
-                    {eventsForSelectedDate.map((event) => (
-                      <SessionEventCard key={event.id} event={event} />
-                    ))}
-                  </div>
-                )}
+              <div className="space-y-3 sm:space-y-4">
+                {eventsForSelectedDate.map((event) => (
+                  <SessionEventCard key={event.id} event={event} />
+                ))}
               </div>
             )}
           </div>
+        )}
+      </div>
+
+      {/* Desktop: Side by Side Layout */}
+      <div className="hidden md:flex gap-4 lg:gap-8">
+        {/* Calendar */}
+        <div className="flex-shrink-0">
+          <div className="flex md:pr-4 lg:pr-8">
+            <DayPicker
+              mode="single"
+              selected={selectedDate}
+              onSelect={handleDateSelect}
+              month={month}
+              onMonthChange={setMonth}
+              startMonth={startMonth}
+              endMonth={endMonth}
+              disabled={(date) => {
+                if (events.length === 0) return true;
+                const dateStart = startOfDay(date);
+                const today = startOfDay(new Date());
+                if (dateStart < today) return true;
+                return !eventDates.some((eventDate) => isSameDay(eventDate, dateStart));
+              }}
+              modifiers={{
+                hasEvent: eventDates,
+              }}
+              modifiersStyles={{
+                hasEvent: {
+                  fontWeight: "bold",
+                  textDecoration: "underline",
+                },
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Events List */}
+        <div className="flex-1 min-w-0">
+          {events.length === 0 ? (
+            <div className="min-h-[300px] flex items-start pt-12">
+              <p className="text-sm font-archivo text-syrio-white/60">
+                No upcoming sessions available
+              </p>
+            </div>
+          ) : (
+            <div className="min-h-[300px]">
+              <h3 className="font-bank-gothic text-lg lg:text-xl uppercase tracking-wider mb-4 lg:mb-6 text-syrio-white">
+                {selectedDate
+                  ? `Sessions on ${selectedDate.toLocaleDateString("en-US", {
+                      weekday: "long",
+                      month: "long",
+                      day: "numeric",
+                    })}`
+                  : "Select a date"}
+              </h3>
+
+              {eventsForSelectedDate.length === 0 ? (
+                <div className="text-center py-12">
+                  <p className="font-archivo text-syrio-white/60">
+                    {selectedDate ? "No sessions on this day" : "Please select a date to view sessions"}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3 lg:space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                  {eventsForSelectedDate.map((event) => (
+                    <SessionEventCard key={event.id} event={event} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

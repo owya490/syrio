@@ -39,14 +39,16 @@ export default function IntensiveSkillDevelopment() {
       </Module>
 
       {/* Calendar Section */}
-      <Module className="py-12 md:py-16 bg-syrio-black">
-        {loading ? (
-          <div className="text-center py-12">
-            <p className="font-archivo text-syrio-white/60">Loading sessions...</p>
-          </div>
-        ) : (
-          <SessionsCalendar events={events} />
-        )}
+      <Module className="py-8 sm:py-10 md:py-12 lg:py-16 bg-syrio-black">
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="font-archivo text-syrio-white/60">Loading sessions...</p>
+            </div>
+          ) : (
+            <SessionsCalendar events={events} />
+          )}
+        </div>
       </Module>
     </main>
   );

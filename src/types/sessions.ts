@@ -1,127 +1,155 @@
 /**
  * Session Event Types
- * 
+ *
  * These types are designed to be easily replaceable with backend API calls.
  * Simply replace the stub data fetching with your API endpoint.
  */
 
-export interface SessionEvent {
+import { getSportshubApiUrl, getSportshubEventUrl } from "@/config/sportshub";
+
+/**
+ * Frontend representation of a session event
+ */
+export type SessionEvent = {
   id: string;
   name: string;
   description: string;
   startDate: Date;
   endDate: Date;
   location: string;
-  price: number;
+  priceInCents: number;
   capacity: number;
   vacancy: number;
   image?: string;
   thumbnail?: string;
+  /** Full URL to view/booking page on Sportshub (opens in new tab) */
+  eventUrl: string;
+};
+
+/**
+ * Backend API response types for GET_SYRIO_EVENTS endpoint
+ *
+ * The API returns dates as ISO 8601 strings (e.g. "2026-02-27T23:00:00Z").
+ */
+
+/**
+ * Raw event data as returned from the backend API (JSON-serialized).
+ */
+type BackendEventData = {
+  eventId: string;
+  name: string;
+  description: string;
+  /** ISO 8601 date string, e.g. "2026-02-27T23:00:00Z" */
+  startDate: string;
+  /** ISO 8601 date string, e.g. "2026-02-28T00:00:00Z" */
+  endDate: string;
+  location: string;
+  price: number; // in cents
+  capacity: number;
+  vacancy: number;
+  image: string;
+  thumbnail?: string;
+  /** Optional custom event link from backend; otherwise we build from site URL + eventId */
+  eventLink?: string;
+};
+
+/**
+ * Response structure from GET_SYRIO_EVENTS endpoint
+ */
+type GetSyrioEventsResponse = {
+  events: BackendEventData[];
+};
+
+/**
+ * Generic API response wrapper (matches java UnifiedResponse<T>)
+ */
+type UnifiedResponse<T> = {
+  data: T;
+};
+
+/**
+ * Parse backend date to Date. Handles ISO 8601 strings (what the API returns).
+ */
+function parseBackendDate(value: string): Date {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    throw new Error(`Invalid date from API: ${value}`);
+  }
+  return date;
 }
 
 /**
- * Stub function to fetch session events
- * 
- * TODO: Replace this with actual API call
- * Example:
- * ```typescript
- * export async function fetchSessionEvents(): Promise<SessionEvent[]> {
- *   const response = await fetch('/api/sessions/intensive-skill-development');
- *   return response.json();
- * }
- * ```
+ * Transform backend event data to frontend SessionEvent format
  */
-export function fetchSessionEvents(): Promise<SessionEvent[]> {
-  // Stub data - replace with actual API call
-  // Dates are set to be in the future from current date
-  const today = new Date();
-  
-  // Helper function to create dates relative to today
-  const createDate = (daysFromToday: number, hours: number, minutes: number = 0) => {
-    const date = new Date(today);
-    date.setDate(today.getDate() + daysFromToday);
-    date.setHours(hours, minutes, 0, 0);
-    return date;
+function toSessionEvent(backendEvent: BackendEventData): SessionEvent {
+  return {
+    id: backendEvent.eventId,
+    name: backendEvent.name,
+    description: backendEvent.description,
+    startDate: parseBackendDate(backendEvent.startDate),
+    endDate: parseBackendDate(backendEvent.endDate),
+    location: backendEvent.location,
+    priceInCents: backendEvent.price,
+    capacity: backendEvent.capacity,
+    vacancy: backendEvent.vacancy,
+    image: backendEvent.image,
+    thumbnail: backendEvent.thumbnail || backendEvent.image,
+    eventUrl: getSportshubEventUrl(
+      backendEvent.eventId,
+      backendEvent.eventLink,
+    ),
   };
+}
 
-  return Promise.resolve([
-    {
-      id: "1",
-      name: "Advanced Spiking Techniques",
-      description: "Master advanced spiking techniques and power hitting. This intensive session focuses on improving your attack game with professional coaching on approach, timing, and power generation.",
-      startDate: createDate(7, 10),
-      endDate: createDate(7, 12),
-      location: "Syrio Volley Academy - Court 1",
-      price: 50,
-      capacity: 20,
-      vacancy: 15,
-      image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-      thumbnail: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-    },
-    {
-      id: "2",
-      name: "Defensive Positioning Workshop",
-      description: "Learn proper defensive positioning and court awareness. Develop your defensive skills through drills and game scenarios that improve your reaction time and court coverage.",
-      startDate: createDate(14, 14),
-      endDate: createDate(14, 16),
-      location: "Syrio Volley Academy - Court 2",
-      price: 50,
-      capacity: 20,
-      vacancy: 8,
-      image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
-      thumbnail: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
-    },
-    {
-      id: "3",
-      name: "Serving Masterclass",
-      description: "Perfect your serve technique and power. This session covers jump serves, float serves, and strategic placement to give you a competitive edge.",
-      startDate: createDate(21, 10),
-      endDate: createDate(21, 12),
-      location: "Syrio Volley Academy - Court 1",
-      price: 50,
-      capacity: 20,
-      vacancy: 20,
-      image: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-      thumbnail: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-    },
-    {
-      id: "4",
-      name: "Blocking Fundamentals",
-      description: "Master the art of blocking with proper footwork, timing, and hand positioning. Learn to read attackers and execute effective blocks.",
-      startDate: createDate(7, 14),
-      endDate: createDate(7, 16),
-      location: "Syrio Volley Academy - Court 1",
-      price: 50,
-      capacity: 20,
-      vacancy: 12,
-      image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-      thumbnail: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-    },
-    {
-      id: "5",
-      name: "Setting Precision Training",
-      description: "Improve your setting accuracy and decision-making. Work on hand positioning, ball control, and quick decision-making under pressure.",
-      startDate: createDate(14, 10),
-      endDate: createDate(14, 12),
-      location: "Syrio Volley Academy - Court 2",
-      price: 50,
-      capacity: 20,
-      vacancy: 5,
-      image: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-      thumbnail: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-    },
-    {
-      id: "6",
-      name: "All-Round Skills Intensive",
-      description: "A comprehensive session covering all aspects of volleyball. Perfect for players looking to improve their overall game with balanced training across all positions.",
-      startDate: createDate(21, 14),
-      endDate: createDate(21, 17),
-      location: "Syrio Volley Academy - Court 1",
-      price: 75,
-      capacity: 20,
-      vacancy: 18,
-      image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
-      thumbnail: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
-    },
-  ]);
+/**
+ * Fetch session events from the sportshub backend API.
+ *
+ * This calls the GlobalAppController endpoint with GET_SYRIO_EVENTS.
+ * The Syrio organiser ID is configured in the backend, so no parameters are needed.
+ */
+export async function fetchSessionEvents(): Promise<SessionEvent[]> {
+  try {
+    const response = await fetch(getSportshubApiUrl(), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        endpointType: "GET_SYRIO_EVENTS",
+        data: {},
+      }),
+    });
+
+    if (!response.ok) {
+      const errorResult = await response.json();
+      const errorMessage =
+        errorResult.error ||
+        errorResult.message ||
+        `HTTP error! status: ${response.status}`;
+      console.error("API error response:", {
+        status: response.status,
+        error: errorMessage,
+        fullResponse: errorResult,
+      });
+      throw new Error(`API error (${response.status}): ${errorMessage}`);
+    }
+
+    const json =
+      (await response.json()) as UnifiedResponse<GetSyrioEventsResponse>;
+
+    if (!json || typeof json !== "object" || !("data" in json)) {
+      console.error("Malformed response from API:", json);
+      throw new Error("Malformed response from GlobalAppController");
+    }
+
+    if (!json.data?.events) {
+      console.error("Invalid response format:", json);
+      throw new Error("Invalid response format from API: missing events array");
+    }
+
+    return json.data.events.map(toSessionEvent);
+  } catch (error) {
+    console.error("Error fetching session events from API:", error);
+    return [];
+  }
 }
