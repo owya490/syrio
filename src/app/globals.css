@@ -153,7 +153,8 @@ body {
 }
 
 .hover-syrio-white-glow:hover {
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
@@ -162,7 +163,8 @@ body {
 }
 
 .group:hover .group-hover-syrio-white-glow {
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
@@ -186,7 +188,8 @@ body {
 
 /* Active state glow (for navigation items) */
 .syrio-white-glow-active {
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
@@ -196,7 +199,8 @@ body {
 }
 
 .hover-syrio-glow-white:hover {
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
@@ -242,4 +246,140 @@ body {
 
 .animate-marquee-reverse {
   animation: marquee-reverse 20s linear infinite;
+}
+
+/* React Day Picker Custom Styles */
+.rdp {
+  --rdp-cell-size: 32px;
+  --rdp-accent-color: #ffffff;
+  --rdp-background-color: rgba(255, 255, 255, 0.1);
+  --rdp-accent-color-dark: #ffffff;
+  --rdp-background-color-dark: rgba(255, 255, 255, 0.1);
+  --rdp-outline: 2px solid #ffffff;
+  --rdp-outline-selected: 2px solid #ffffff;
+  --rdp-selected-border: 2px solid #ffffff;
+  --rdp-today-color: rgba(255, 255, 255, 0.7);
+  --rdp-day_button-border: 2px solid transparent;
+  margin: 0;
+}
+
+@media (min-width: 375px) {
+  .rdp {
+    --rdp-cell-size: 36px;
+  }
+}
+
+@media (min-width: 640px) {
+  .rdp {
+    --rdp-cell-size: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .rdp {
+    --rdp-cell-size: 44px;
+  }
+}
+
+.rdp-day {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 374px) {
+  .rdp-day {
+    font-size: 0.75rem;
+  }
+}
+
+/* Today's date: dimmed with grey circle background */
+.rdp-root .rdp-today:not(.rdp-outside):not(.rdp-day_hasEvent) {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+}
+
+.rdp-root .rdp-today:not(.rdp-outside):not(.rdp-day_hasEvent) .rdp-day_button {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+/* Grey circular background for event dates */
+.rdp-root .rdp-day_hasEvent .rdp-day_button {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.rdp-day:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.rdp-day_selected,
+.rdp-day_selected:focus-visible,
+.rdp-day_selected:hover {
+  background-color: #ffffff;
+  color: #000d18;
+  font-weight: bold;
+}
+
+/* Override the border color for selected dates */
+.rdp-root .rdp-selected .rdp-day_button {
+  border: 2px solid #ffffff;
+  border-color: #ffffff;
+}
+
+.rdp-day_disabled {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.rdp-button:hover:not([disabled]) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rdp-button_reset {
+  color: #ffffff;
+}
+
+.rdp-nav_button {
+  color: #ffffff;
+}
+
+.rdp-nav_button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure navigation chevron icons are white */
+.rdp-root .rdp-chevron {
+  fill: #ffffff;
+}
+
+.rdp-caption_label {
+  font-family: var(--font-bank-gothic), sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .rdp-caption_label {
+    letter-spacing: 0.2em;
+    font-size: 1rem;
+  }
+}
+
+.rdp-head_cell {
+  font-family: var(--font-bank-gothic), sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .rdp-head_cell {
+    font-size: 0.75rem;
+  }
 }
