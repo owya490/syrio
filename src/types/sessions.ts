@@ -106,50 +106,47 @@ function toSessionEvent(backendEvent: BackendEventData): SessionEvent {
  *
  * This calls the GlobalAppController endpoint with GET_SYRIO_EVENTS.
  * The Syrio organiser ID is configured in the backend, so no parameters are needed.
+ *
+ * @throws Error if the API request fails or returns invalid data
  */
 export async function fetchSessionEvents(): Promise<SessionEvent[]> {
-  try {
-    const response = await fetch(getSportshubApiUrl(), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        endpointType: "GET_SYRIO_EVENTS",
-        data: {},
-      }),
+  const response = await fetch(getSportshubApiUrl(), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      endpointType: "GET_SYRIO_EVENTS",
+      data: {},
+    }),
+  });
+
+  if (!response.ok) {
+    const errorResult = await response.json().catch(() => ({}));
+    const errorMessage =
+      errorResult.error ||
+      errorResult.message ||
+      `HTTP error! status: ${response.status}`;
+    console.error("API error response:", {
+      status: response.status,
+      error: errorMessage,
+      fullResponse: errorResult,
     });
-
-    if (!response.ok) {
-      const errorResult = await response.json();
-      const errorMessage =
-        errorResult.error ||
-        errorResult.message ||
-        `HTTP error! status: ${response.status}`;
-      console.error("API error response:", {
-        status: response.status,
-        error: errorMessage,
-        fullResponse: errorResult,
-      });
-      throw new Error(`API error (${response.status}): ${errorMessage}`);
-    }
-
-    const json =
-      (await response.json()) as UnifiedResponse<GetSyrioEventsResponse>;
-
-    if (!json || typeof json !== "object" || !("data" in json)) {
-      console.error("Malformed response from API:", json);
-      throw new Error("Malformed response from GlobalAppController");
-    }
-
-    if (!json.data?.events) {
-      console.error("Invalid response format:", json);
-      throw new Error("Invalid response format from API: missing events array");
-    }
-
-    return json.data.events.map(toSessionEvent);
-  } catch (error) {
-    console.error("Error fetching session events from API:", error);
-    return [];
+    throw new Error(`API error (${response.status}): ${errorMessage}`);
   }
+
+  const json =
+    (await response.json()) as UnifiedResponse<GetSyrioEventsResponse>;
+
+  if (!json || typeof json !== "object" || !("data" in json)) {
+    console.error("Malformed response from API:", json);
+    throw new Error("Malformed response from GlobalAppController");
+  }
+
+  if (!json.data?.events) {
+    console.error("Invalid response format:", json);
+    throw new Error("Invalid response format from API: missing events array");
+  }
+
+  return json.data.events.map(toSessionEvent);
 }

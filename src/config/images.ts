@@ -22,6 +22,9 @@ export const backgroundImages = {
   about: "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_ABOUT_ABOUT.png",
   /** Sessions background */
   sessions: "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE__SESSIONS.png",
+  /** Intensive skill development background */
+  intensiveSkillDevelopment:
+    "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
   /** Development programs background */
   development: "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_DEVELOPMENT.png",
   /** High performance backgrounds */

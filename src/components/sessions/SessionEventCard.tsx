@@ -17,6 +17,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
       href={event.eventUrl}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`${event.name} - ${formatDate(event.startDate)} (opens in new tab)`}
       className="block border border-syrio-white/20 bg-syrio-black/50 p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg hover:border-syrio-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-syrio-white/50"
     >
       {/* Mobile Layout */}

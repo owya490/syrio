@@ -1,49 +1,68 @@
 "use client";
 
 import Module from "@/components/modules/Module";
+import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 import SessionsCalendar from "@/components/sessions/SessionsCalendar";
+import { backgroundImages } from "@/config/images";
 import { fetchSessionEvents, SessionEvent } from "@/types/sessions";
 import { useEffect, useState } from "react";
 
 export default function IntensiveSkillDevelopment() {
   const [events, setEvents] = useState<SessionEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fetch session events
-    // TODO: Replace fetchSessionEvents() with your actual API call
+    let cancelled = false;
+
     fetchSessionEvents()
       .then((data) => {
-        setEvents(data);
-        setLoading(false);
+        if (!cancelled) {
+          setEvents(data);
+          setLoading(false);
+        }
       })
       .catch((error) => {
-        console.error("Error fetching session events:", error);
-        setLoading(false);
+        if (!cancelled) {
+          console.error("Error fetching session events:", error);
+          setError(error.message || "Failed to load sessions");
+          setLoading(false);
+        }
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
-    <main className="bg-syrio-black text-syrio-white overflow-x-hidden pt-20">
-      <Module
-        className="h-48 md:min-h-[20vh] relative"
-        backgroundImage="/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg"
+    <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
+      <HeroBannerModule
+        title="INTENSIVE SKILL DEVELOPMENT"
+        backgroundImage={backgroundImages.intensiveSkillDevelopment}
         backgroundImageAlt="Intensive Skill Development"
-        backgroundImageClassName="object-cover"
-        backgroundComponent={<div className="absolute inset-0 bg-syrio-black/60" />}
-        contentClassName="h-full flex items-center justify-center"
-      >
-        <h1 className="font-bank-gothic text-3xl md:text-4xl lg:text-5xl text-syrio-white uppercase tracking-wider text-center">
-          Intensive Skill Development
-        </h1>
-      </Module>
+        backgroundComponent={
+          <div className="absolute inset-0 bg-gradient-to-b from-syrio-black/40 to-syrio-black/80" />
+        }
+      />
 
       {/* Calendar Section */}
-      <Module className="py-8 sm:py-10 md:py-12 lg:py-16 bg-syrio-black">
+      <Module className="sm:py-10 md:py-12 lg:py-16 pb-16 md:pb-14 lg:pb-18 bg-syrio-black">
         <div className="max-w-7xl mx-auto">
           {loading ? (
             <div className="text-center py-12">
-              <p className="font-archivo text-syrio-white/60">Loading sessions...</p>
+              <p className="font-archivo text-syrio-white/60">
+                Loading sessions...
+              </p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="font-archivo text-syrio-red mb-4">
+                Failed to load sessions
+              </p>
+              <p className="font-archivo text-sm text-syrio-white/60">
+                {error}
+              </p>
             </div>
           ) : (
             <SessionsCalendar events={events} />
