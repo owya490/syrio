@@ -37,6 +37,11 @@ export default function Competitions() {
               href: "/competition/val",
               image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
             },
+            {
+              label: "SVC",
+              href: "https://forms.gle/pynVqkYGaKJsoh9p7",
+              image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
+            },
           ]}
           className="bg-syrio-black"
         />

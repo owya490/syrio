@@ -24,6 +24,11 @@ export const navigation = {
           image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213227_644_5.jpg",
           route: "/competition/val",
         },
+        {
+          logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVC.png",
+          image: "/MULTIMEDIA ASSETS/2025W3/图片_20260102021847_1380_27.jpg",
+          route: "https://forms.gle/pynVqkYGaKJsoh9p7",
+        },
       ],
     },
     { english: "SHOP", chinese: "SHOP", route: "/shop" },
