@@ -3,6 +3,7 @@
 import { DecorativeLines } from "@/components/decorative";
 import UnifiedLink from "@/components/elements/Link";
 import { animation, tracking } from "@/config/design";
+import { isExternalLink } from "@/utils/links";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -58,14 +59,18 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
 
   const handleMobileTabClick = (
     e: React.MouseEvent,
-    tab: (typeof navigation.navigationTabs)[0]
+    tab: (typeof navigation.navigationTabs)[0],
   ) => {
     e.preventDefault();
     if (tab.subNav) {
       setMobileSubNav(tab.english);
     } else {
       setIsOpen(false);
-      window.location.href = tab.route;
+      if (isExternalLink(tab.route)) {
+        window.open(tab.route, "_blank", "noopener,noreferrer");
+      } else {
+        window.location.href = tab.route;
+      }
     }
   };
 

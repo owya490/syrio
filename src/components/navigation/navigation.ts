@@ -7,19 +7,7 @@ export const navigation = {
     {
       english: "SESSIONS",
       chinese: "SESSIONS",
-      route: "/sessions",
-      subNav: [
-        {
-          logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVC.png",
-          image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-          route: "https://forms.gle/pynVqkYGaKJsoh9p7",
-        },
-        {
-          logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_DEVELOPMENT INTENSIVE SKILL DEVELOPMENT.png",
-          image: "/MULTIMEDIA ASSETS/2025W2/图片_20260101210429_640_5.jpg",
-          route: "/sessions/intensive-skill-development",
-        },
-      ],
+      route: "https://www.sportshub.net.au/",
     },
     {
       english: "COMPETITION",
@@ -35,11 +23,6 @@ export const navigation = {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION VAL.png",
           image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213227_644_5.jpg",
           route: "/competition/val",
-        },
-        {
-          logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVC.png",
-          image: "/MULTIMEDIA ASSETS/2025W3/图片_20260102021847_1380_27.jpg",
-          route: "https://forms.gle/pynVqkYGaKJsoh9p7",
         },
       ],
     },
