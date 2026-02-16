@@ -16,6 +16,8 @@ interface ContentBlockTwoProps {
     secondary: string; // The vertical portrait image (Left side)
   };
   backgroundImage?: string; // New prop for background texture
+  /** Shift the secondary image crop. Examples: "center 40%", "center top", "30% center". Default: "center center" */
+  secondaryImagePosition?: string;
 }
 
 export default function ContentBlockTwo({
@@ -24,6 +26,7 @@ export default function ContentBlockTwo({
   ctaHref = "#",
   images,
   backgroundImage,
+  secondaryImagePosition = "center center",
 }: ContentBlockTwoProps) {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
@@ -120,9 +123,12 @@ export default function ContentBlockTwo({
             </motion.div>
           </motion.div>
 
-          {/* Vertical Image (Secondary) */}
+          {/* Vertical Image (Secondary) - centered in column; crop via secondaryImagePosition (CSS var so img gets it) */}
           <motion.div
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl lg:w-4/5 hidden md:block"
+            className="content-block-two-secondary relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl lg:w-4/5 lg:mx-auto hidden md:block"
+            style={{
+              ["--secondary-object-position" as string]: secondaryImagePosition,
+            }}
             {...fadeInLeft}
           >
             <Image
@@ -166,7 +172,12 @@ export default function ContentBlockTwo({
             ease: easing,
           }}
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl">
+          <div
+            className="content-block-two-secondary relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl"
+            style={{
+              ["--secondary-object-position" as string]: secondaryImagePosition,
+            }}
+          >
             <Image
               src={images.secondary}
               alt="Secondary Visual"

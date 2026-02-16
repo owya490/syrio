@@ -383,3 +383,9 @@ body {
     font-size: 0.75rem;
   }
 }
+
+/* ContentBlockTwo secondary image: object-position from parent CSS var (Next/Image doesn’t always pass style to img) */
+.content-block-two-secondary img {
+  object-fit: cover !important;
+  object-position: var(--secondary-object-position, center center) !important;
+}
