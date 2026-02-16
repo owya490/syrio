@@ -1,7 +1,10 @@
+import UnifiedLink from "@/components/elements/Link";
 import ContentBlockTwo from "@/components/modules/content/ContentBlockTwo";
 import VALHero from "@/components/modules/hero/VALHero";
 import SocialContactModule from "@/components/modules/misc/SocialContactModule";
+import Module from "@/components/modules/Module";
 import ImageModule from "@/components/modules/multimedia/ImageModule";
+import Image from "next/image";
 
 export default function VALPage() {
   return (
@@ -21,6 +24,25 @@ export default function VALPage() {
         }}
       />
       <SocialContactModule />
+
+      {/* Sign Up Button Section - Similar to SVL "Join The Team" */}
+      <Module className="py-0 bg-syrio-black" contentClassName="px-0">
+        <div className="w-full">
+          <UnifiedLink
+            href="#" // TODO: Update with VAL sign-up link when provided
+            className="block hover:opacity-90 transition-opacity duration-300"
+          >
+            <Image
+              src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP.png"
+              alt="Sign Up for VAL"
+              width={1920}
+              height={1080}
+              className="w-full h-auto"
+            />
+          </UnifiedLink>
+        </div>
+      </Module>
+
       <ImageModule
         imageSrc="/MULTIMEDIA ASSETS/2025M2/图片_20251120021438_448_5.jpg"
         imageAlt="VAL Hero"
