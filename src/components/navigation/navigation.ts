@@ -7,7 +7,7 @@ export const navigation = {
     {
       english: "SESSIONS",
       chinese: "SESSIONS",
-      route: "https://www.sportshub.net.au/",
+      route: "https://www.sportshub.net.au/user/tihrtHXNCKVkYpmJIVijKDWkkvq2",
     },
     {
       english: "COMPETITION",
