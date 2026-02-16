@@ -28,11 +28,6 @@ export default function Sessions() {
           subtitle="TRAINING SESSIONS"
           cards={[
             {
-              label: "SVC",
-              href: "/sessions/svc",
-              image: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-            },
-            {
               label: "INTENSIVE SKILL DEVELOPMENT",
               href: "/sessions/intensive-skill-development",
               image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",

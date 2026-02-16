@@ -17,11 +17,13 @@ export function DesktopNavbarLinks({
 }: DesktopNavbarProps) {
   const handleTabClick = (
     e: React.MouseEvent,
-    tab: (typeof navigation.navigationTabs)[0]
+    tab: (typeof navigation.navigationTabs)[0],
   ) => {
     e.preventDefault();
     if (tab.subNav) {
       setOpenSubNav(openSubNav === tab.english ? null : tab.english);
+    } else if (isExternalLink(tab.route)) {
+      window.open(tab.route, "_blank", "noopener,noreferrer");
     } else {
       window.location.href = tab.route;
     }
@@ -99,7 +101,7 @@ export function DesktopNavbarOverlay({
                       window.open(
                         subItem.route,
                         "_blank",
-                        "noopener,noreferrer"
+                        "noopener,noreferrer",
                       );
                     } else {
                       window.location.href = subItem.route;
