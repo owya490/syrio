@@ -35,7 +35,12 @@ export const aboutMessages = {
   },
   team: {
     tagline: "THE TEAM",
-    title: "OUR ATHLETES",
+    title: "Meet the team",
+    description:
+      "Get to know the coaches and people behind Syrio. Our experienced staff are dedicated to developing every athlete and building a strong, supportive community.",
+    linkText: "Meet the team",
+    linkHref: "/coaching",
+    image: "/MULTIMEDIA ASSETS/2025M2/DSCN0080.JPG",
     womens: {
       title: "WOMEN'S DIVISION",
       subtitle: "Competing at the highest level",
