@@ -1,15 +1,15 @@
 import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
-import ComingSoonModule from "@/components/modules/misc/ComingSoonModule";
+import AboutTimelineModule from "@/components/modules/misc/about/AboutTimelineModule";
 import { backgroundImages } from "@/config/images";
 
 export default function History() {
   return (
-    <main>
+    <main className="bg-syrio-black text-syrio-white">
       <HeroBannerModule
         title="HISTORY"
         backgroundImage={backgroundImages.highPerformance2}
       />
-      <ComingSoonModule />
+      <AboutTimelineModule />
     </main>
   );
 }

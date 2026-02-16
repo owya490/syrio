@@ -1,8 +1,7 @@
-import CardModule from "@/components/modules/cards/CardModule";
 import AboutCTAModule from "@/components/modules/misc/about/AboutCTAModule";
 import AboutHeroModule from "@/components/modules/misc/about/AboutHeroModule";
+import AboutMeetTeamModule from "@/components/modules/misc/about/AboutMeetTeamModule";
 import AboutMissionModule from "@/components/modules/misc/about/AboutMissionModule";
-import AboutTimelineModule from "@/components/modules/misc/about/AboutTimelineModule";
 import AboutValuesModule from "@/components/modules/misc/about/AboutValuesModule";
 import { aboutMessages } from "./messages";
 
@@ -18,37 +17,8 @@ export default function AboutUs() {
       {/* Values Section */}
       <AboutValuesModule />
 
-      {/* Athletes Section */}
-      <CardModule
-        title={aboutMessages.team.title}
-        subtitle={aboutMessages.team.tagline}
-        cards={[
-          {
-            label: "MEN'S",
-            href: "/competition/mens",
-            image: "/MULTIMEDIA ASSETS/2025M2/图片_20251121010945_451_5.jpg",
-          },
-          {
-            label: "WOMEN'S",
-            href: "/competition/womens",
-            image: "/MULTIMEDIA ASSETS/2025W2/IMG_9402.png",
-          },
-          {
-            label: "YOUTH",
-            href: "/competition/youth",
-            image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101224918_645_5.jpg",
-          },
-          {
-            label: "COACHING",
-            href: "/coaching",
-            image: "/MULTIMEDIA ASSETS/2025M2/DSCN0080.JPG",
-          },
-        ]}
-        className="bg-syrio-black"
-      />
-
-      {/* History Timeline */}
-      <AboutTimelineModule />
+      {/* Meet the team */}
+      <AboutMeetTeamModule />
 
       {/* CTA Section */}
       <AboutCTAModule
