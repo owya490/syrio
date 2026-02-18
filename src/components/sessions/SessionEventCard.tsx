@@ -3,6 +3,7 @@
 import { SessionEvent } from "@/types/sessions";
 import { format } from "date-fns";
 import Image from "next/image";
+import UnifiedLink from "@/components/elements/Link";
 
 interface SessionEventCardProps {
   event: SessionEvent;
@@ -13,11 +14,9 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
   const formatDate = (date: Date) => format(date, "EEEE, MMMM d");
 
   return (
-    <a
-      href={event.eventUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${event.name} - ${formatDate(event.startDate)} (opens in new tab)`}
+    <UnifiedLink
+      href={`/event/${event.id}`}
+      aria-label={`${event.name} - ${formatDate(event.startDate)}`}
       className="block border border-syrio-white/20 bg-syrio-black/50 p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg hover:border-syrio-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-syrio-white/50"
     >
       {/* Mobile Layout */}
@@ -130,6 +129,6 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
           )}
         </div>
       </div>
-    </a>
+    </UnifiedLink>
   );
 }
