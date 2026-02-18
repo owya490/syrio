@@ -18,9 +18,10 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
             <h2 className="font-bank-gothic text-2xl md:text-3xl uppercase tracking-widest text-syrio-white mb-6">
               About This Event
             </h2>
-            <div className="font-archivo text-base text-syrio-white/80 leading-relaxed whitespace-pre-wrap">
-              {event.description}
-            </div>
+            <div
+              className="prose prose-syrio max-w-none font-archivo text-base leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: event.description }}
+            />
           </div>
 
           {/* Event Tags */}
