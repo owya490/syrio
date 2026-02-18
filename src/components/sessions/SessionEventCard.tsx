@@ -5,6 +5,10 @@ import { format } from "date-fns";
 import Image from "next/image";
 import UnifiedLink from "@/components/elements/Link";
 
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
 interface SessionEventCardProps {
   event: SessionEvent;
 }
@@ -71,7 +75,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
         {/* Description */}
         {event.description && (
           <p className="font-archivo text-xs sm:text-sm text-syrio-white/70 leading-relaxed">
-            {event.description}
+            {stripHtml(event.description)}
           </p>
         )}
       </div>
@@ -124,7 +128,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
           {/* Description */}
           {event.description && (
             <p className="font-archivo text-sm text-syrio-white/70 leading-relaxed mt-1 lg:mt-2">
-              {event.description}
+              {stripHtml(event.description)}
             </p>
           )}
         </div>
