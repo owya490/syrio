@@ -25,6 +25,11 @@ interface FormData {
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
+interface FormErrors {
+  email?: string;
+  message?: string;
+}
+
 export default function ContactModule() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -34,9 +39,35 @@ export default function ContactModule() {
     message: "",
   });
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    // Validate email
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Validate message
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+
     setSubmitStatus("loading");
 
     try {
@@ -61,6 +92,7 @@ export default function ContactModule() {
         telephone: "",
         message: "",
       });
+      setErrors({});
 
       // Reset status after 3 seconds
       setTimeout(() => setSubmitStatus("idle"), 3000);
@@ -76,6 +108,11 @@ export default function ContactModule() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
   };
 
   return (
@@ -115,14 +152,22 @@ export default function ContactModule() {
               className="text-sm"
             />
 
-            <TextInput
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="text-sm"
-            />
+            <div>
+              <TextInput
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className={`text-sm ${errors.email ? "border-b-red-500 focus:border-b-red-500" : ""}`}
+                required
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1 font-montserrat">
+                  {errors.email}
+                </p>
+              )}
+            </div>
 
             <TextInput
               type="text"
@@ -142,14 +187,22 @@ export default function ContactModule() {
               className="text-sm"
             />
 
-            <MultilineTextInput
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Message"
-              rows={4}
-              className="text-sm"
-            />
+            <div>
+              <MultilineTextInput
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Message"
+                rows={4}
+                className={`text-sm ${errors.message ? "border-b-red-500 focus:border-b-red-500" : ""}`}
+                required
+              />
+              {errors.message && (
+                <p className="text-red-500 text-xs mt-1 font-montserrat">
+                  {errors.message}
+                </p>
+              )}
+            </div>
 
             <SubmitButton
               className="mt-4"

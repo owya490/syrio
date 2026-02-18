@@ -5,7 +5,7 @@ import Module from "@/components/modules/Module";
 import { animation, tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const timelineItems = [
   {
@@ -27,7 +27,16 @@ const timelineItems = [
 
 export default function AboutTimelineModule() {
   const containerRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
+  useEffect(() => {
+    // Trigger animations on mount (hard page refresh) with a delay for visibility
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const easing = [0.4, 0, 0.2, 1] as const;
 
@@ -42,24 +51,26 @@ export default function AboutTimelineModule() {
         <div className="text-center mb-16">
           <motion.p
             className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={false}
+            animate={isMounted || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{
-              duration: animation.duration.slow,
+              duration: 0.8,
               ease: easing,
             }}
+            style={{ opacity: 0, y: 40 }}
           >
             {aboutMessages.timeline.tagline}
           </motion.p>
           <motion.h2
             className="font-bank-gothic text-4xl md:text-5xl tracking-wider"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={false}
+            animate={isMounted || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{
-              duration: animation.duration.slow,
+              duration: 0.8,
               delay: animation.stagger,
               ease: easing,
             }}
+            style={{ opacity: 0, y: 40 }}
           >
             {aboutMessages.timeline.title}
           </motion.h2>
@@ -71,7 +82,7 @@ export default function AboutTimelineModule() {
           <motion.div
             className="absolute left-12 top-0 bottom-0 w-0.5 bg-syrio-white/20 hidden md:block"
             initial={{ scaleY: 0 }}
-            animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+            animate={isMounted || isInView ? { scaleY: 1 } : { scaleY: 0 }}
             transition={{
               duration: animation.duration.slow * 2,
               delay: animation.stagger * 2,
@@ -84,19 +95,20 @@ export default function AboutTimelineModule() {
             <motion.div
               key={item.year}
               className="flex gap-8 items-start relative"
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              initial={false}
+              animate={isMounted || isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{
-                duration: animation.duration.slow,
+                duration: 0.8,
                 delay: animation.stagger * (index + 2),
                 ease: easing,
               }}
+              style={{ opacity: 0, x: -50 }}
             >
               {/* Timeline dot */}
               <motion.div
                 className="absolute left-12 w-3 h-3 bg-syrio-white/60 rounded-full hidden md:block -translate-x-1/2"
                 initial={{ scale: 0 }}
-                animate={isInView ? { scale: 1 } : { scale: 0 }}
+                animate={isMounted || isInView ? { scale: 1 } : { scale: 0 }}
                 transition={{
                   duration: animation.duration.normal,
                   delay: animation.stagger * (index + 2) + 0.2,
@@ -106,7 +118,7 @@ export default function AboutTimelineModule() {
               <motion.div
                 className="font-bank-gothic text-3xl text-syrio-white/60 w-24 shrink-0"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                animate={isMounted || isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{
                   duration: animation.duration.normal,
                   delay: animation.stagger * (index + 2),

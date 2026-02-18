@@ -31,7 +31,7 @@ export const navigation = {
         },
       ],
     },
-    { english: "SHOP", chinese: "SHOP", route: "/shop" },
+    // { english: "SHOP", chinese: "SHOP", route: "/shop" },
     { english: "ABOUT", chinese: "ABOUT", route: "/about" },
     { english: "HISTORY", chinese: "HISTORY", route: "/history" },
   ],

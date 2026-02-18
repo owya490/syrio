@@ -49,7 +49,7 @@ export function DesktopNavbarLinks({
       </div>
 
       {/* Language Selector - Hidden on lg and below */}
-      <div className="hidden lg:flex items-center shrink-0">
+      {/* <div className="hidden lg:flex items-center shrink-0">
         <button
           className={`font-bank-gothic text-sm lg:text-base cursor-pointer tracking-[${
             tracking.normal
@@ -59,7 +59,7 @@ export function DesktopNavbarLinks({
         >
           中文/EN
         </button>
-      </div>
+      </div> */}
     </>
   );
 }

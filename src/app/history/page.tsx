@@ -1,3 +1,5 @@
+"use client";
+
 import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 import AboutTimelineModule from "@/components/modules/misc/about/AboutTimelineModule";
 import { backgroundImages } from "@/config/images";
