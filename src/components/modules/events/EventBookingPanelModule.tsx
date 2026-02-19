@@ -1,9 +1,12 @@
 "use client";
 
+import EventInfoRow from "@/components/events/EventInfoRow";
+import SyrioBookingButton from "@/components/events/SyrioBookingButton";
+import SyrioContactButton from "@/components/events/SyrioContactButton";
+import { MAX_TICKETS_PER_ORDER } from "@/constants/events";
 import { SessionEvent } from "@/types/sessions";
 import { format } from "date-fns";
-import EventInfoRow from "@/components/events/EventInfoRow";
-import CTAButton from "@/components/elements/CTAButton";
+import { useMemo, useState } from "react";
 
 interface EventBookingPanelModuleProps {
   event: SessionEvent;
@@ -14,6 +17,22 @@ export default function EventBookingPanelModule({
   event,
   className = "",
 }: EventBookingPanelModuleProps) {
+  const [loading, setLoading] = useState(false);
+  const [ticketCount, setTicketCount] = useState(1);
+
+  const allowedTicketCounts = useMemo(
+    () =>
+      Array.from(
+        { length: Math.min(event.vacancy, MAX_TICKETS_PER_ORDER) },
+        (_, i) => i + 1,
+      ),
+    [event.vacancy],
+  );
+
+  const safeTicketCount = allowedTicketCounts.includes(ticketCount)
+    ? ticketCount
+    : (allowedTicketCounts[0] ?? 1);
+
   const formatTime = (date: Date) => format(date, "h:mm a");
   const formatDate = (date: Date) => format(date, "EEEE, MMMM d, yyyy");
 
@@ -21,13 +40,111 @@ export default function EventBookingPanelModule({
     ? "Spots available"
     : `${event.vacancy} ${event.vacancy === 1 ? "spot" : "spots"} available`;
 
+  // Check event state
+  const now = new Date();
+  const eventInPast = now > event.endDate;
+  const registrationClosed =
+    (event.registrationDeadline && now > event.registrationDeadline) ||
+    event.paused;
+  const soldOut = event.vacancy === 0;
+
+  // Determine what button/state to show
+  const getBookingCTA = () => {
+    if (registrationClosed) {
+      return (
+        <div className="text-center py-4">
+          <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
+            Registration Closed
+          </h3>
+          <p className="font-archivo text-sm text-syrio-white/60">
+            Please check with the organiser for more details.
+          </p>
+        </div>
+      );
+    }
+
+    if (eventInPast) {
+      return (
+        <div className="text-center py-4">
+          <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
+            Event Finished
+          </h3>
+          <p className="font-archivo text-sm text-syrio-white/60">
+            Please check with the organiser for future events.
+          </p>
+        </div>
+      );
+    }
+
+    if (soldOut) {
+      return (
+        <div className="text-center py-4">
+          <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
+            Sold Out
+          </h3>
+          <p className="font-archivo text-sm text-syrio-white/60">
+            {event.waitlistEnabled
+              ? "Join the waitlist to be notified if spots become available."
+              : "Please check back later."}
+          </p>
+        </div>
+      );
+    }
+
+    // Show Book Now or Contact Now based on paymentsActive
+    if (event.paymentsActive) {
+      return (
+        <>
+          <div className="mb-4">
+            <label
+              htmlFor="ticket-count"
+              className="font-archivo text-sm text-syrio-white/80 block mb-2"
+            >
+              Number of tickets
+            </label>
+            <select
+              id="ticket-count"
+              value={safeTicketCount}
+              onChange={(e) => setTicketCount(Number(e.target.value))}
+              disabled={loading}
+              className="font-archivo w-full text-syrio-white bg-syrio-black/50 border border-syrio-white/20 rounded-lg pl-4 pr-12 py-2 focus:outline-none focus:border-syrio-white/40 disabled:opacity-50 disabled:cursor-not-allowed [&>option]:bg-syrio-black [&>option]:text-syrio-white appearance-none bg-no-repeat bg-[length:1.25rem_1.25rem] bg-[right_1rem_center]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+              }}
+            >
+              {allowedTicketCounts.map((count) => (
+                <option key={count} value={count}>
+                  {count} Ticket{count > 1 ? "s" : ""}
+                </option>
+              ))}
+            </select>
+          </div>
+          <SyrioBookingButton
+            eventId={event.id}
+            ticketCount={safeTicketCount}
+            className="w-full justify-center inline-flex items-center gap-2 bg-syrio-white text-syrio-black font-montserrat font-bold tracking-wider text-sm px-8 py-3 border-2 border-syrio-white hover-syrio-glow-white hover:bg-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+            onLoadingChange={setLoading}
+          />
+        </>
+      );
+    } else {
+      return (
+        <SyrioContactButton
+          eventLink={event.eventLink}
+          organiserId={event.organiserId}
+          className="w-full justify-center inline-flex items-center gap-2 bg-syrio-white text-syrio-black font-montserrat font-bold tracking-wider text-sm px-8 py-3 border-2 border-syrio-white hover-syrio-glow-white hover:bg-transparent"
+        />
+      );
+    }
+  };
+
   const googleMapsUrl = event.locationLatLng
     ? `https://www.google.com/maps/search/?api=1&query=${event.locationLatLng.lat},${event.locationLatLng.lng}`
     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`;
 
   return (
     <div
-      className={`border border-syrio-white/20 bg-syrio-black/50 p-6 lg:p-8 rounded-lg space-y-6 ${className}`}
+      className={`border border-syrio-white/40 bg-syrio-black/50 p-6 lg:p-8 rounded-lg space-y-6 ${className}`}
     >
       {/* Title */}
       <h3 className="font-bank-gothic text-xl uppercase tracking-widest text-syrio-white">
@@ -160,12 +277,8 @@ export default function EventBookingPanelModule({
         )}
       </div>
 
-      {/* Book Now Button */}
-      <div className="pt-4">
-        <CTAButton href={event.eventUrl} className="w-full justify-center">
-          Book Now
-        </CTAButton>
-      </div>
+      {/* Booking CTA (Book Now, Contact Now, or Status Message) */}
+      <div className="pt-4">{getBookingCTA()}</div>
 
       {/* Additional Info */}
       {(event.waitlistEnabled || event.bookingApprovalEnabled) && (

@@ -54,7 +54,7 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
           )}
 
           {event.formId && (
-            <div className="border border-syrio-white/20 bg-syrio-white/5 p-4 rounded-lg">
+            <div className="border border-syrio-white/40 bg-syrio-white/5 p-4 rounded-lg">
               <p className="font-archivo text-sm text-syrio-white/70">
                 This event requires completing a registration form during
                 booking.
