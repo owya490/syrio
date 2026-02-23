@@ -29,7 +29,7 @@ export default function ContentBlockThree({
   role,
   achievements,
   ctaLabel = "ENQUIRE MORE",
-  ctaHref = "#",
+  ctaHref = "/contact",
   imageSrc,
   backgroundImage,
   imageScale = "scale-110 md:scale-125", // Sensible defaults but overridable

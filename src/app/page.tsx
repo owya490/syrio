@@ -22,7 +22,7 @@ export default function Home() {
       <ContentBlockTwo
         description="Syrio Volley Academy — Elite volleyball coaching, trials, and high-performance pathways. Join our community and stay updated on trials, programs, and events."
         ctaLabel="JOIN THE COMMUNITY"
-        ctaHref="#"
+        ctaHref="/contact"
         backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
         images={{
           primary: "/MULTIMEDIA ASSETS/2025M2/图片_20251120021438_448_5.jpg",

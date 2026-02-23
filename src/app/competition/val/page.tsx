@@ -13,7 +13,7 @@ export default function VALPage() {
       <ContentBlockTwo
         description="The Volleyball Ascendant League (VAL) delivers a high-quality, community-driven NSW Division 3 Level Volleyball Competition. VAL bridges social volleyball and state leagues that aligns with Volleyball NSW's endorsement objectives, providing a structured pathway for emerging Men's and Women's teams and athletes in partnership with Volleyball NSW."
         ctaLabel="REGISTER NOW"
-        ctaHref="#"
+        ctaHref="/contact"
         backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
         images={{
           // Primary: Large landscape image (e.g. general about/team photo)

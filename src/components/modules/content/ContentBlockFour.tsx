@@ -28,7 +28,7 @@ export default function ContentBlockFour({
   role,
   achievements,
   ctaLabel = "ENQUIRE MORE",
-  ctaHref = "#",
+  ctaHref = "/contact",
   imageSrc,
   imageScale = "scale-110 md:scale-105",
   imageTranslate = "translate-y-[5%] md:translate-y-[-5%] translate-x-[-5%] lg:md:translate-x-[-15%]",
