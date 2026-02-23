@@ -73,7 +73,7 @@ export default function VALHero() {
       {/* Main VAL Logo */}
       <div className="relative w-full max-w-5xl lg:max-w-6xl aspect-[16/9] flex items-center justify-center">
         <Image
-          src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_VAL.png"
+          src="/WEBSITE MATERIAL/VAL LOGO_画板 1 副本 31.png"
           alt="VAL - Victorian Academy League"
           fill
           priority
