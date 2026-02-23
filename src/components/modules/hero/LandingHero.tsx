@@ -9,6 +9,7 @@ export default function LandingHero() {
       backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HOME PAGE.png"
       backgroundImageAlt="Team Background"
       backgroundImageClassName="object-cover opacity-40"
+      backgroundImagePriority={true}
       backgroundComponent={
         <div className="absolute -top-1/4 md:-top-1/4 -left-5/12 md:-left-5/12 w-full h-full pointer-events-none -rotate-30">
           <Image

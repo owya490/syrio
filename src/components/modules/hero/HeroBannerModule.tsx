@@ -36,6 +36,7 @@ export default function HeroBannerModule({
       backgroundImage={backgroundImage}
       backgroundImageAlt={backgroundImageAlt}
       backgroundImageClassName="object-cover"
+      backgroundImagePriority={true}
       backgroundComponent={
         backgroundComponent || (
           <div className="absolute inset-0 bg-syrio-black/60" />

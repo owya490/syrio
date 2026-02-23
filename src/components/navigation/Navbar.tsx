@@ -6,6 +6,7 @@ import { animation, imageSizes } from "@/config/design";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { DesktopNavbarLinks, DesktopNavbarOverlay } from "./DesktopNavbar";
 import { MobileNavbarButton, MobileNavbarOverlay } from "./MobileNavbar";
 
@@ -13,6 +14,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [openSubNav, setOpenSubNav] = useState<string | null>(null);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Close dropdown and mobile menu whenever the route changes
+  useEffect(() => {
+    setOpenSubNav(null);
+    setIsOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
