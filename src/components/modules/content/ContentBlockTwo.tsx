@@ -146,7 +146,7 @@ export default function ContentBlockTwo({
           className="flex md:pt-20 items-start lg:col-span-8 lg:pl-6 order-1 lg:order-2 -mt-8 lg:-mt-12"
           {...fadeInRight}
         >
-          <div className="relative aspect-[4/2] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01]" style={{ willChange: "transform" }}>
+          <div className="relative aspect-[4/2] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
             <Image
               src={images.primary}
               alt="Primary Visual"

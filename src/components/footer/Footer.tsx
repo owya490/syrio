@@ -34,13 +34,15 @@ export default function Footer() {
             {/* Navigation Links */}
             <nav className="flex flex-col">
               {navigation.navigationTabs.map((tab) => (
-                <UnifiedLink
+                <button
                   key={tab.route}
-                  href={tab.route}
-                  className="font-bank-gothic text-sm md:text-base uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow"
+                  onClick={() => {
+                    window.location.href = tab.route;
+                  }}
+                  className="font-bank-gothic text-sm md:text-base cursor-pointer uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow text-left"
                 >
                   {tab.english}
-                </UnifiedLink>
+                </button>
               ))}
             </nav>
 

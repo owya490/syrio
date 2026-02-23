@@ -7,8 +7,6 @@ interface ModuleProps {
   backgroundImage?: string;
   backgroundImageAlt?: string;
   backgroundImageClassName?: string;
-  backgroundImagePriority?: boolean;
-  backgroundImageSizes?: string;
   backgroundComponent?: ReactNode;
   className?: string;
   contentClassName?: string;
@@ -20,8 +18,6 @@ export default function Module({
   backgroundImage,
   backgroundImageAlt = "Background",
   backgroundImageClassName = "object-cover",
-  backgroundImagePriority = false,
-  backgroundImageSizes = "100vw",
   backgroundComponent,
   className = "",
   contentClassName = "",
@@ -39,8 +35,6 @@ export default function Module({
             src={backgroundImage}
             alt={backgroundImageAlt}
             fill
-            priority={backgroundImagePriority}
-            sizes={backgroundImageSizes}
             className={backgroundImageClassName}
           />
         </div>
