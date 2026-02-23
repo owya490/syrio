@@ -53,6 +53,7 @@ export default function LandingAboutHero() {
               src={promoImages.promo2026}
               alt="Syrio 2026 Promo"
               fill
+              sizes="(max-width: 1024px) 180vw, 1200px"
               className="object-contain"
             />
           </div>
@@ -124,10 +125,11 @@ export default function LandingAboutHero() {
             >
               <div className="relative w-full h-full">
                 <Image
-                  src={promoImages.tempHomePhoto}
-                  alt="Syrio Team"
-                  fill
-                  className="object-cover"
+              src={promoImages.tempHomePhoto}
+              alt="Syrio Team"
+              fill
+              sizes="(max-width: 1024px) 0vw, 288px"
+              className="object-cover"
                 />
               </div>
             </motion.div>
