@@ -5,8 +5,7 @@
  * Prod: set NEXT_PUBLIC_SPORTSHUB_* to prod values
  */
 
-const DEV_SITE_URL = "http://localhost:3001";
-
+const DEV_SITE_URL = "http://localhost:3000";
 const PROD_SITE_URL = "https://www.sportshub.net.au";
 
 function isProd(): boolean {

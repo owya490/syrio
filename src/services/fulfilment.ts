@@ -35,11 +35,12 @@ type UnifiedResponse<T> = {
 };
 
 /**
- * Initialize a checkout fulfilment session
+ * Initialize a checkout fulfilment session.
+ * When called from Syrio, passes successRedirectUrl so Stripe redirects to the Syrio success page.
  */
 export async function initFulfilmentSession(
   eventId: string,
-  numTickets: number
+  numTickets: number,
 ): Promise<InitCheckoutFulfilmentSessionResponse> {
   const request: UnifiedRequest<InitCheckoutFulfilmentSessionRequest> = {
     endpointType: "INIT_FULFILMENT_SESSION",
@@ -61,11 +62,12 @@ export async function initFulfilmentSession(
   if (!response.ok) {
     const errorText = await response.text().catch(() => "");
     throw new Error(
-      `Failed to initialize fulfilment session (status ${response.status}): ${errorText}`
+      `Failed to initialize fulfilment session (status ${response.status}): ${errorText}`,
     );
   }
 
-  const json = (await response.json()) as UnifiedResponse<InitCheckoutFulfilmentSessionResponse>;
+  const json =
+    (await response.json()) as UnifiedResponse<InitCheckoutFulfilmentSessionResponse>;
   return json.data;
 }
 
@@ -74,7 +76,7 @@ export async function initFulfilmentSession(
  */
 export async function getNextFulfilmentEntityUrl(
   fulfilmentSessionId: FulfilmentSessionId,
-  currentFulfilmentEntityId?: FulfilmentEntityId
+  currentFulfilmentEntityId?: FulfilmentEntityId,
 ): Promise<string | undefined> {
   const request: UnifiedRequest<GetNextFulfilmentEntityRequest> = {
     endpointType: "GET_NEXT_FULFILMENT_ENTITY",
@@ -96,18 +98,19 @@ export async function getNextFulfilmentEntityUrl(
   if (!response.ok) {
     const errorText = await response.text().catch(() => "");
     throw new Error(
-      `Failed to get next fulfilment entity (status ${response.status}): ${errorText}`
+      `Failed to get next fulfilment entity (status ${response.status}): ${errorText}`,
     );
   }
 
-  const json = (await response.json()) as UnifiedResponse<GetNextFulfilmentEntityResponse>;
+  const json =
+    (await response.json()) as UnifiedResponse<GetNextFulfilmentEntityResponse>;
   const { fulfilmentEntityId } = json.data;
 
   if (fulfilmentEntityId === null) {
     return undefined;
   }
 
-  // Build the Sportshub URL with hideNavbar query parameter
+  // Build the Sportshub URL with hideSportshubNavbar query parameter
   const baseUrl = `${getSportshubSiteUrl()}/fulfilment/${fulfilmentSessionId}/${fulfilmentEntityId}`;
-  return `${baseUrl}?hideNavbar=true`;
+  return `${baseUrl}?hideSportshubNavbar=true`;
 }
