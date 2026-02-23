@@ -110,7 +110,7 @@ export async function getNextFulfilmentEntityUrl(
     return undefined;
   }
 
-  // Build the Sportshub URL with hideNavbar query parameter
+  // Build the Sportshub URL with hideSportshubNavbar query parameter
   const baseUrl = `${getSportshubSiteUrl()}/fulfilment/${fulfilmentSessionId}/${fulfilmentEntityId}`;
-  return `${baseUrl}?hideNavbar=true`;
+  return `${baseUrl}?hideSportshubNavbar=true`;
 }
