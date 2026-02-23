@@ -5,10 +5,6 @@ import { format } from "date-fns";
 import Image from "next/image";
 import UnifiedLink from "@/components/elements/Link";
 
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-}
-
 interface SessionEventCardProps {
   event: SessionEvent;
 }
@@ -71,13 +67,6 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
             </p>
           </div>
         </div>
-
-        {/* Description */}
-        {event.description && (
-          <p className="font-archivo text-xs sm:text-sm text-syrio-white/70 leading-relaxed">
-            {stripHtml(event.description)}
-          </p>
-        )}
       </div>
 
       {/* Desktop Layout */}
@@ -124,13 +113,6 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
               {event.vacancy} {event.vacancy === 1 ? "spot" : "spots"} available
             </p>
           </div>
-
-          {/* Description */}
-          {event.description && (
-            <p className="font-archivo text-sm text-syrio-white/70 leading-relaxed mt-1 lg:mt-2">
-              {stripHtml(event.description)}
-            </p>
-          )}
         </div>
       </div>
     </UnifiedLink>
