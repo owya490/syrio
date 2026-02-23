@@ -81,7 +81,7 @@ export default function ContactModule() {
           phone: formData.telephone,
           country: formData.country,
         },
-        EMAILJS_PUBLIC_KEY
+        EMAILJS_PUBLIC_KEY,
       );
 
       setSubmitStatus("success");
@@ -104,11 +104,11 @@ export default function ContactModule() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -158,7 +158,7 @@ export default function ContactModule() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder="Email *"
                 className={`text-sm ${errors.email ? "border-b-red-500 focus:border-b-red-500" : ""}`}
                 required
               />
@@ -192,7 +192,7 @@ export default function ContactModule() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Message"
+                placeholder="Message *"
                 rows={4}
                 className={`text-sm ${errors.message ? "border-b-red-500 focus:border-b-red-500" : ""}`}
                 required
