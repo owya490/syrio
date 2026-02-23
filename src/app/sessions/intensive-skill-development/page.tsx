@@ -1,16 +1,39 @@
+"use client";
+
 import Module from "@/components/modules/Module";
 import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 import SessionsCalendar from "@/components/sessions/SessionsCalendar";
 import { backgroundImages } from "@/config/images";
-import { fetchSessionEvents } from "@/types/sessions";
+import { fetchSessionEvents, SessionEvent } from "@/types/sessions";
+import { useEffect, useState } from "react";
 
-export default async function IntensiveSkillDevelopment() {
-  let events = [];
-  try {
-    events = await fetchSessionEvents();
-  } catch {
-    // Events will remain empty; calendar handles the empty state
-  }
+export default function IntensiveSkillDevelopment() {
+  const [events, setEvents] = useState<SessionEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchSessionEvents()
+      .then((data) => {
+        if (!cancelled) {
+          setEvents(data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          console.error("Error fetching session events:", error);
+          setError(error.message || "Failed to load sessions");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
@@ -23,9 +46,27 @@ export default async function IntensiveSkillDevelopment() {
         }
       />
 
+      {/* Calendar Section */}
       <Module className="sm:py-10 md:py-12 lg:py-16 pb-16 md:pb-14 lg:pb-18 bg-syrio-black">
         <div className="max-w-7xl mx-auto">
-          <SessionsCalendar events={events} />
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="font-archivo text-syrio-white/60">
+                Loading sessions...
+              </p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="font-archivo text-syrio-red mb-4">
+                Failed to load sessions
+              </p>
+              <p className="font-archivo text-sm text-syrio-white/60">
+                {error}
+              </p>
+            </div>
+          ) : (
+            <SessionsCalendar events={events} />
+          )}
         </div>
       </Module>
     </main>

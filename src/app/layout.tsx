@@ -7,37 +7,31 @@ import "./globals.css";
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
-  display: "swap",
 });
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  display: "swap",
 });
 
 const bankGothic = localFont({
   src: "../../public/fonts/bankgothic-md-bt/BankGothic Md BT.ttf",
   variable: "--font-bank-gothic",
-  display: "swap",
 });
 
 const geekTrend = localFont({
   src: "../../public/fonts/geek-trend-demo.regular.ttf",
   variable: "--font-geek-trend",
-  display: "swap",
 });
 
 const serif12 = localFont({
   src: "../../public/fonts/Serif12_Beta_Rg/Serif12Beta-Italic.otf",
   variable: "--font-serif12",
-  display: "swap",
 });
 
 const youSheBiaoTiHei = localFont({
   src: "../../public/fonts/YouSheBiaoTiHei/YouSheBiaoTiHei-2.ttf",
   variable: "--font-youshe",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
