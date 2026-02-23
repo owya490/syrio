@@ -8,6 +8,7 @@ export default function SVLJoinLandingHero() {
       backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP2.png"
       backgroundImageAlt="SYRIO REP Welcome"
       backgroundImageClassName="object-cover"
+      backgroundImagePriority={true}
       contentClassName="hidden"
       backgroundComponent={
         <>
