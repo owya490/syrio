@@ -1,5 +1,9 @@
+"use client";
+
 import Module from "@/components/modules/Module";
-import { ReactNode } from "react";
+import { animation } from "@/config/design";
+import { motion } from "framer-motion";
+import { ReactNode, useEffect, useState } from "react";
 
 interface HeroBannerModuleProps {
   title: string;
@@ -14,6 +18,18 @@ export default function HeroBannerModule({
   backgroundImageAlt = "Hero banner background",
   backgroundComponent,
 }: HeroBannerModuleProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation on mount (hard page refresh) with a delay for visibility
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const easing = [0.4, 0, 0.2, 1] as const;
+
   return (
     <Module
       className="h-48 md:min-h-[20vh] relative"
@@ -27,9 +43,18 @@ export default function HeroBannerModule({
       }
       contentClassName="h-full flex items-end pb-4"
     >
-      <h1 className="font-bank-gothic text-3xl md:text-4xl lg:text-5xl text-syrio-white uppercase tracking-wider">
+      <motion.h1
+        className="font-bank-gothic text-3xl md:text-4xl lg:text-5xl text-syrio-white uppercase tracking-wider"
+        initial={false}
+        animate={isMounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+        transition={{
+          duration: 0.8,
+          ease: easing,
+        }}
+        style={{ opacity: 0, y: 60 }}
+      >
         {title}
-      </h1>
+      </motion.h1>
     </Module>
   );
 }
