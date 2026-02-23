@@ -79,7 +79,7 @@ export default function EventDetailPage() {
 
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
-      {/* Hero Banner with Event Title - using same background as shop page */}
+      {/* Hero Banner with Event Title - using same background as shop page  */}
       <HeroBannerModule
         title={event.name}
         backgroundImage={backgroundImages.highPerformance2}
