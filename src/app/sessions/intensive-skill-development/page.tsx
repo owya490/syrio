@@ -2,10 +2,10 @@ import Module from "@/components/modules/Module";
 import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 import SessionsCalendar from "@/components/sessions/SessionsCalendar";
 import { backgroundImages } from "@/config/images";
-import { fetchSessionEvents } from "@/types/sessions";
+import { fetchSessionEvents, SessionEvent } from "@/types/sessions";
 
 export default async function IntensiveSkillDevelopment() {
-  let events = [];
+  let events: SessionEvent[] = [];
   try {
     events = await fetchSessionEvents();
   } catch {
