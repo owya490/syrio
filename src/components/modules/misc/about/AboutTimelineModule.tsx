@@ -78,9 +78,9 @@ export default function AboutTimelineModule() {
 
         {/* Timeline items */}
         <div className="space-y-12 relative">
-          {/* Vertical line connecting timeline items */}
+          {/* Vertical line - aligned to centre of dot column (w-6 = 24px, so left-3 = 12px) */}
           <motion.div
-            className="absolute left-12 top-0 bottom-0 w-0.5 bg-syrio-white/20 hidden md:block"
+            className="absolute left-3 top-0 bottom-0 w-0.5 bg-syrio-white/20 hidden md:block"
             initial={{ scaleY: 0 }}
             animate={isMounted || isInView ? { scaleY: 1 } : { scaleY: 0 }}
             transition={{
@@ -94,7 +94,7 @@ export default function AboutTimelineModule() {
           {timelineItems.map((item, index) => (
             <motion.div
               key={item.year}
-              className="flex gap-8 items-start relative"
+              className="flex gap-6 items-start"
               initial={false}
               animate={isMounted || isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{
@@ -104,19 +104,21 @@ export default function AboutTimelineModule() {
               }}
               style={{ opacity: 0, x: -50 }}
             >
-              {/* Timeline dot */}
+              {/* Dot column - inline so dot sits to the left of year */}
+              <div className="shrink-0 w-6 hidden md:flex items-start justify-center pt-2">
+                <motion.div
+                  className="w-3 h-3 bg-syrio-white/60 rounded-full"
+                  initial={{ scale: 0 }}
+                  animate={isMounted || isInView ? { scale: 1 } : { scale: 0 }}
+                  transition={{
+                    duration: animation.duration.normal,
+                    delay: animation.stagger * (index + 2) + 0.2,
+                    ease: [0.34, 1.56, 0.64, 1],
+                  }}
+                />
+              </div>
               <motion.div
-                className="absolute left-12 w-3 h-3 bg-syrio-white/60 rounded-full hidden md:block -translate-x-1/2"
-                initial={{ scale: 0 }}
-                animate={isMounted || isInView ? { scale: 1 } : { scale: 0 }}
-                transition={{
-                  duration: animation.duration.normal,
-                  delay: animation.stagger * (index + 2) + 0.2,
-                  ease: [0.34, 1.56, 0.64, 1],
-                }}
-              />
-              <motion.div
-                className="font-bank-gothic text-3xl text-syrio-white/60 w-24 shrink-0"
+                className="font-bank-gothic text-3xl text-syrio-white/60 w-24 shrink-0 leading-none -mt-1"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isMounted || isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{

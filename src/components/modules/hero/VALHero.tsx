@@ -77,6 +77,7 @@ export default function VALHero() {
           alt="VAL - Victorian Academy League"
           fill
           priority
+          sizes="(max-width: 1024px) 100vw, 1152px"
           className="object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.2)] mt-12 md:mt-20"
         />
       </div>
