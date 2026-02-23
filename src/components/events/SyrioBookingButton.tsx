@@ -34,8 +34,10 @@ export default function SyrioBookingButton({
         throw new Error("No next fulfilment entity available");
       }
 
-      // Redirect to Sportshub fulfilment flow with hideNavbar flag
-      window.location.href = nextEntityUrl;
+      // Open Sportshub fulfilment flow in new tab
+      window.open(nextEntityUrl, "_blank", "noopener,noreferrer");
+      setLoading(false);
+      onLoadingChange?.(false);
     } catch (error) {
       console.error("Error booking event:", error);
       alert("Failed to start booking process. Please try again.");
