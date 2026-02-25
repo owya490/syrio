@@ -95,7 +95,8 @@ export function DesktopNavbarOverlay({
               return (
                 <div
                   key={subItem.logo}
-                  className="flex-1 relative group cursor-pointer overflow-hidden"
+                  className="flex-1 hover:flex-[1.4] relative group cursor-pointer overflow-hidden transition-[flex-grow] duration-300 ease-out"
+                  style={{ willChange: "flex-grow" }}
                   onClick={(e) => {
                     e.stopPropagation();
                     if (isExternal) {
@@ -116,11 +117,11 @@ export function DesktopNavbarOverlay({
                       alt={subItem.logo}
                       fill
                       sizes="33vw"
-                      className="object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+                      className="object-cover opacity-100 group-hover:opacity-100 transition-opacity duration-300"
                       style={{ willChange: "opacity" }}
                     />
                     {/* Dark overlay fades out on hover — opacity is GPU-composited */}
-                    <div className="absolute inset-0 bg-syrio-black/50 group-hover:bg-syrio-black/10 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-syrio-black/40 group-hover:bg-syrio-black/20 transition-opacity duration-300" />
                   </div>
 
                   {/* Logo — scale transform is GPU-composited */}
