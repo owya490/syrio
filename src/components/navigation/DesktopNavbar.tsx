@@ -77,14 +77,15 @@ export function DesktopNavbarOverlay({
       {openSubNav && activeTab?.subNav && (
         <motion.div
           key={openSubNav}
-          initial={{ clipPath: "inset(0 0 100% 0)" }}
-          animate={{ clipPath: "inset(0 0 0% 0)" }}
-          exit={{ clipPath: "inset(0 0 100% 0)" }}
+          initial={{ opacity: 0, y: "-100%" }}
+          animate={{ opacity: 1, y: "0%" }}
+          exit={{ opacity: 0, y: "-100%" }}
           transition={{
             duration: animation.duration.slow,
             ease: "easeOut",
           }}
-          className="fixed top-20 md:top-20 left-0 right-0 bottom-0 z-[90] hidden lg:block"
+          style={{ willChange: "transform, opacity" }}
+          className="fixed top-20 left-0 right-0 bottom-0 z-90 hidden lg:block"
           onClick={() => setOpenSubNav(null)}
         >
           <div className="h-full flex">
@@ -94,7 +95,7 @@ export function DesktopNavbarOverlay({
               return (
                 <div
                   key={subItem.logo}
-                  className="flex-[1] hover:flex-[1.4] relative group cursor-pointer overflow-hidden transition-all duration-300"
+                  className="flex-1 relative group cursor-pointer overflow-hidden"
                   onClick={(e) => {
                     e.stopPropagation();
                     if (isExternal) {
@@ -108,26 +109,30 @@ export function DesktopNavbarOverlay({
                     }
                   }}
                 >
-                  {/* Image with grayscale filter */}
+                  {/* Background image — opacity fade is GPU-composited */}
                   <div className="absolute inset-0">
                     <Image
                       src={subItem.image}
                       alt={subItem.logo}
                       fill
-                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 b"
+                      sizes="33vw"
+                      className="object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ willChange: "opacity" }}
                     />
-                    {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-syrio-black/40 group-hover:bg-syrio-black/20 transition-all duration-300" />
+                    {/* Dark overlay fades out on hover — opacity is GPU-composited */}
+                    <div className="absolute inset-0 bg-syrio-black/50 group-hover:bg-syrio-black/10 transition-opacity duration-300" />
                   </div>
 
-                  {/* Logo */}
+                  {/* Logo — scale transform is GPU-composited */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={`/${subItem.logo}`}
                       alt={subItem.logo}
                       width={200}
                       height={100}
-                      className="w-48 md:w-48 lg:w-64 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
+                      sizes="(max-width: 1280px) 192px, 256px"
+                      className="w-48 lg:w-64 object-contain transition-transform duration-300 group-hover:scale-105"
+                      style={{ willChange: "transform" }}
                     />
                   </div>
                 </div>
