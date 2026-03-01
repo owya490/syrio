@@ -5,11 +5,13 @@ import {
   SubmitButton,
   TextInput,
 } from "@/components/elements";
+import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import emailjs from "@emailjs/browser";
 import { FormEvent, useState } from "react";
+import Image from "next/image";
 
 const EMAILJS_SERVICE_ID = "syrio";
 const EMAILJS_TEMPLATE_ID = "contact_us_template";
@@ -134,10 +136,55 @@ export default function ContactModule() {
             OWN PATH
           </h2>
 
-          <p className="font-montserrat text-xs md:text-sm text-syrio-white/80 leading-relaxed max-w-xs mb-6">
+          <p className="font-montserrat text-xs md:text-sm text-syrio-white/80 leading-relaxed max-w-xs">
             For any enquiries or questions, please reach out to our Syrio team.
             Follow along with our journey via social media.
           </p>
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-4">
+            <UnifiedLink
+              href="https://www.facebook.com/groups/901217364345574"
+              aria-label="Facebook"
+              className="group transition-all duration-300"
+            >
+              <Image
+                src="/svg/facebook.svg"
+                alt="Facebook"
+                width={20}
+                height={20}
+                className="w-5 h-5 brightness-0 invert opacity-80 group-hover:opacity-100 group-hover-syrio-white-glow-image"
+              />
+            </UnifiedLink>
+
+            <UnifiedLink
+              href="https://www.instagram.com/syriovolleyacademy/?hl=en"
+              aria-label="Instagram"
+              className="group transition-all duration-300"
+            >
+              <Image
+                src="/svg/instagram.svg"
+                alt="Instagram"
+                width={20}
+                height={20}
+                className="w-5 h-5 brightness-0 invert opacity-80 group-hover:opacity-100 group-hover-syrio-white-glow-image"
+              />
+            </UnifiedLink>
+
+            <UnifiedLink
+              href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
+              aria-label="Link Tree"
+              className="group transition-all duration-300"
+            >
+              <Image
+                src="/svg/link-tree.svg"
+                alt="Link Tree"
+                width={20}
+                height={20}
+                className="w-5 h-5 brightness-0 invert opacity-80 group-hover:opacity-100 group-hover-syrio-white-glow-image"
+              />
+            </UnifiedLink>
+          </div>
         </div>
 
         {/* Right side - Contact form */}

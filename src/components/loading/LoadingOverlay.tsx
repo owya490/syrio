@@ -8,7 +8,7 @@ export default function LoadingOverlay() {
     <motion.div
       initial={{ y: 0 }}
       exit={{ y: "-100%" }}
-      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
       className="fixed z-[200] flex flex-col items-center justify-center bg-syrio-black"
       style={{
         top: "-100px",
@@ -45,7 +45,7 @@ export default function LoadingOverlay() {
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
-            transition={{ duration: 1.8, ease: "easeInOut" }}
+            transition={{ duration: 0.9, ease: "easeInOut" }}
             className="h-full bg-white"
           />
         </div>

@@ -85,6 +85,7 @@ export default function AboutMeetTeamModule() {
             style={{ opacity: 0, scaleX: 0 }}
           />
           <motion.div
+            className="flex flex-col sm:flex-row gap-4"
             initial={false}
             animate={isMounted || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{
@@ -94,7 +95,8 @@ export default function AboutMeetTeamModule() {
             }}
             style={{ opacity: 0, y: 40 }}
           >
-            <CTAButton href={team.linkHref}>{team.linkText}</CTAButton>
+            <CTAButton href={team.coachesLinkHref} className="flex-1 text-center">{team.coachesLinkText}</CTAButton>
+            <CTAButton href={team.managementLinkHref} className="flex-1 text-center">{team.managementLinkText}</CTAButton>
           </motion.div>
         </div>
 
