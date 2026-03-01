@@ -42,11 +42,6 @@ export default function VALPage() {
           </UnifiedLink>
         </div>
       </Module>
-
-      <ImageModule
-        imageSrc="/MULTIMEDIA ASSETS/2025M2/图片_20251120021438_448_5.jpg"
-        imageAlt="VAL Hero"
-      />
     </main>
   );
 }

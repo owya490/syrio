@@ -73,7 +73,7 @@ export default function ContentBlockTwo({
         className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8"
       >
         {/* Left Column: Text + Vertical Image */}
-        <div className="flex flex-col justify-between space-y-8 lg:col-span-4 lg:space-y-16 order-2 lg:order-1">
+        <div className="flex flex-col justify-start space-y-8 lg:col-span-4 lg:space-y-12 order-2 lg:order-1">
           {/* Text Content */}
           <motion.div className="space-y-6" {...fadeInUp}>
             <motion.p
@@ -125,7 +125,7 @@ export default function ContentBlockTwo({
 
           {/* Vertical Image (Secondary) - centered in column; crop via secondaryImagePosition (CSS var so img gets it) */}
           <motion.div
-            className="content-block-two-secondary relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl lg:w-4/5 lg:mx-auto hidden md:block"
+            className="content-block-two-secondary relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl lg:w-4/5 hidden md:block"
             style={{
               ["--secondary-object-position" as string]: secondaryImagePosition,
             }}
@@ -143,10 +143,10 @@ export default function ContentBlockTwo({
 
         {/* Right Column: Large Landscape Image (Primary) */}
         <motion.div
-          className="flex md:pt-20 items-start lg:col-span-8 lg:pl-6 order-1 lg:order-2 -mt-8 lg:-mt-12"
+          className="flex items-stretch lg:col-span-8 lg:pl-6 order-1 lg:order-2"
           {...fadeInRight}
         >
-          <div className="relative aspect-[4/2] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01]" style={{ willChange: "transform" }}>
+          <div className="relative w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01] min-h-[250px]" style={{ willChange: "transform" }}>
             <Image
               src={images.primary}
               alt="Primary Visual"

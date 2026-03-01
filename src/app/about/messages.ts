@@ -38,8 +38,10 @@ export const aboutMessages = {
     title: "Meet the team",
     description:
       "Get to know the coaches and people behind Syrio. Our experienced staff are dedicated to developing every athlete and building a strong, supportive community.",
-    linkText: "Meet the team",
-    linkHref: "/coaching",
+    coachesLinkText: "Meet the Coaches",
+    coachesLinkHref: "/coaching",
+    managementLinkText: "Meet the Management",
+    managementLinkHref: "/management",
     image: "/MULTIMEDIA ASSETS/2025M2/DSCN0080.JPG",
     womens: {
       title: "WOMEN'S DIVISION",
