@@ -50,7 +50,7 @@ export default function ContentBlockTwo({
             <Reveal delay={2} className="pt-2">
               <UnifiedLink
                 href={ctaHref}
-                className="group inline-flex items-center gap-2 border-b-2 border-white pb-1 font-bank-gothic text-base md:text-lg font-medium uppercase tracking-wider text-white transition-colors hover:border-gray-400 hover:text-gray-400"
+                className="group inline-flex items-center gap-2 border-b-2 border-white pb-1 font-bank-gothic text-base md:text-lg font-medium uppercase tracking-wider text-white transition-colors hover:border-syrio-gold hover:text-gray-400"
               >
                 {ctaLabel}
                 <svg

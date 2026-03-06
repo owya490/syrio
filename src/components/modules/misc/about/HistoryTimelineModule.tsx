@@ -33,11 +33,11 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
       className="relative pl-8 md:pl-16 pb-16 last:pb-0"
     >
       {/* Timeline dot */}
-      <div className="absolute left-0 top-1 w-3 h-3 bg-[#e2c87a] rounded-full z-10" />
+      <div className="absolute left-0 top-1 w-3 h-3 bg-syrio-gold rounded-full z-10" />
 
       {/* Year badge */}
       <div className="mb-4">
-        <span className="font-bank-gothic text-[#e2c87a] text-sm tracking-widest">
+        <span className="font-bank-gothic text-syrio-gold text-sm tracking-widest">
           {entry.year}
         </span>
       </div>
@@ -66,7 +66,7 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
         <ul className="space-y-2 mb-6 pl-4">
           {entry.items.map((item, i) => (
             <li key={i} className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3">
-              <span className="text-[#e2c87a] mt-1.5 shrink-0">&#9670;</span>
+              <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
               {item}
             </li>
           ))}
@@ -90,7 +90,7 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
                 <ul className="space-y-2 pl-4 mt-2">
                   {section.items.map((item, j) => (
                     <li key={j} className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3">
-                      <span className="text-[#e2c87a] mt-1.5 shrink-0">&#9670;</span>
+                      <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
                       {item}
                     </li>
                   ))}
@@ -103,7 +103,7 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
 
       {/* Closing paragraph */}
       {entry.closing && (
-        <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed italic border-l-2 border-[#e2c87a]/40 pl-4">
+        <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed italic border-l-2 border-syrio-gold/40 pl-4">
           {entry.closing}
         </p>
       )}
@@ -137,7 +137,7 @@ export default function HistoryTimelineModule() {
             <h2 className="font-bank-gothic text-4xl md:text-5xl tracking-wider mb-4">
               {hero.title}
             </h2>
-            <p className="font-montserrat text-base md:text-lg text-[#e2c87a] tracking-wide">
+            <p className="font-montserrat text-base md:text-lg text-syrio-gold tracking-wide">
               {hero.subtitle}
             </p>
           </Reveal>
@@ -175,12 +175,12 @@ export default function HistoryTimelineModule() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-10">
             {whoWeAre.values.map((value, i) => (
-              <p key={i} className="font-montserrat text-sm text-[#e2c87a] tracking-wide italic">
+              <p key={i} className="font-montserrat text-sm text-syrio-gold tracking-wide italic">
                 {value}
               </p>
             ))}
           </div>
-          <div className="h-px w-24 bg-[#e2c87a]/40 mx-auto mb-8" />
+          <div className="h-px w-24 bg-syrio-gold/40 mx-auto mb-8" />
           <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed">
             {whoWeAre.closing}
           </p>

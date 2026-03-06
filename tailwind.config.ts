@@ -9,6 +9,7 @@ const config: Config = {
         "syrio-white": "#ffffff",
         "syrio-pink": "#d39ca6",
         "syrio-red": "#90302d",
+        "syrio-gold": "#e2c87a",
       },
     },
   },

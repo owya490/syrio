@@ -98,7 +98,7 @@ export default function CardModule({
                 </div>
                 {/* Card Label */}
                 <div className="mt-3 flex items-center gap-2">
-                  <span className="font-bank-gothic text-sm md:text-base tracking-wider border-b border-transparent group-hover:border-syrio-white transition-colors text-syrio-white">
+                  <span className="font-bank-gothic text-sm md:text-base tracking-wider border-b border-transparent group-hover:border-syrio-gold transition-colors text-syrio-white">
                     {card.label}
                   </span>
                   <span className="text-lg transition-transform group-hover:translate-x-1 text-syrio-white">

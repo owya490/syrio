@@ -39,7 +39,7 @@ export default function Footer() {
                 <UnifiedLink
                   key={tab.route}
                   href={tab.route}
-                  className="font-bank-gothic text-sm md:text-base uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow"
+                  className="font-bank-gothic text-sm md:text-base uppercase tracking-wider text-syrio-white hover:text-syrio-white mb-2 last:mb-0 hover-syrio-white-glow border-b border-transparent hover:border-syrio-gold pb-px w-fit"
                 >
                   {tab.english}
                 </UnifiedLink>
@@ -111,7 +111,7 @@ export default function Footer() {
             {sharedMessages.footer.builtBy}{" "}
             <UnifiedLink
               href={links.external.compassDigital}
-              className="hover:underline"
+              className="border-b border-transparent hover:border-syrio-gold pb-px transition-colors"
             >
               {sharedMessages.footer.developer}
             </UnifiedLink>

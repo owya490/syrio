@@ -58,7 +58,7 @@ export default function AboutValuesModule() {
               key={value.title}
               delay={index + 2}
               distance={40}
-              className="border-l-4 border-syrio-white/30 pl-6 group hover:border-syrio-white/60 transition-colors duration-300"
+              className="border-l-4 border-syrio-white/30 pl-6 group hover:border-syrio-gold/60 transition-colors duration-300"
             >
               <motion.div
                 className="h-1 w-0 bg-syrio-white/30 group-hover:w-full transition-all duration-500 -ml-6 mb-4"
