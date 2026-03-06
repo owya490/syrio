@@ -3,6 +3,7 @@
 import { DecorativeLines } from "@/components/decorative";
 import UnifiedLink from "@/components/elements/Link";
 import { animation, tracking } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import { isExternalLink } from "@/utils/links";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -151,7 +152,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
                     className={`font-montserrat text-sm tracking-[${tracking.wide}] text-syrio-white hover:text-syrio-white transition-colors duration-300 mb-8 flex items-center gap-2 mx-auto`}
                   >
                     <span className="text-lg">←</span>
-                    <span>BACK</span>
+                    <span>{sharedMessages.navigation.back}</span>
                   </button>
 
                   {/* Sub Nav Title */}

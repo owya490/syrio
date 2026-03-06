@@ -1,4 +1,5 @@
 import Module from "@/components/modules/Module";
+import { sharedMessages } from "@/config/messages";
 import Image from "next/image";
 
 interface ImageModuleProps {
@@ -8,13 +9,13 @@ interface ImageModuleProps {
 
 export default function ImageModule({
   imageSrc,
-  imageAlt = "Image",
+  imageAlt = "",
 }: ImageModuleProps) {
   return (
     <Module
       className="py-24 md:min-h-[80vh] flex justify-center items-center"
-      backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
-      backgroundImageAlt="Background"
+      backgroundImage={sharedMessages.loading.backgroundImage}
+      backgroundImageAlt={sharedMessages.module.defaultBackgroundAlt}
       backgroundImageClassName="object-cover"
       contentClassName="px-4 md:px-8"
     >

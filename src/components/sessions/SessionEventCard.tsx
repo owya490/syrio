@@ -1,9 +1,10 @@
 "use client";
 
+import UnifiedLink from "@/components/elements/Link";
+import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
 import { format } from "date-fns";
 import Image from "next/image";
-import UnifiedLink from "@/components/elements/Link";
 
 interface SessionEventCardProps {
   event: SessionEvent;
@@ -63,7 +64,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
             </p>
 
             <p className="font-archivo text-[0.65rem] sm:text-xs text-syrio-white/60">
-              {event.vacancy} {event.vacancy === 1 ? "spot" : "spots"} available
+              {event.vacancy} {event.vacancy === 1 ? eventMessages.booking.vacancy.spot : eventMessages.booking.vacancy.spots} {eventMessages.booking.vacancy.available}
             </p>
           </div>
         </div>
@@ -110,7 +111,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
               {event.location}
             </p>
             <p className="font-archivo text-xs text-syrio-white/60">
-              {event.vacancy} {event.vacancy === 1 ? "spot" : "spots"} available
+              {event.vacancy} {event.vacancy === 1 ? eventMessages.booking.vacancy.spot : eventMessages.booking.vacancy.spots} {eventMessages.booking.vacancy.available}
             </p>
           </div>
         </div>

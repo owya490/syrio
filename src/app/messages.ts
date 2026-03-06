@@ -1,5 +1,14 @@
 export const homeMessages = {
+  hero: {
+    backgroundImage:
+      "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HOME PAGE.png",
+    backgroundImageAlt: "Team Background",
+    goldAccentImage:
+      "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GOLD ACCENT_SHOP 副本.png",
+  },
   about: {
+    promoImageAlt: "Syrio 2026 Promo",
+    teamImageAlt: "Syrio Team",
     tagline: "SPARK YOUR",
     title: "R I S E",
     subtitle: "IN OVER-THRIVE",
@@ -24,6 +33,19 @@ export const homeMessages = {
   },
   contact: {
     title: "CONTACT",
+  },
+  contentBlock: {
+    description:
+      "SyrioVolley Academy — Elite volleyball coaching, trials, and high-performance pathways. Join our community and stay updated on trials, programs, and events.",
+    ctaLabel: "JOIN THE COMMUNITY",
+    ctaHref: "/contact",
+    backgroundImage:
+      "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png",
+    images: {
+      primary: "/MULTIMEDIA ASSETS/2025M2/图片_20251120021438_448_5.jpg",
+      secondary: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
+    },
+    secondaryImagePosition: "25% center",
   },
   partners: {
     title: "partner",

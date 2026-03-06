@@ -1,6 +1,7 @@
 "use client";
 
 import CTAButton from "@/components/elements/CTAButton";
+import { eventMessages } from "@/config/eventMessages";
 
 interface EventSuccessModuleProps {
   eventName: string;
@@ -22,39 +23,39 @@ export default function EventSuccessModule({
       className={`border border-syrio-white/20 bg-syrio-black/50 p-6 lg:p-8 rounded-lg space-y-6 ${className}`}
     >
       <h2 className="font-bank-gothic text-xl md:text-2xl uppercase tracking-widest text-syrio-white">
-        {isWaitlist ? "Thank you for joining the waitlist" : "Thank you for booking"}
+        {isWaitlist ? eventMessages.success.waitlist.title : eventMessages.success.booking.title}
       </h2>
 
       <p className="font-archivo text-base text-syrio-white/80 leading-relaxed">
         {isWaitlist ? (
           <>
-            You have successfully signed up for the waitlist for{" "}
-            <strong className="text-syrio-white">{eventName}</strong>. We will
-            notify you via email if spots open up for this event.
+            {eventMessages.success.waitlist.descriptionPrefix}{" "}
+            <strong className="text-syrio-white">{eventName}</strong>.{" "}
+            {eventMessages.success.waitlist.descriptionSuffix}
           </>
         ) : (
           <>
-            You have successfully booked{" "}
-            <strong className="text-syrio-white">{eventName}</strong>. Keen to
-            see you soon!
+            {eventMessages.success.booking.descriptionPrefix}{" "}
+            <strong className="text-syrio-white">{eventName}</strong>.{" "}
+            {eventMessages.success.booking.descriptionSuffix}
           </>
         )}
       </p>
 
       <p className="font-archivo text-sm text-syrio-white/60">
-        Please check your email for{" "}
+        {eventMessages.success.emailCheck}{" "}
         {isWaitlist
-          ? "waitlist confirmation and event details"
-          : "your ticket details"}
-        . If you don&apos;t see it, check your spam or junk folder.
+          ? eventMessages.success.waitlist.emailNote
+          : eventMessages.success.booking.emailNote}
+        {eventMessages.success.emailSpamNote}
       </p>
 
       <div className="pt-4 flex flex-col sm:flex-row gap-4">
         <CTAButton href="/sessions/intensive-skill-development" className="justify-center">
-          Back to Sessions
+          {eventMessages.success.backToSessions}
         </CTAButton>
         <CTAButton href={`/event/${eventId}`} className="justify-center">
-          View event
+          {eventMessages.success.viewEvent}
         </CTAButton>
       </div>
     </div>

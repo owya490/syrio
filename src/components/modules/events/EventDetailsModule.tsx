@@ -1,5 +1,6 @@
 "use client";
 
+import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
 import EventBookingPanelModule from "./EventBookingPanelModule";
 
@@ -16,7 +17,7 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
           {/* Description Section */}
           <div>
             <h2 className="font-bank-gothic text-2xl md:text-3xl uppercase tracking-widest text-syrio-white mb-6">
-              About This Event
+              {eventMessages.details.aboutTitle}
             </h2>
             <div
               className="prose prose-syrio max-w-none font-archivo text-base leading-relaxed"
@@ -28,7 +29,7 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
           {event.eventTags && event.eventTags.length > 0 && (
             <div>
               <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-4">
-                Tags
+                {eventMessages.details.tagsTitle}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {event.eventTags.map((tag, index) => (
@@ -47,8 +48,7 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
           {event.paused && (
             <div className="border border-syrio-red/50 bg-syrio-red/10 p-4 rounded-lg">
               <p className="font-archivo text-sm text-syrio-red">
-                This event is currently paused. Please check back later or
-                contact the organizer for more information.
+                {eventMessages.details.pausedNotice}
               </p>
             </div>
           )}
@@ -56,8 +56,7 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
           {event.formId && (
             <div className="border border-syrio-white/40 bg-syrio-white/5 p-4 rounded-lg">
               <p className="font-archivo text-sm text-syrio-white/70">
-                This event requires completing a registration form during
-                booking.
+                {eventMessages.details.formNotice}
               </p>
             </div>
           )}

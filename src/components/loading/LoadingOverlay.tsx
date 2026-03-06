@@ -1,5 +1,6 @@
 "use client";
 
+import { sharedMessages } from "@/config/messages";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -21,7 +22,7 @@ export default function LoadingOverlay() {
     >
       {/* Background Image */}
       <Image
-        src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+        src={sharedMessages.loading.backgroundImage}
         alt=""
         fill
         className="object-cover"
@@ -32,8 +33,8 @@ export default function LoadingOverlay() {
       <div className="relative z-10 flex flex-col items-center gap-8">
         {/* Loading Logo */}
         <Image
-          src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE LOADING.png"
-          alt="Loading"
+          src={sharedMessages.loading.logoImage}
+          alt={sharedMessages.loading.logoAlt}
           width={200}
           height={40}
           className="object-contain"

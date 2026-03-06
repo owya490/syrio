@@ -31,8 +31,8 @@ export default function AboutMissionModule() {
         >
           <div className="relative w-full aspect-square max-w-md mx-auto">
             <Image
-              src="/MULTIMEDIA ASSETS/2025M2/图片_20260101211321_642_5.jpg"
-              alt="Syrio Player"
+              src={aboutMessages.mission.image}
+              alt={aboutMessages.mission.imageAlt}
               fill
               className="object-contain"
             />

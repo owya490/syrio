@@ -1,4 +1,5 @@
 import AppContent from "@/components/loading/AppContent";
+import { sharedMessages } from "@/config/messages";
 import type { Metadata } from "next";
 import { Archivo, Montserrat } from "next/font/google";
 import localFont from "next/font/local";
@@ -41,8 +42,8 @@ const youSheBiaoTiHei = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SyrioVolley Academy",
-  description: "SyrioVolley Academy, Sydney's premier volleyball academy",
+  title: sharedMessages.metadata.title,
+  description: sharedMessages.metadata.description,
   themeColor: "#000000",
   colorScheme: "dark",
   appleWebApp: {

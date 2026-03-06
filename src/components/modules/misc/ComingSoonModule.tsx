@@ -1,5 +1,6 @@
 import Module from "@/components/modules/Module";
 import { backgroundImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 
 interface ComingSoonModuleProps {
   message?: string;
@@ -7,14 +8,14 @@ interface ComingSoonModuleProps {
 }
 
 export default function ComingSoonModule({
-  message = "COMING SOON",
+  message = sharedMessages.comingSoon.message,
   backgroundImage = backgroundImages.background,
 }: ComingSoonModuleProps) {
   return (
     <Module
       className="py-24 md:py-32 h-screen flex justify-center items-center"
       backgroundImage={backgroundImage}
-      backgroundImageAlt="Coming soon background"
+      backgroundImageAlt={sharedMessages.backgroundAlts.comingSoon}
       contentClassName="px-4 md:px-8"
     >
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">

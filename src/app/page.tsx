@@ -20,15 +20,12 @@ export default function Home() {
         cards={homeMessages.programs.cards}
       />
       <ContentBlockTwo
-        description="SyrioVolley Academy — Elite volleyball coaching, trials, and high-performance pathways. Join our community and stay updated on trials, programs, and events."
-        ctaLabel="JOIN THE COMMUNITY"
-        ctaHref="/contact"
-        backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
-        images={{
-          primary: "/MULTIMEDIA ASSETS/2025M2/图片_20251120021438_448_5.jpg",
-          secondary: "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-        }}
-        secondaryImagePosition="25% center"
+        description={homeMessages.contentBlock.description}
+        ctaLabel={homeMessages.contentBlock.ctaLabel}
+        ctaHref={homeMessages.contentBlock.ctaHref}
+        backgroundImage={homeMessages.contentBlock.backgroundImage}
+        images={homeMessages.contentBlock.images}
+        secondaryImagePosition={homeMessages.contentBlock.secondaryImagePosition}
       />
 
       <SocialContactModule />

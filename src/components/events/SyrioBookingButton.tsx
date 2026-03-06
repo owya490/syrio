@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { eventMessages } from "@/config/eventMessages";
 import { initFulfilmentSession, getNextFulfilmentEntityUrl } from "@/services/fulfilment";
+import { useState } from "react";
 
 interface SyrioBookingButtonProps {
   eventId: string;
@@ -40,7 +41,7 @@ export default function SyrioBookingButton({
       onLoadingChange?.(false);
     } catch (error) {
       console.error("Error booking event:", error);
-      alert("Failed to start booking process. Please try again.");
+      alert(eventMessages.bookingButton.failedAlert);
       setLoading(false);
       onLoadingChange?.(false);
     }
@@ -53,7 +54,7 @@ export default function SyrioBookingButton({
       disabled={loading}
       className={className}
     >
-      {loading ? "Booking..." : "Book Now"}
+      {loading ? eventMessages.bookingButton.booking : eventMessages.bookingButton.bookNow}
     </button>
   );
 }

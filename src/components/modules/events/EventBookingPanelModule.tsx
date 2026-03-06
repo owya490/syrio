@@ -4,6 +4,7 @@ import EventInfoRow from "@/components/events/EventInfoRow";
 import SyrioBookingButton from "@/components/events/SyrioBookingButton";
 import SyrioContactButton from "@/components/events/SyrioContactButton";
 import { MAX_TICKETS_PER_ORDER } from "@/constants/events";
+import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
 import { format } from "date-fns";
 import { useMemo, useState } from "react";
@@ -37,8 +38,8 @@ export default function EventBookingPanelModule({
   const formatDate = (date: Date) => format(date, "EEEE, MMMM d, yyyy");
 
   const vacancyText = event.hideVacancy
-    ? "Spots available"
-    : `${event.vacancy} ${event.vacancy === 1 ? "spot" : "spots"} available`;
+    ? eventMessages.booking.vacancy.spotsAvailable
+    : `${event.vacancy} ${event.vacancy === 1 ? eventMessages.booking.vacancy.spot : eventMessages.booking.vacancy.spots} ${eventMessages.booking.vacancy.available}`;
 
   // Check event state
   const now = new Date();
@@ -54,10 +55,10 @@ export default function EventBookingPanelModule({
       return (
         <div className="text-center py-4">
           <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
-            Registration Closed
+            {eventMessages.booking.status.registrationClosed}
           </h3>
           <p className="font-archivo text-sm text-syrio-white/60">
-            Please check with the organiser for more details.
+            {eventMessages.booking.status.registrationClosedDescription}
           </p>
         </div>
       );
@@ -67,10 +68,10 @@ export default function EventBookingPanelModule({
       return (
         <div className="text-center py-4">
           <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
-            Event Finished
+            {eventMessages.booking.status.eventFinished}
           </h3>
           <p className="font-archivo text-sm text-syrio-white/60">
-            Please check with the organiser for future events.
+            {eventMessages.booking.status.eventFinishedDescription}
           </p>
         </div>
       );
@@ -80,12 +81,12 @@ export default function EventBookingPanelModule({
       return (
         <div className="text-center py-4">
           <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
-            Sold Out
+            {eventMessages.booking.status.soldOut}
           </h3>
           <p className="font-archivo text-sm text-syrio-white/60">
             {event.waitlistEnabled
-              ? "Join the waitlist to be notified if spots become available."
-              : "Please check back later."}
+              ? eventMessages.booking.status.soldOutWaitlist
+              : eventMessages.booking.status.soldOutDefault}
           </p>
         </div>
       );
@@ -100,7 +101,7 @@ export default function EventBookingPanelModule({
               htmlFor="ticket-count"
               className="font-archivo text-sm text-syrio-white/80 block mb-2"
             >
-              Number of tickets
+              {eventMessages.booking.labels.ticketCount}
             </label>
             <select
               id="ticket-count"
@@ -114,7 +115,7 @@ export default function EventBookingPanelModule({
             >
               {allowedTicketCounts.map((count) => (
                 <option key={count} value={count}>
-                  {count} Ticket{count > 1 ? "s" : ""}
+                  {count} {count > 1 ? eventMessages.booking.tickets : eventMessages.booking.ticket}
                 </option>
               ))}
             </select>
@@ -148,7 +149,7 @@ export default function EventBookingPanelModule({
     >
       {/* Title */}
       <h3 className="font-bank-gothic text-xl uppercase tracking-widest text-syrio-white">
-        Event Details
+        {eventMessages.details.title}
       </h3>
 
       {/* Info Rows */}
@@ -169,7 +170,7 @@ export default function EventBookingPanelModule({
               />
             </svg>
           }
-          label="Date & Time"
+          label={eventMessages.booking.labels.dateTime}
           value={
             <>
               <p>{formatDate(event.startDate)}</p>
@@ -201,7 +202,7 @@ export default function EventBookingPanelModule({
               />
             </svg>
           }
-          label="Location"
+          label={eventMessages.booking.labels.location}
           value={
             <a
               href={googleMapsUrl}
@@ -231,7 +232,7 @@ export default function EventBookingPanelModule({
                 />
               </svg>
             }
-            label="Registration Deadline"
+            label={eventMessages.booking.labels.registrationDeadline}
             value={formatDate(event.registrationDeadline)}
           />
         )}
@@ -256,7 +257,7 @@ export default function EventBookingPanelModule({
             </div>
             <div>
               <p className="font-archivo text-xs text-syrio-white/60 uppercase tracking-wider mb-1">
-                Availability
+                {eventMessages.booking.labels.availability}
               </p>
               <p className="font-archivo text-sm text-syrio-white/90 leading-relaxed">
                 {vacancyText}
@@ -277,12 +278,12 @@ export default function EventBookingPanelModule({
         <div className="pt-4 border-t border-syrio-white/10 space-y-2">
           {event.waitlistEnabled && (
             <p className="font-archivo text-xs text-syrio-white/60">
-              Waitlist available if event is full
+              {eventMessages.booking.info.waitlistAvailable}
             </p>
           )}
           {event.bookingApprovalEnabled && (
             <p className="font-archivo text-xs text-syrio-white/60">
-              Booking requires organizer approval
+              {eventMessages.booking.info.approvalRequired}
             </p>
           )}
         </div>

@@ -3,6 +3,7 @@
 import UnifiedLink from "@/components/elements/Link";
 import ContentContainer from "@/components/modules/ContentContainer";
 import { animation, imageSizes } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -61,7 +62,7 @@ export default function Navbar() {
           >
             <Image
               src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
-              alt="Syrio"
+              alt={sharedMessages.brand.logoAlt}
               width={imageSizes.navbarLogo.width}
               height={imageSizes.navbarLogo.height}
               className="w-20 h-20 object-contain group-hover-syrio-white-glow-image"

@@ -1,5 +1,6 @@
 import Module from "@/components/modules/Module";
 import { backgroundImages, iconImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 import Image from "next/image";
 
 interface QuoteModuleProps {
@@ -8,14 +9,14 @@ interface QuoteModuleProps {
 }
 
 export default function QuoteModule({
-  quote = "Commitment unlocks the doors of imagination, allows vision and gives us the right stuff to turn our dreams into reality.",
-  author = "James Womack",
+  quote = sharedMessages.quote.defaultQuote,
+  author = sharedMessages.quote.defaultAuthor,
 }: QuoteModuleProps) {
   return (
     <Module
       className="py-24 md:py-32 h-[90vh] flex justify-center items-center"
       backgroundImage={backgroundImages.svl}
-      backgroundImageAlt="Quote background"
+      backgroundImageAlt={sharedMessages.backgroundAlts.quote}
       contentClassName="px-4 md:px-8"
     >
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">

@@ -1,3 +1,4 @@
+import { sharedMessages } from "@/config/messages";
 import Image from "next/image";
 import { ReactNode } from "react";
 import ContentContainer from "./ContentContainer";
@@ -18,7 +19,7 @@ interface ModuleProps {
 export default function Module({
   children,
   backgroundImage,
-  backgroundImageAlt = "Background",
+  backgroundImageAlt = sharedMessages.module.defaultBackgroundAlt,
   backgroundImageClassName = "object-cover",
   backgroundImagePriority = false,
   backgroundImageSizes = "100vw",

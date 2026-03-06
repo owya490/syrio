@@ -2,6 +2,7 @@
 
 import UnifiedLink from "@/components/elements/Link";
 import { animation } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -22,7 +23,7 @@ interface ContentBlockTwoProps {
 
 export default function ContentBlockTwo({
   description,
-  ctaLabel = "LEARN MORE",
+  ctaLabel = sharedMessages.contentBlocks.learnMore,
   ctaHref = "#",
   images,
   backgroundImage,
@@ -133,7 +134,7 @@ export default function ContentBlockTwo({
           >
             <Image
               src={images.secondary}
-              alt="Secondary Visual"
+              alt={sharedMessages.contentBlocks.secondaryVisualAlt}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -149,7 +150,7 @@ export default function ContentBlockTwo({
           <div className="relative w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01] min-h-[250px]" style={{ willChange: "transform" }}>
             <Image
               src={images.primary}
-              alt="Primary Visual"
+              alt={sharedMessages.contentBlocks.primaryVisualAlt}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 66vw"
@@ -180,7 +181,7 @@ export default function ContentBlockTwo({
           >
             <Image
               src={images.secondary}
-              alt="Secondary Visual"
+              alt={sharedMessages.contentBlocks.secondaryVisualAlt}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 33vw"

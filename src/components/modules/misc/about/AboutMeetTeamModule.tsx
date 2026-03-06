@@ -54,7 +54,7 @@ export default function AboutMeetTeamModule() {
         >
           <Image
             src={team.image}
-            alt="Syrio team"
+            alt={aboutMessages.team.imageAlt}
             fill
             className="object-cover object-center"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1152px"

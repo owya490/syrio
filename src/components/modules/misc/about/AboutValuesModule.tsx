@@ -4,6 +4,7 @@ import { aboutMessages } from "@/app/about/messages";
 import Module from "@/components/modules/Module";
 import { animation, tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -32,7 +33,7 @@ export default function AboutValuesModule() {
     <Module
       className="py-20"
       backgroundImage={backgroundImages.background}
-      backgroundImageAlt="Values background"
+      backgroundImageAlt={sharedMessages.backgroundAlts.values}
       backgroundImageClassName="object-cover opacity-50"
       contentClassName="px-4 md:px-8"
     >

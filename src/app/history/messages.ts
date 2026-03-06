@@ -1,4 +1,7 @@
 export const historyMessages = {
+  banner: {
+    title: "HISTORY",
+  },
   hero: {
     tagline: "OUR JOURNEY",
     title: "THE TIMELINE",

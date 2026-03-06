@@ -1,5 +1,6 @@
 "use client";
 
+import { valMessages } from "@/app/competition/val/messages";
 import Module from "@/components/modules/Module";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -73,8 +74,8 @@ export default function VALHero() {
       {/* Main VAL Logo */}
       <div className="relative w-full max-w-5xl lg:max-w-6xl aspect-[16/9] flex items-center justify-center">
         <Image
-          src="/WEBSITE MATERIAL/VAL LOGO_画板 1 副本 31.png"
-          alt="VAL - Victorian Academy League"
+          src={valMessages.hero.logoSrc}
+          alt={valMessages.hero.logoAlt}
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 1152px"
@@ -85,10 +86,10 @@ export default function VALHero() {
       {/* Presented By Section */}
       <div className="text-center pb-8 md:pb-12">
         <p className="font-bank-gothic text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/50 mb-1">
-          Presented by
+          {valMessages.hero.presentedBy}
         </p>
         <p className="font-bank-gothic text-xs md:text-sm uppercase tracking-[0.15em] text-white/70">
-          SYRIOVOLLEY ACADEMY
+          {valMessages.hero.presenter}
         </p>
       </div>
     </Module>

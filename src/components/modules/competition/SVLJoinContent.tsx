@@ -1,5 +1,6 @@
 "use client";
 
+import { svlMessages } from "@/app/competition/svl/messages";
 import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import SVLJoinLandingHero from "@/components/modules/hero/SVLJoinLandingHero";
@@ -38,7 +39,7 @@ export default function SVLJoinContent() {
           >
             <Image
               src={backgroundImages.highPerformance3}
-              alt="Women, Men, Youth Categories"
+              alt={svlMessages.join.categoriesImageAlt}
               width={1920}
               height={1080}
               className="w-full h-auto"
@@ -57,10 +58,10 @@ export default function SVLJoinContent() {
             style={{ opacity: 0, y: 40 }}
           >
             <UnifiedLink
-              href="/competition/svl"
+              href={svlMessages.join.teamPageHref}
               className={`inline-block font-bank-gothic text-2xl md:text-3xl lg:text-4xl tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-pink transition-colors duration-300`}
             >
-              DIRECT TO TEAM PAGE
+              {svlMessages.join.teamPageLink}
             </UnifiedLink>
           </motion.div>
 
@@ -72,7 +73,7 @@ export default function SVLJoinContent() {
               transition={{ duration: 0.8, delay: animation.stagger, ease: easing }}
               style={{ opacity: 0, y: 40 }}
             >
-              FORM APPLICATION
+              {svlMessages.join.formApplication}
             </motion.div>
             <motion.div
               className={`font-bank-gothic text-lg md:text-xl lg:text-2xl tracking-[${tracking.normal}] text-syrio-white/80 uppercase`}
@@ -81,7 +82,7 @@ export default function SVLJoinContent() {
               transition={{ duration: 0.8, delay: animation.stagger * 2, ease: easing }}
               style={{ opacity: 0, y: 40 }}
             >
-              INVITATION ONLY
+              {svlMessages.join.invitationOnly}
             </motion.div>
           </div>
         </div>

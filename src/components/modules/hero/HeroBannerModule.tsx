@@ -2,6 +2,7 @@
 
 import Module from "@/components/modules/Module";
 import { animation } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import { motion } from "framer-motion";
 import { ReactNode, useEffect, useState } from "react";
 
@@ -15,7 +16,7 @@ interface HeroBannerModuleProps {
 export default function HeroBannerModule({
   title,
   backgroundImage = "/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg",
-  backgroundImageAlt = "Hero banner background",
+  backgroundImageAlt = sharedMessages.module.heroBannerBackgroundAlt,
   backgroundComponent,
 }: HeroBannerModuleProps) {
   const [isMounted, setIsMounted] = useState(false);

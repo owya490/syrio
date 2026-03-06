@@ -1,5 +1,6 @@
 "use client";
 
+import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
 import { isSameDay, startOfDay } from "date-fns";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -105,8 +106,8 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
 
   // Format selected date for display
   const formattedDate = useMemo(() => {
-    if (!selectedDate) return "Select a date";
-    return `Sessions on ${selectedDate.toLocaleDateString("en-US", {
+    if (!selectedDate) return eventMessages.calendar.selectDate;
+    return `${eventMessages.calendar.sessionsOn} ${selectedDate.toLocaleDateString("en-US", {
       weekday: "long",
       month: "long",
       day: "numeric",
@@ -118,7 +119,7 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
     if (events.length === 0) {
       return (
         <p className="text-sm font-archivo text-syrio-white/60 mb-4">
-          No upcoming sessions available
+          {eventMessages.calendar.noSessions}
         </p>
       );
     }
@@ -162,8 +163,8 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
       <div className={emptyStateClasses}>
         <p className="font-archivo text-sm text-syrio-white/60">
           {selectedDate
-            ? "No sessions on this day"
-            : "Please select a date to view sessions"}
+            ? eventMessages.calendar.noSessionsOnDay
+            : eventMessages.calendar.selectDatePrompt}
         </p>
       </div>
     );
@@ -190,7 +191,7 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
       return isMobile ? null : (
         <div className="min-h-[300px] flex items-start pt-12">
           <p className="text-sm font-archivo text-syrio-white/60">
-            No upcoming sessions available
+            {eventMessages.calendar.noSessions}
           </p>
         </div>
       );

@@ -1,3 +1,4 @@
+import { homeMessages } from "@/app/messages";
 import { SyrioLogo } from "@/components/branding";
 import Module from "@/components/modules/Module";
 import Image from "next/image";
@@ -6,14 +7,14 @@ export default function LandingHero() {
   return (
     <Module
       className="min-h-screen overflow-visible"
-      backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HOME PAGE.png"
-      backgroundImageAlt="Team Background"
+      backgroundImage={homeMessages.hero.backgroundImage}
+      backgroundImageAlt={homeMessages.hero.backgroundImageAlt}
       backgroundImageClassName="object-cover opacity-40"
       backgroundImagePriority={true}
       backgroundComponent={
         <div className="absolute -top-1/4 md:-top-1/4 -left-5/12 md:-left-5/12 w-full h-full pointer-events-none -rotate-30">
           <Image
-            src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GOLD ACCENT_SHOP 副本.png"
+            src={homeMessages.hero.goldAccentImage}
             alt=""
             fill
             priority

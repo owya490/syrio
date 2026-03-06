@@ -1,5 +1,6 @@
 "use client";
 
+import { svlMessages } from "@/app/competition/svl/messages";
 import { DecorativeLines } from "@/components/decorative";
 import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
@@ -40,7 +41,7 @@ export default function SVLContent() {
         <div className="absolute inset-0">
           <Image
             src={backgroundImages.svl}
-            alt="SVL Background"
+            alt={svlMessages.hero.backgroundAlt}
             fill
             sizes="100vw"
             className="object-cover"
@@ -89,11 +90,7 @@ export default function SVLContent() {
               style={{ opacity: 0, y: 40 }}
             >
               <Text size="base" className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed">
-                Sydney Volleyball League (SVL) is the senior indoor club
-                volleyball competition in New South Wales, organised by Volleyball
-                NSW. It runs as a multi-week competitive competition where club
-                teams compete in graded divisions during the indoor season
-                (typically April-August) at Sydney Olympic Park.
+                {svlMessages.description.paragraph1}
               </Text>
             </motion.div>
             <motion.div
@@ -103,10 +100,7 @@ export default function SVLContent() {
               style={{ opacity: 0, y: 40 }}
             >
               <Text size="base" className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed">
-                Youth Sydney Volleyball League (YSVL) is the youth indoor
-                volleyball competition for athletes aged under 18, also organised
-                by Volleyball NSW. It provides structured weekly youth matches
-                through divisions by age group.
+                {svlMessages.description.paragraph2}
               </Text>
             </motion.div>
             <motion.div
@@ -116,11 +110,9 @@ export default function SVLContent() {
               style={{ opacity: 0, y: 40 }}
             >
               <Text size="base" className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed">
-                Together, SVL and YSVL form the core competitive indoor volleyball
-                experience for clubs, players, coaches, and officials across the
-                state.
+                {svlMessages.description.paragraph3}
                 <br />
-                More detail information please visit VNSW official website below.
+                {svlMessages.description.vnswNote}
               </Text>
             </motion.div>
           </div>
@@ -160,9 +152,9 @@ export default function SVLContent() {
               transition={{ duration: 0.8, ease: easing }}
               style={{ opacity: 0, y: 40 }}
             >
-              Participates in Syrio SVL
+              {svlMessages.team.titleLine1}
               <br />
-              Representative Team
+              {svlMessages.team.titleLine2}
             </motion.h3>
           </div>
         </div>
@@ -178,12 +170,12 @@ export default function SVLContent() {
             style={{ opacity: 0, y: 60 }}
           >
             <UnifiedLink
-              href="/competition/svl/join"
+              href={svlMessages.cta.href}
               className="block hover:opacity-90 transition-opacity duration-300"
             >
               <Image
-                src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP.png"
-                alt="Got What It Takes? Join The Team"
+                src={svlMessages.cta.imageSrc}
+                alt={svlMessages.cta.imageAlt}
                 width={1920}
                 height={1080}
                 className="w-full h-auto"

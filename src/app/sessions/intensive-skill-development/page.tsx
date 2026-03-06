@@ -3,6 +3,7 @@ import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
 import SessionsCalendar from "@/components/sessions/SessionsCalendar";
 import { backgroundImages } from "@/config/images";
 import { fetchSessionEvents, SessionEvent } from "@/types/sessions";
+import { sessionsMessages } from "../messages";
 
 export default async function IntensiveSkillDevelopment() {
   let events: SessionEvent[] = [];
@@ -15,9 +16,9 @@ export default async function IntensiveSkillDevelopment() {
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
       <HeroBannerModule
-        title="INTENSIVE SKILL DEVELOPMENT"
+        title={sessionsMessages.intensiveSkillDevelopment.title}
         backgroundImage={backgroundImages.intensiveSkillDevelopment}
-        backgroundImageAlt="Intensive Skill Development"
+        backgroundImageAlt={sessionsMessages.intensiveSkillDevelopment.backgroundImageAlt}
         backgroundComponent={
           <div className="absolute inset-0 bg-gradient-to-b from-syrio-black/40 to-syrio-black/80" />
         }

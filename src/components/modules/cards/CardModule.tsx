@@ -4,6 +4,7 @@ import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { animation } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -60,7 +61,7 @@ export default function CardModule({
     <Module
       className={`py-20 md:py-24 ${className}`}
       backgroundImage={backgroundImages.background}
-      backgroundImageAlt="Programs background"
+      backgroundImageAlt={sharedMessages.backgroundAlts.programs}
       contentClassName="px-4 md:px-8"
     >
       <div ref={containerRef} className="relative z-10 max-w-6xl mx-auto">

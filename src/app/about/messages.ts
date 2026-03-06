@@ -6,6 +6,8 @@ export const aboutMessages = {
       "Sydney's premier volleyball academy, built on passion, community, and the pursuit of excellence.",
   },
   mission: {
+    image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101211321_642_5.jpg",
+    imageAlt: "Syrio Player",
     tagline: "OUR MISSION",
     title: "SPARK YOUR",
     titleLine2: "RISE",
@@ -34,6 +36,7 @@ export const aboutMessages = {
     },
   },
   team: {
+    imageAlt: "Syrio team",
     tagline: "THE TEAM",
     title: "Meet the team",
     description:

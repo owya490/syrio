@@ -2,6 +2,7 @@
 
 import UnifiedLink from "@/components/elements/Link";
 import { animation } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -23,7 +24,7 @@ export default function ContentBlockOne({
   subtitle,
   title,
   features,
-  ctaLabel = "LEARN MORE",
+  ctaLabel = sharedMessages.contentBlocks.learnMore,
   ctaHref = "#",
   images,
 }: ContentBlockOneProps) {
@@ -70,7 +71,7 @@ export default function ContentBlockOne({
             <div className="relative h-full w-full bg-gray-200">
               <Image
                 src={images.main}
-                alt="Main Visual"
+                alt={sharedMessages.contentBlocks.mainVisualAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 75vw, 33vw"
@@ -83,7 +84,7 @@ export default function ContentBlockOne({
             <div className="relative h-full w-full bg-gray-300">
               <Image
                 src={images.secondary}
-                alt="Secondary Visual"
+                alt={sharedMessages.contentBlocks.secondaryVisualAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 60vw, 25vw"

@@ -1,3 +1,4 @@
+import { svlMessages } from "@/app/competition/svl/messages";
 import Module from "@/components/modules/Module";
 import Image from "next/image";
 
@@ -5,8 +6,8 @@ export default function SVLJoinLandingHero() {
   return (
     <Module
       className="py-0 min-h-[80vh] md:min-h-[85vh] relative"
-      backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP2.png"
-      backgroundImageAlt="SYRIO REP Welcome"
+      backgroundImage={svlMessages.joinHero.backgroundImage}
+      backgroundImageAlt={svlMessages.joinHero.backgroundImageAlt}
       backgroundImageClassName="object-cover"
       backgroundImagePriority={true}
       contentClassName="hidden"
@@ -18,8 +19,8 @@ export default function SVLJoinLandingHero() {
           {/* Icon - Fills entire module */}
           <div className="absolute inset-0 z-20">
             <Image
-              src="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HIGHP2_ICON_HIGHP2.png"
-              alt="SYRIO REP Icon"
+              src={svlMessages.joinHero.iconImage}
+              alt={svlMessages.joinHero.iconAlt}
               fill
               className="object-contain"
               priority
