@@ -20,7 +20,7 @@ export default function Home() {
         cards={homeMessages.programs.cards}
       />
       <ContentBlockTwo
-        description="Syrio Volley Academy — Elite volleyball coaching, trials, and high-performance pathways. Join our community and stay updated on trials, programs, and events."
+        description="SyrioVolley Academy — Elite volleyball coaching, trials, and high-performance pathways. Join our community and stay updated on trials, programs, and events."
         ctaLabel="JOIN THE COMMUNITY"
         ctaHref="/contact"
         backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"

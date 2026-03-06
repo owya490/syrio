@@ -9,6 +9,7 @@ import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { links } from "@/config/links";
 import emailjs from "@emailjs/browser";
 import { FormEvent, useState } from "react";
 import Image from "next/image";
@@ -144,7 +145,7 @@ export default function ContactModule() {
           {/* Social Icons */}
           <div className="flex items-center gap-4">
             <UnifiedLink
-              href="https://www.facebook.com/groups/901217364345574"
+              href={links.social.facebook}
               aria-label="Facebook"
               className="group transition-all duration-300"
             >
@@ -158,7 +159,7 @@ export default function ContactModule() {
             </UnifiedLink>
 
             <UnifiedLink
-              href="https://www.instagram.com/syriovolleyacademy/?hl=en"
+              href={links.social.instagram}
               aria-label="Instagram"
               className="group transition-all duration-300"
             >
@@ -172,7 +173,7 @@ export default function ContactModule() {
             </UnifiedLink>
 
             <UnifiedLink
-              href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
+              href={links.social.linktree}
               aria-label="Link Tree"
               className="group transition-all duration-300"
             >

@@ -25,7 +25,7 @@ export const aboutMessages = {
     community: {
       title: "COMMUNITY",
       description:
-        "We are more than a team—we are a family. We support, encourage, and lift each other up.",
+        "We are more than a team, we are a family. We support, encourage, and lift each other up.",
     },
     growth: {
       title: "GROWTH",
@@ -42,7 +42,7 @@ export const aboutMessages = {
     coachesLinkHref: "/coaching",
     managementLinkText: "Meet the Management",
     managementLinkHref: "/management",
-    image: "/MULTIMEDIA ASSETS/2025M2/DSCN0080.JPG",
+    image: "/WEBSITE MATERIAL/ABOUT - MEET THE TEAM (1).JPG",
     womens: {
       title: "WOMEN'S DIVISION",
       subtitle: "Competing at the highest level",
@@ -59,7 +59,7 @@ export const aboutMessages = {
       year: "2024",
       title: "FOUNDED",
       description:
-        "Syrio Volleyball Academy was established with a vision to create Sydney's premier volleyball training environment.",
+        "SyrioVolley Academy was established with a vision to create Sydney's premier volleyball training environment.",
     },
     year2025: {
       year: "2025",

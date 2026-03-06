@@ -6,6 +6,8 @@ import Image from "next/image";
 import { coachingMessages } from "./messages";
 
 export default function Coaching() {
+  const { staff } = coachingMessages;
+
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
       {/* Section 1 - Header with text and images */}
@@ -48,59 +50,38 @@ export default function Coaching() {
         </div>
       </Module>
 
-      {/* Section 2 - CardModule with 4 cards */}
+      {/* Section 2 - CardModule */}
       <CardModule
         title={coachingMessages.coaches.title}
         subtitle={coachingMessages.coaches.subtitle}
-        cards={[
-          { label: coachingMessages.coaches.cards[0].label, href: coachingMessages.coaches.cards[0].href, image: "/MULTIMEDIA ASSETS/CLUB/33.png" },
-          { label: coachingMessages.coaches.cards[1].label, href: coachingMessages.coaches.cards[1].href, image: "/MULTIMEDIA ASSETS/CLUB/Yao.png" },
-          { label: coachingMessages.coaches.cards[2].label, href: coachingMessages.coaches.cards[2].href, image: "/MULTIMEDIA ASSETS/CLUB/Yao.png" },
-          { label: coachingMessages.coaches.cards[3].label, href: coachingMessages.coaches.cards[3].href, image: "/MULTIMEDIA ASSETS/CLUB/33.png" },
-        ]}
+        cards={staff.map((coach) => ({
+          label: coach.name,
+          href: `#${coach.id}`,
+          image: "/MULTIMEDIA ASSETS/CLUB/33.png",
+        }))}
       />
 
-      {/* Section 3 - ContentBlockFour */}
-      <div id="section-3">
-        <ContentBlockFour
-          name={coachingMessages.michael.name}
-          role={coachingMessages.michael.role}
-          achievements={coachingMessages.michael.achievements}
-          imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
-        />
-      </div>
-
-      {/* Section 4 - ContentBlockThree */}
-      <div id="section-4">
-        <ContentBlockThree
-          name={coachingMessages.sarah.name}
-          role={coachingMessages.sarah.role}
-          achievements={coachingMessages.sarah.achievements}
-          imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
-          backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
-        />
-      </div>
-
-      {/* Section 5 - ContentBlockFour */}
-      <div id="section-5">
-        <ContentBlockFour
-          name={coachingMessages.lisa.name}
-          role={coachingMessages.lisa.role}
-          achievements={coachingMessages.lisa.achievements}
-          imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
-        />
-      </div>
-
-      {/* Section 6 - ContentBlockThree */}
-      <div id="section-6">
-        <ContentBlockThree
-          name={coachingMessages.david.name}
-          role={coachingMessages.david.role}
-          achievements={coachingMessages.david.achievements}
-          imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
-          backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
-        />
-      </div>
+      {/* Coach profiles - alternating layouts */}
+      {staff.map((coach, index) => (
+        <div key={coach.id} id={coach.id}>
+          {index % 2 === 0 ? (
+            <ContentBlockFour
+              name={coach.name}
+              role={coach.role}
+              achievements={coach.achievements}
+              imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
+            />
+          ) : (
+            <ContentBlockThree
+              name={coach.name}
+              role={coach.role}
+              achievements={coach.achievements}
+              imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
+              backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+            />
+          )}
+        </div>
+      ))}
     </main>
   );
 }

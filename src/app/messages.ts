@@ -10,10 +10,10 @@ export const homeMessages = {
     title: "Which Program is right for you?",
     subtitle: "We've got something for athletes of all ages and experience levels",
     cards: [
-      { label: "TRAININGS", href: "/svl/trainings", image: "/MULTIMEDIA ASSETS/2025M2/DSC_0482.jpg" },
-      { label: "COMPETITIONS", href: "/svl/competitions", image: "/MULTIMEDIA ASSETS/2025W3/图片_20260101211125_641_5.jpg" },
-      { label: "OPEN SVL", href: "/open-svl", image: "/MULTIMEDIA ASSETS/2025W2/图片_20260102022348_1386_27.jpg" },
-      { label: "YSVL", href: "/svl/ysvl", image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213227_644_5.jpg" },
+      { label: "TRAININGS", href: "/svl/trainings", image: "/WEBSITE MATERIAL/HOME - TRAININGS.JPG" },
+      { label: "COMPETITIONS", href: "/svl/competitions", image: "/WEBSITE MATERIAL/HOME - COMPETITION.jpg" },
+      { label: "OPEN SVL", href: "/open-svl", image: "/WEBSITE MATERIAL/HOME - OPEN SVL.jpg" },
+      { label: "YSVL", href: "/svl/ysvl", image: "/WEBSITE MATERIAL/HOME - YSVL (1).JPG" },
     ],
   },
   sessions: {
