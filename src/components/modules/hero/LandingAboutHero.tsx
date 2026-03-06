@@ -100,7 +100,7 @@ export default function LandingAboutHero() {
                   href="/about-us"
                   className="group font-montserrat font-bold tracking-wider text-lg hover:text-syrio-white transition-colors mx-0 lg:mx-4 self-center lg:self-start mt-24 lg:mt-0"
                 >
-                  <span className="border-b-2 border-transparent group-hover:border-[#e2c87a] pb-px">
+                  <span className="border-b-2 border-transparent group-hover:border-syrio-gold pb-px">
                     {homeMessages.about.cta} <span className="text-3xl">→</span>
                   </span>
                 </UnifiedLink>

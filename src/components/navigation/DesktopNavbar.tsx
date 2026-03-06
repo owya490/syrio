@@ -17,7 +17,7 @@ export function DesktopNavbarLinks({
   setOpenSubNav,
 }: DesktopNavbarProps) {
   const linkClass = (isActive: boolean) =>
-    `font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 hover-syrio-white-glow${isActive ? " syrio-white-glow-active" : ""}`;
+    `font-bank-gothic text-sm lg:text-base tracking-[${tracking.normal}] text-syrio-white uppercase hover:text-syrio-white transition-all duration-300 hover-syrio-white-glow border-b-2 border-transparent hover:border-syrio-gold pb-0.5${isActive ? " syrio-white-glow-active" : ""}`;
 
   return (
     <div className="hidden lg:flex items-center gap-6 lg:gap-8 flex-1 justify-center">

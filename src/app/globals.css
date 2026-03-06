@@ -7,6 +7,7 @@
   --color-syrio-white: #ffffff;
   --color-syrio-pink: #d39ca6;
   --color-syrio-red: #90302d;
+  --color-syrio-gold: #e2c87a;
   --font-montserrat: var(--font-montserrat);
   --font-bank-gothic: var(--font-bank-gothic);
   --font-archivo: var(--font-archivo);
@@ -21,6 +22,7 @@
   --syrio-white: #ffffff;
   --syrio-pink: #d39ca6;
   --syrio-red: #90302d;
+  --syrio-gold: #e2c87a;
 }
 
 html {
@@ -49,6 +51,9 @@ body {
 .bg-syrio-red {
   background-color: var(--syrio-red);
 }
+.bg-syrio-gold {
+  background-color: var(--syrio-gold);
+}
 
 .text-syrio-black {
   color: var(--syrio-black);
@@ -65,6 +70,9 @@ body {
 .text-syrio-red {
   color: var(--syrio-red);
 }
+.text-syrio-gold {
+  color: var(--syrio-gold);
+}
 
 .border-syrio-black {
   border-color: var(--syrio-black);
@@ -80,6 +88,9 @@ body {
 }
 .border-syrio-red {
   border-color: var(--syrio-red);
+}
+.border-syrio-gold {
+  border-color: var(--syrio-gold);
 }
 
 .stroke-syrio-pink {
@@ -104,6 +115,9 @@ body {
 }
 .hover\:text-syrio-pink:hover {
   color: var(--syrio-pink);
+}
+.hover\:border-syrio-gold:hover {
+  border-color: var(--syrio-gold);
 }
 
 /* Group hover states */
