@@ -1,34 +1,18 @@
 "use client";
 
 import { aboutMessages } from "@/app/about/messages";
+import { Reveal } from "@/components/animation";
 import Module from "@/components/modules/Module";
-import { animation, tracking } from "@/config/design";
-import { motion, useInView } from "framer-motion";
+import { tracking } from "@/config/design";
+import { animation } from "@/config/design";
 import Image from "next/image";
-import { useRef } from "react";
 
 export default function AboutMissionModule() {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-
-  const easing = [0.4, 0, 0.2, 1] as const;
-
   return (
     <Module className="py-20 bg-syrio-black" contentClassName="px-4 md:px-8">
-      <div
-        ref={containerRef}
-        className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center"
-      >
+      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left side - Image */}
-        <motion.div
-          className="relative"
-          initial={{ opacity: 0, x: -50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-          transition={{
-            duration: animation.duration.slow,
-            ease: easing,
-          }}
-        >
+        <Reveal direction="left" distance={50}>
           <div className="relative w-full aspect-square max-w-md mx-auto">
             <Image
               src={aboutMessages.mission.image}
@@ -37,70 +21,41 @@ export default function AboutMissionModule() {
               className="object-contain"
             />
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Right side - Text */}
         <div>
-          <motion.p
-            className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay: animation.stagger,
-              ease: easing,
-            }}
+          <Reveal direction="right" delay={1} distance={30}>
+            <p
+              className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}
+            >
+              {aboutMessages.mission.tagline}
+            </p>
+          </Reveal>
+          <Reveal direction="right" delay={2} distance={30}>
+            <h2 className="font-bank-gothic text-4xl md:text-5xl tracking-wider mb-6">
+              {aboutMessages.mission.title}
+              <br />
+              {aboutMessages.mission.titleLine2}
+            </h2>
+          </Reveal>
+          <Reveal delay={3}>
+            <p className="font-montserrat text-syrio-white/80 leading-relaxed mb-6">
+              {aboutMessages.mission.paragraph1}
+            </p>
+          </Reveal>
+          <Reveal delay={4}>
+            <p className="font-montserrat text-syrio-white/80 leading-relaxed mb-6">
+              {aboutMessages.mission.paragraph2}
+            </p>
+          </Reveal>
+          <Reveal
+            direction="none"
+            delay={5}
+            duration={animation.duration.normal}
           >
-            {aboutMessages.mission.tagline}
-          </motion.p>
-          <motion.h2
-            className="font-bank-gothic text-4xl md:text-5xl tracking-wider mb-6"
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay: animation.stagger * 2,
-              ease: easing,
-            }}
-          >
-            {aboutMessages.mission.title}
-            <br />
-            {aboutMessages.mission.titleLine2}
-          </motion.h2>
-          <motion.p
-            className="font-montserrat text-syrio-white/80 leading-relaxed mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay: animation.stagger * 3,
-              ease: easing,
-            }}
-          >
-            {aboutMessages.mission.paragraph1}
-          </motion.p>
-          <motion.p
-            className="font-montserrat text-syrio-white/80 leading-relaxed mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay: animation.stagger * 4,
-              ease: easing,
-            }}
-          >
-            {aboutMessages.mission.paragraph2}
-          </motion.p>
-          <motion.div
-            className="h-px w-24 bg-syrio-white/30"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={isInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
-            transition={{
-              duration: animation.duration.normal,
-              delay: animation.stagger * 5,
-              ease: easing,
-            }}
-          />
+            <div className="h-px w-24 bg-syrio-white/30" />
+          </Reveal>
         </div>
       </div>
     </Module>
