@@ -1,4 +1,4 @@
-import AppContent from "@/components/loading/AppContent";
+import AppShell from "@/components/loading/AppShell";
 import { sharedMessages } from "@/config/messages";
 import type { Metadata } from "next";
 import { Archivo, Montserrat } from "next/font/google";
@@ -61,7 +61,7 @@ export default function RootLayout({
       <body
         className={`${archivo.variable} ${montserrat.variable} ${bankGothic.variable} ${geekTrend.variable} ${serif12.variable} ${youSheBiaoTiHei.variable} antialiased bg-syrio-black`}
       >
-        <AppContent>{children}</AppContent>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
