@@ -1,6 +1,7 @@
 import UnifiedLink from "@/components/elements/Link";
 import { imageSizes } from "@/config/design";
 import { links } from "@/config/links";
+import { sharedMessages } from "@/config/messages";
 import Image from "next/image";
 import Module from "../modules/Module";
 import { navigation } from "../navigation/navigation";
@@ -22,7 +23,7 @@ export default function Footer() {
             <UnifiedLink href="/" className="inline-block group">
               <Image
                 src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
-                alt="Syrio Volley Logo"
+                alt={sharedMessages.brand.logoAlt}
                 width={imageSizes.navbarLogo.width * 1.5}
                 height={imageSizes.navbarLogo.height * 1.5}
                 className="w-20 h-20 md:w-20 md:h-20 object-contain group-hover-syrio-white-glow-image transition-all duration-300"
@@ -50,12 +51,12 @@ export default function Footer() {
               {/* Instagram Icon */}
               <UnifiedLink
                 href={links.social.instagram}
-                aria-label="Instagram"
+                aria-label={sharedMessages.social.instagram}
                 className="group transition-all duration-300"
               >
                 <Image
                   src="/svg/instagram.svg"
-                  alt="Instagram"
+                  alt={sharedMessages.social.instagram}
                   width={24}
                   height={24}
                   className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
@@ -65,12 +66,12 @@ export default function Footer() {
               {/* Facebook Icon */}
               <UnifiedLink
                 href={links.social.facebook}
-                aria-label="Facebook"
+                aria-label={sharedMessages.social.facebook}
                 className="group transition-all duration-300"
               >
                 <Image
                   src="/svg/facebook.svg"
-                  alt="Facebook"
+                  alt={sharedMessages.social.facebook}
                   width={24}
                   height={24}
                   className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
@@ -80,12 +81,12 @@ export default function Footer() {
               {/* Link Tree Icon */}
               <UnifiedLink
                 href={links.social.linktree}
-                aria-label="Link Tree"
+                aria-label={sharedMessages.social.linkTree}
                 className="group transition-all duration-300"
               >
                 <Image
                   src="/svg/link-tree.svg"
-                  alt="Link Tree"
+                  alt={sharedMessages.social.linkTree}
                   width={24}
                   height={24}
                   className="w-6 h-6 brightness-0 invert group-hover-syrio-white-glow-image"
@@ -100,19 +101,19 @@ export default function Footer() {
           {/* Copyright - bottom left */}
           <div className="flex flex-col text-xs text-syrio-white">
             <div className="font-bank-gothic uppercase tracking-wider">
-              ALL RIGHTS RESERVED
+              {sharedMessages.footer.copyright}
             </div>
-            <div className="font-montserrat mt-1">© SYRIOVOLLEY 2026</div>
+            <div className="font-montserrat mt-1">{sharedMessages.footer.copyrightYear}</div>
           </div>
 
           {/* Developer attribution - bottom right */}
           <div className="text-xs text-syrio-white font-montserrat">
-            BUILT BY{" "}
+            {sharedMessages.footer.builtBy}{" "}
             <UnifiedLink
               href={links.external.compassDigital}
               className="hover:underline"
             >
-              CDG
+              {sharedMessages.footer.developer}
             </UnifiedLink>
           </div>
         </div>

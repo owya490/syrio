@@ -4,6 +4,7 @@ import { historyMessages } from "@/app/history/messages";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -129,7 +130,7 @@ export default function HistoryTimelineModule() {
       <Module
         className="py-20"
         backgroundImage={backgroundImages.background}
-        backgroundImageAlt="Timeline background"
+        backgroundImageAlt={sharedMessages.backgroundAlts.timeline}
         contentClassName="px-4 md:px-8"
       >
         <div className="relative z-10 max-w-3xl mx-auto">

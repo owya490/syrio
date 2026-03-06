@@ -2,6 +2,7 @@
 
 import UnifiedLink from "@/components/elements/Link";
 import { animation } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -27,7 +28,7 @@ export default function ContentBlockFour({
   name,
   role,
   achievements,
-  ctaLabel = "ENQUIRE MORE",
+  ctaLabel = sharedMessages.contentBlocks.enquireMore,
   ctaHref = "/contact",
   imageSrc,
   imageScale = "scale-110 md:scale-105",

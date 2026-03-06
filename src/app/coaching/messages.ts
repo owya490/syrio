@@ -2,10 +2,21 @@ export const coachingMessages = {
   header: {
     title: "COACHING STAFF",
     year: "2026",
+    images: {
+      yao: {
+        src: "/MULTIMEDIA ASSETS/CLUB/Yao.png",
+        alt: "Yao",
+      },
+      roger: {
+        src: "/MULTIMEDIA ASSETS/CLUB/33.png",
+        alt: "Roger",
+      },
+    },
   },
   coaches: {
     title: "OUR COACHES",
     subtitle: "Meet our coaching team",
+    defaultImage: "/MULTIMEDIA ASSETS/CLUB/33.png",
   },
   staff: [
     {

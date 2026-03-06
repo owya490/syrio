@@ -4,6 +4,7 @@ import { aboutMessages } from "@/app/about/messages";
 import Module from "@/components/modules/Module";
 import { animation, tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -26,7 +27,7 @@ export default function AboutHeroModule() {
     <Module
       className="min-h-[70vh] flex flex-col items-center justify-center pt-24"
       backgroundImage={backgroundImages.background}
-      backgroundImageAlt="About hero background"
+      backgroundImageAlt={sharedMessages.backgroundAlts.aboutHero}
       contentClassName="relative z-10 text-center px-4"
     >
       <div ref={containerRef} className="space-y-4">

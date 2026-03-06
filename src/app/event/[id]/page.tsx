@@ -7,6 +7,7 @@ import { fetchEventById, SessionEvent } from "@/types/sessions";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { backgroundImages } from "@/config/images";
+import { eventMessages } from "@/config/eventMessages";
 
 export default function EventDetailPage() {
   const params = useParams();
@@ -21,7 +22,7 @@ export default function EventDetailPage() {
     let cancelled = false;
 
     if (!eventId) {
-      setError("No event ID provided");
+      setError(eventMessages.page.noEventId);
       setLoading(false);
       return;
     }
@@ -36,7 +37,7 @@ export default function EventDetailPage() {
       .catch((error) => {
         if (!cancelled) {
           console.error("Error fetching event:", error);
-          setError(error.message || "Failed to load event");
+          setError(error.message || eventMessages.page.failedToLoad);
           setLoading(false);
         }
       });
@@ -50,7 +51,7 @@ export default function EventDetailPage() {
     return (
       <main className="bg-syrio-black text-syrio-white overflow-x-hidden min-h-screen flex items-center justify-center">
         <div className="text-center py-12">
-          <p className="font-archivo text-syrio-white/60">Loading event...</p>
+          <p className="font-archivo text-syrio-white/60">{eventMessages.page.loading}</p>
         </div>
       </main>
     );
@@ -61,16 +62,16 @@ export default function EventDetailPage() {
       <main className="bg-syrio-black text-syrio-white overflow-x-hidden min-h-screen flex items-center justify-center">
         <div className="text-center py-12 px-4">
           <h1 className="font-bank-gothic text-2xl md:text-3xl uppercase tracking-widest text-syrio-white mb-4">
-            Event Not Found
+            {eventMessages.page.notFoundTitle}
           </h1>
           <p className="font-archivo text-syrio-red mb-4">
-            {error || "Unable to load event details"}
+            {error || eventMessages.page.notFoundFallback}
           </p>
           <button
             onClick={() => router.push("/sessions/intensive-skill-development")}
             className="font-archivo text-sm text-syrio-white/80 hover:text-syrio-white underline"
           >
-            Back to Sessions
+            {eventMessages.page.backToSessions}
           </button>
         </div>
       </main>
@@ -83,7 +84,7 @@ export default function EventDetailPage() {
       <HeroBannerModule
         title={event.name}
         backgroundImage={backgroundImages.highPerformance2}
-        backgroundImageAlt="Event background"
+        backgroundImageAlt={eventMessages.page.backgroundImageAlt}
         backgroundComponent={
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-syrio-black/50 to-syrio-black/95" />
         }

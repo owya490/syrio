@@ -2,6 +2,7 @@ import ContentBlockThree from "@/components/modules/content/ContentBlockThree";
 import ContentBlockFour from "@/components/modules/content/ContentBlockFour";
 import CardModule from "@/components/modules/cards/CardModule";
 import Module from "@/components/modules/Module";
+import { backgroundImages } from "@/config/images";
 import Image from "next/image";
 import { coachingMessages } from "./messages";
 
@@ -31,16 +32,16 @@ export default function Coaching() {
             <div className="relative flex items-center justify-center overflow-visible">
               <div className="relative w-[160%] aspect-3/4 z-10 -mr-12">
                 <Image
-                  src="/MULTIMEDIA ASSETS/CLUB/Yao.png"
-                  alt="Yao"
+                  src={coachingMessages.header.images.yao.src}
+                  alt={coachingMessages.header.images.yao.alt}
                   fill
                   className="object-contain"
                 />
               </div>
               <div className="relative w-[120%] aspect-3/4 z-0 -ml-12">
                 <Image
-                  src="/MULTIMEDIA ASSETS/CLUB/33.png"
-                  alt="Roger"
+                  src={coachingMessages.header.images.roger.src}
+                  alt={coachingMessages.header.images.roger.alt}
                   fill
                   className="object-contain"
                 />
@@ -57,7 +58,7 @@ export default function Coaching() {
         cards={staff.map((coach) => ({
           label: coach.name,
           href: `#${coach.id}`,
-          image: "/MULTIMEDIA ASSETS/CLUB/33.png",
+          image: coachingMessages.coaches.defaultImage,
         }))}
       />
 
@@ -69,15 +70,15 @@ export default function Coaching() {
               name={coach.name}
               role={coach.role}
               achievements={coach.achievements}
-              imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
+              imageSrc={coachingMessages.header.images.roger.src}
             />
           ) : (
             <ContentBlockThree
               name={coach.name}
               role={coach.role}
               achievements={coach.achievements}
-              imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
-              backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+              imageSrc={coachingMessages.header.images.yao.src}
+              backgroundImage={backgroundImages.background}
             />
           )}
         </div>

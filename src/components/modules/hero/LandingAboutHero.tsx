@@ -5,6 +5,7 @@ import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { animation, tracking } from "@/config/design";
 import { accentImages, backgroundImages, promoImages } from "@/config/images";
+import { sharedMessages } from "@/config/messages";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -19,7 +20,7 @@ export default function LandingAboutHero() {
     <Module
       className="py-20 overflow-visible"
       backgroundImage={backgroundImages.background}
-      backgroundImageAlt="Background"
+      backgroundImageAlt={sharedMessages.module.defaultBackgroundAlt}
       contentClassName="px-4 lg:px-8 max-w-7xl"
       backgroundComponent={
         <div className="absolute top-1/10 -right-13/16 w-[160%] h-[160%] lg:w-[160%] lg:h-[160%] pointer-events-none -rotate-95 scale-y-[-1] z-10">
@@ -51,7 +52,7 @@ export default function LandingAboutHero() {
           <div className="relative w-[180vw] h-[180vw] max-w-none aspect-square opacity-80 lg:opacity-100 lg:w-[1200px] lg:h-[1200px] lg:aspect-square lg:-mt-[32vh]">
             <Image
               src={promoImages.promo2026}
-              alt="Syrio 2026 Promo"
+              alt={homeMessages.about.promoImageAlt}
               fill
               sizes="(max-width: 1024px) 180vw, 1200px"
               className="object-contain"
@@ -126,7 +127,7 @@ export default function LandingAboutHero() {
               <div className="relative w-full h-full">
                 <Image
               src={promoImages.tempHomePhoto}
-              alt="Syrio Team"
+              alt={homeMessages.about.teamImageAlt}
               fill
               sizes="(max-width: 1024px) 0vw, 288px"
               className="object-cover"

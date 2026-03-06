@@ -10,6 +10,7 @@ import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import { links } from "@/config/links";
+import { sharedMessages } from "@/config/messages";
 import emailjs from "@emailjs/browser";
 import { FormEvent, useState } from "react";
 import Image from "next/image";
@@ -49,14 +50,14 @@ export default function ContactModule() {
 
     // Validate email
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = sharedMessages.contact.validation.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = sharedMessages.contact.validation.emailInvalid;
     }
 
     // Validate message
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
+      newErrors.message = sharedMessages.contact.validation.messageRequired;
     }
 
     setErrors(newErrors);
@@ -122,7 +123,7 @@ export default function ContactModule() {
     <Module
       className="py-20 min-h-[80vh]"
       backgroundImage={backgroundImages.background}
-      backgroundImageAlt="Contact background"
+      backgroundImageAlt={sharedMessages.backgroundAlts.contact}
       contentClassName="px-4 md:px-8"
     >
       <div className="relative z-10 grid md:grid-cols-[40%_60%] items-start">
@@ -132,26 +133,25 @@ export default function ContactModule() {
           <h2
             className={`font-bank-gothic text-4xl lg:text-5xl font-bold tracking-[${tracking.wide}] leading-tight`}
           >
-            FORGE YOUR
+            {sharedMessages.contact.titleLine1}
             <br />
-            OWN PATH
+            {sharedMessages.contact.titleLine2}
           </h2>
 
           <p className="font-montserrat text-xs md:text-sm text-syrio-white/80 leading-relaxed max-w-xs">
-            For any enquiries or questions, please reach out to our Syrio team.
-            Follow along with our journey via social media.
+            {sharedMessages.contact.description}
           </p>
 
           {/* Social Icons */}
           <div className="flex items-center gap-4">
             <UnifiedLink
               href={links.social.facebook}
-              aria-label="Facebook"
+              aria-label={sharedMessages.social.facebook}
               className="group transition-all duration-300"
             >
               <Image
                 src="/svg/facebook.svg"
-                alt="Facebook"
+                alt={sharedMessages.social.facebook}
                 width={20}
                 height={20}
                 className="w-5 h-5 brightness-0 invert opacity-80 group-hover:opacity-100 group-hover-syrio-white-glow-image"
@@ -160,12 +160,12 @@ export default function ContactModule() {
 
             <UnifiedLink
               href={links.social.instagram}
-              aria-label="Instagram"
+              aria-label={sharedMessages.social.instagram}
               className="group transition-all duration-300"
             >
               <Image
                 src="/svg/instagram.svg"
-                alt="Instagram"
+                alt={sharedMessages.social.instagram}
                 width={20}
                 height={20}
                 className="w-5 h-5 brightness-0 invert opacity-80 group-hover:opacity-100 group-hover-syrio-white-glow-image"
@@ -174,12 +174,12 @@ export default function ContactModule() {
 
             <UnifiedLink
               href={links.social.linktree}
-              aria-label="Link Tree"
+              aria-label={sharedMessages.social.linkTree}
               className="group transition-all duration-300"
             >
               <Image
                 src="/svg/link-tree.svg"
-                alt="Link Tree"
+                alt={sharedMessages.social.linkTree}
                 width={20}
                 height={20}
                 className="w-5 h-5 brightness-0 invert opacity-80 group-hover:opacity-100 group-hover-syrio-white-glow-image"
@@ -196,7 +196,7 @@ export default function ContactModule() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Name"
+              placeholder={sharedMessages.contact.form.name}
               className="text-sm"
             />
 
@@ -206,7 +206,7 @@ export default function ContactModule() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Email *"
+                placeholder={sharedMessages.contact.form.email}
                 className={`text-sm ${errors.email ? "border-b-red-500 focus:border-b-red-500" : ""}`}
                 required
               />
@@ -222,7 +222,7 @@ export default function ContactModule() {
               name="country"
               value={formData.country}
               onChange={handleChange}
-              placeholder="Country"
+              placeholder={sharedMessages.contact.form.country}
               className="text-sm"
             />
 
@@ -231,7 +231,7 @@ export default function ContactModule() {
               name="telephone"
               value={formData.telephone}
               onChange={handleChange}
-              placeholder="Telephone"
+              placeholder={sharedMessages.contact.form.telephone}
               className="text-sm"
             />
 
@@ -240,7 +240,7 @@ export default function ContactModule() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Message *"
+                placeholder={sharedMessages.contact.form.message}
                 rows={4}
                 className={`text-sm ${errors.message ? "border-b-red-500 focus:border-b-red-500" : ""}`}
                 required
@@ -256,10 +256,10 @@ export default function ContactModule() {
               className="mt-4"
               disabled={submitStatus === "loading"}
             >
-              {submitStatus === "loading" && "Sending..."}
-              {submitStatus === "success" && "Message Sent!"}
-              {submitStatus === "error" && "Error - Try Again"}
-              {submitStatus === "idle" && "Submit"}
+              {submitStatus === "loading" && sharedMessages.contact.submit.loading}
+              {submitStatus === "success" && sharedMessages.contact.submit.success}
+              {submitStatus === "error" && sharedMessages.contact.submit.error}
+              {submitStatus === "idle" && sharedMessages.contact.submit.idle}
             </SubmitButton>
           </form>
         </div>

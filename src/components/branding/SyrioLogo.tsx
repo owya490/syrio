@@ -1,4 +1,5 @@
 import { imageSizes } from "@/config/design";
+import { sharedMessages } from "@/config/messages";
 import Image from "next/image";
 
 interface SyrioLogoProps {
@@ -35,7 +36,7 @@ export default function SyrioLogo({
     <div className={`relative inline-flex flex-col items-center ${className}`}>
       <Image
         src="/branding/logos/LOGO TRANSPARENT_画板 1 副本 17.png"
-        alt="Syrio Volley Logo"
+        alt={sharedMessages.brand.logoAlt}
         width={imageSizes.heroLogo.width}
         height={imageSizes.heroLogo.height}
         priority
@@ -45,7 +46,7 @@ export default function SyrioLogo({
         <h1
           className={`absolute left-1/2 -translate-x-1/2 font-geek-trend tracking-wide whitespace-nowrap ${textSizeClasses[size]} ${textOffsetClasses[size]}`}
         >
-          SYRIOVOLLEY
+          {sharedMessages.brand.name}
         </h1>
       )}
     </div>
