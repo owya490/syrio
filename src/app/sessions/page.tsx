@@ -10,7 +10,7 @@ export default function Sessions() {
         backgroundImage="/MULTIMEDIA ASSETS/2025M2/DSC_0535.jpg"
       />
       <ContentBlockTwo
-        description="Syrio Volley Academy offers a range of training sessions to help you improve your skills and reach your full potential. Our sessions are designed to be fun and challenging, and are led by our experienced coaches."
+        description="SyrioVolley Academy offers a range of training sessions to help you improve your skills and reach your full potential. Our sessions are designed to be fun and challenging, and are led by our experienced coaches."
         ctaLabel="VIEW OUR PROGRAMS"
         ctaHref="#session-cards"
         backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"

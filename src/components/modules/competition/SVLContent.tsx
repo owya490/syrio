@@ -6,6 +6,7 @@ import Module from "@/components/modules/Module";
 import Text from "@/components/typography/Text";
 import { animation, tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { links } from "@/config/links";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -133,7 +134,7 @@ export default function SVLContent() {
               style={{ opacity: 0, y: 60 }}
             >
               <UnifiedLink
-                href="https://www.volleyballnsw.com.au/"
+                href={links.external.volleyballNSW}
                 className="hover:opacity-90 transition-opacity duration-300 relative w-full max-w-7xl aspect-[16/4] overflow-hidden block"
               >
                 <div

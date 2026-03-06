@@ -1,3 +1,5 @@
+import { links } from "@/config/links";
+
 export const navigation = {
   menu: {
     open: "MENU",
@@ -16,18 +18,18 @@ export const navigation = {
       subNav: [
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVL.png",
-          image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213147_643_5.jpg",
+          image: "/WEBSITE MATERIAL/COMPETITION - SVL.jpg",
           route: "/competition/svl",
         },
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION VAL.png",
-          image: "/MULTIMEDIA ASSETS/2025M2/图片_20260101213227_644_5.jpg",
+          image: "/WEBSITE MATERIAL/COMPETITION - VAL.jpg",
           route: "/competition/val",
         },
         {
           logo: "WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_COMPETITION SVC.png",
-          image: "/MULTIMEDIA ASSETS/2025W3/图片_20260102021847_1380_27.jpg",
-          route: "https://forms.gle/pynVqkYGaKJsoh9p7",
+          image: "/WEBSITE MATERIAL/COMPETITION - SVC.jpg",
+          route: links.forms.svcRegistration,
         },
       ],
     },

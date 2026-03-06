@@ -2,6 +2,7 @@ import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import { imageSizes } from "@/config/design";
 import { backgroundImages } from "@/config/images";
+import { links } from "@/config/links";
 import Image from "next/image";
 
 export default function SocialContactModule() {
@@ -38,7 +39,7 @@ export default function SocialContactModule() {
           <div className="flex items-center justify-center gap-4 md:gap-6">
             {/* Facebook Icon */}
             <UnifiedLink
-              href="https://www.facebook.com/groups/901217364345574"
+              href={links.social.facebook}
               aria-label="Facebook"
               className="group transition-all duration-300"
             >
@@ -53,7 +54,7 @@ export default function SocialContactModule() {
 
             {/* Instagram Icon */}
             <UnifiedLink
-              href="https://www.instagram.com/syriovolleyacademy/?hl=en"
+              href={links.social.instagram}
               aria-label="Instagram"
               className="group transition-all duration-300"
             >
@@ -68,7 +69,7 @@ export default function SocialContactModule() {
 
             {/* Link Tree / Star Icon */}
             <UnifiedLink
-              href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
+              href={links.social.linktree}
               aria-label="Link Tree"
               className="group transition-all duration-300"
             >

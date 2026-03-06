@@ -5,6 +5,8 @@ import Module from "@/components/modules/Module";
 import { managementMessages } from "./messages";
 
 export default function Management() {
+  const { staff } = managementMessages;
+
   return (
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
       {/* Section 1 - Header */}
@@ -26,32 +28,34 @@ export default function Management() {
       <CardModule
         title={managementMessages.team.title}
         subtitle={managementMessages.team.subtitle}
-        cards={[
-          { label: managementMessages.team.cards[0].label, href: managementMessages.team.cards[0].href, image: "/MULTIMEDIA ASSETS/CLUB/33.png" },
-          { label: managementMessages.team.cards[1].label, href: managementMessages.team.cards[1].href, image: "/MULTIMEDIA ASSETS/CLUB/Yao.png" },
-        ]}
+        cards={staff.map((member) => ({
+          label: member.name,
+          href: `#${member.id}`,
+          image: "/MULTIMEDIA ASSETS/CLUB/33.png",
+        }))}
       />
 
-      {/* Section 3 - Profile: Alex */}
-      <div id="section-1">
-        <ContentBlockFour
-          name={managementMessages.alex.name}
-          role={managementMessages.alex.role}
-          achievements={managementMessages.alex.achievements}
-          imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
-        />
-      </div>
-
-      {/* Section 4 - Profile: Jessica */}
-      <div id="section-2">
-        <ContentBlockThree
-          name={managementMessages.jessica.name}
-          role={managementMessages.jessica.role}
-          achievements={managementMessages.jessica.achievements}
-          imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
-          backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
-        />
-      </div>
+      {/* Staff profiles - alternating layouts */}
+      {staff.map((member, index) => (
+        <div key={member.id} id={member.id}>
+          {index % 2 === 0 ? (
+            <ContentBlockFour
+              name={member.name}
+              role={member.role}
+              achievements={member.achievements}
+              imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
+            />
+          ) : (
+            <ContentBlockThree
+              name={member.name}
+              role={member.role}
+              achievements={member.achievements}
+              imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
+              backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+            />
+          )}
+        </div>
+      ))}
     </main>
   );
 }

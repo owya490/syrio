@@ -41,8 +41,8 @@ const youSheBiaoTiHei = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Syrio Volleyball Academy",
-  description: "Syrio Volleyball Academy, Sydney's premier volleyball academy",
+  title: "SyrioVolley Academy",
+  description: "SyrioVolley Academy, Sydney's premier volleyball academy",
   themeColor: "#000000",
   colorScheme: "dark",
   appleWebApp: {

@@ -1,5 +1,5 @@
 import HeroBannerModule from "@/components/modules/hero/HeroBannerModule";
-import AboutTimelineModule from "@/components/modules/misc/about/AboutTimelineModule";
+import HistoryTimelineModule from "@/components/modules/misc/about/HistoryTimelineModule";
 import { backgroundImages } from "@/config/images";
 
 export default function History() {
@@ -9,7 +9,7 @@ export default function History() {
         title="HISTORY"
         backgroundImage={backgroundImages.highPerformance2}
       />
-      <AboutTimelineModule />
+      <HistoryTimelineModule />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 # Design System Components
 
-This directory contains standardized, reusable components for the Syrio Volleyball Academy website.
+This directory contains standardized, reusable components for the SyrioVolley Academy website.
 
 ## Usage Guidelines
 

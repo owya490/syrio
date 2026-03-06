@@ -9,16 +9,16 @@ import { useRef } from "react";
 
 const values = [
   {
+    title: aboutMessages.values.growth.title,
+    description: aboutMessages.values.growth.description,
+  },
+  {
     title: aboutMessages.values.excellence.title,
     description: aboutMessages.values.excellence.description,
   },
   {
     title: aboutMessages.values.community.title,
     description: aboutMessages.values.community.description,
-  },
-  {
-    title: aboutMessages.values.growth.title,
-    description: aboutMessages.values.growth.description,
   },
 ];
 

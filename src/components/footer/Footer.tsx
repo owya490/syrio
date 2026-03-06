@@ -1,5 +1,6 @@
 import UnifiedLink from "@/components/elements/Link";
 import { imageSizes } from "@/config/design";
+import { links } from "@/config/links";
 import Image from "next/image";
 import Module from "../modules/Module";
 import { navigation } from "../navigation/navigation";
@@ -48,7 +49,7 @@ export default function Footer() {
             <div className="flex items-start gap-4">
               {/* Instagram Icon */}
               <UnifiedLink
-                href="https://www.instagram.com/syriovolleyacademy/?hl=en"
+                href={links.social.instagram}
                 aria-label="Instagram"
                 className="group transition-all duration-300"
               >
@@ -63,7 +64,7 @@ export default function Footer() {
 
               {/* Facebook Icon */}
               <UnifiedLink
-                href="https://www.facebook.com/groups/901217364345574"
+                href={links.social.facebook}
                 aria-label="Facebook"
                 className="group transition-all duration-300"
               >
@@ -78,7 +79,7 @@ export default function Footer() {
 
               {/* Link Tree Icon */}
               <UnifiedLink
-                href="https://linktr.ee/syriovolleyacademy?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn-hmZ249k9HrfJeRWbJ0gHgITbT71QfLZOOrTJSNW7-9KcDzC23GWkGdem1Q_aem_OA3-fBKuXaXmJrurqScDFw"
+                href={links.social.linktree}
                 aria-label="Link Tree"
                 className="group transition-all duration-300"
               >
@@ -108,7 +109,7 @@ export default function Footer() {
           <div className="text-xs text-syrio-white font-montserrat">
             BUILT BY{" "}
             <UnifiedLink
-              href="https://compassdigital.app"
+              href={links.external.compassDigital}
               className="hover:underline"
             >
               CDG

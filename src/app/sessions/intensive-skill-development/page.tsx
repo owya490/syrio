@@ -23,7 +23,7 @@ export default async function IntensiveSkillDevelopment() {
         }
       />
 
-      <Module className="sm:py-10 md:py-12 lg:py-16 pb-16 md:pb-14 lg:pb-18 bg-syrio-black">
+      <Module className="sm:py-10 md:py-12 lg:py-30 pb-16 md:pb-14 lg:pb-18 bg-syrio-black">
         <div className="max-w-7xl mx-auto">
           <SessionsCalendar events={events} />
         </div>
