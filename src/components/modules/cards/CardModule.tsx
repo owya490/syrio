@@ -1,13 +1,11 @@
 "use client";
 
 import UnifiedLink from "@/components/elements/Link";
+import { Reveal } from "@/components/animation";
 import Module from "@/components/modules/Module";
-import { animation } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import { sharedMessages } from "@/config/messages";
-import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 
 interface ProgramCard {
   label: string;
@@ -28,26 +26,18 @@ export default function CardModule({
   cards,
   className = "",
 }: CardModuleProps) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-
-  const easing = [0.4, 0, 0.2, 1] as const;
-
-  // Calculate card width based on number of cards (gap-6 = 1.5rem)
   const getCardWidth = () => {
     const count = cards.length;
     if (count === 2) return "md:w-[calc((100%-1.5rem)/2)]";
     if (count === 3) return "md:w-[calc((100%-3rem)/3)]";
-    return "md:w-[calc((100%-4.5rem)/4)]"; // 4 or more
+    return "md:w-[calc((100%-4.5rem)/4)]";
   };
 
-  // Adjust aspect ratio to keep same height when cards are wider
-  // 4 cards: aspect-3/4 (portrait), 3 cards: square, 2 cards: landscape
   const getAspectRatio = () => {
     const count = cards.length;
-    if (count === 2) return "md:aspect-[3/2]"; // landscape for 2 cards
-    if (count === 3) return "md:aspect-square"; // square for 3 cards
-    return ""; // keep default aspect-3/4 for 4+ cards
+    if (count === 2) return "md:aspect-[3/2]";
+    if (count === 3) return "md:aspect-square";
+    return "";
   };
 
   const getImageSizes = () => {
@@ -64,55 +54,37 @@ export default function CardModule({
       backgroundImageAlt={sharedMessages.backgroundAlts.programs}
       contentClassName="px-4 md:px-8"
     >
-      <div ref={containerRef} className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.h2
-            className="font-bank-gothic text-3xl md:text-4xl tracking-wide mb-3 text-syrio-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: animation.duration.slow,
-              ease: easing,
-            }}
-          >
-            {title}
-          </motion.h2>
+          <Reveal>
+            <h2 className="font-bank-gothic text-3xl md:text-4xl tracking-wide mb-3 text-syrio-white">
+              {title}
+            </h2>
+          </Reveal>
           {subtitle && (
-            <motion.p
-              className="font-bank-gothic text-sm text-syrio-white/60 tracking-wide"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{
-                duration: animation.duration.slow,
-                delay: animation.stagger,
-                ease: easing,
-              }}
-            >
-              {subtitle}
-            </motion.p>
+            <Reveal delay={1}>
+              <p className="font-bank-gothic text-sm text-syrio-white/60 tracking-wide">
+                {subtitle}
+              </p>
+            </Reveal>
           )}
         </div>
 
-        {/* Program Cards - Mobile: 1 per row with snap scroll, Desktop: responsive based on card count */}
+        {/* Program Cards */}
         <div className="flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory md:snap-none pb-2 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
           {cards.map((card, index) => (
-            <motion.div
+            <Reveal
               key={card.label}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{
-                duration: animation.duration.slow,
-                delay: animation.stagger * (index + 2),
-                ease: easing,
-              }}
+              delay={index + 2}
+              distance={40}
               className={`shrink-0 w-full min-w-full snap-center md:min-w-0 ${getCardWidth()} md:snap-none`}
             >
               <UnifiedLink
                 href={card.href}
                 className="group relative flex flex-col"
               >
-                {/* Card Image - fixed aspect ratio, crops any image to fit */}
+                {/* Card Image */}
                 <div
                   className={`relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`}
                 >
@@ -134,7 +106,7 @@ export default function CardModule({
                   </span>
                 </div>
               </UnifiedLink>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

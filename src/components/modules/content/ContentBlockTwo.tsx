@@ -1,11 +1,9 @@
 "use client";
 
 import UnifiedLink from "@/components/elements/Link";
-import { animation } from "@/config/design";
+import { Reveal } from "@/components/animation";
 import { sharedMessages } from "@/config/messages";
-import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 import Module from "../Module";
 
 interface ContentBlockTwoProps {
@@ -29,37 +27,6 @@ export default function ContentBlockTwo({
   backgroundImage,
   secondaryImagePosition = "center center",
 }: ContentBlockTwoProps) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-
-  const easing = [0.4, 0, 0.2, 1] as const;
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
-    transition: { duration: animation.duration.slow, ease: easing },
-  };
-
-  const fadeInLeft = {
-    initial: { opacity: 0, x: -30 },
-    animate: isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 },
-    transition: {
-      duration: animation.duration.slow,
-      delay: animation.stagger,
-      ease: easing,
-    },
-  };
-
-  const fadeInRight = {
-    initial: { opacity: 0, x: 30 },
-    animate: isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 },
-    transition: {
-      duration: animation.duration.slow,
-      delay: animation.stagger * 2,
-      ease: easing,
-    },
-  };
-
   return (
     <Module
       className="bg-black py-16 md:py-24 text-white"
@@ -69,37 +36,18 @@ export default function ContentBlockTwo({
         backgroundImage ? <div className="absolute inset-0" /> : undefined
       }
     >
-      <div
-        ref={containerRef}
-        className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8"
-      >
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
         {/* Left Column: Text + Vertical Image */}
         <div className="flex flex-col justify-start space-y-8 lg:col-span-4 lg:space-y-12 order-2 lg:order-1">
           {/* Text Content */}
-          <motion.div className="space-y-6" {...fadeInUp}>
-            <motion.p
-              className="font-montserrat text-xs md:text-sm font-medium leading-relaxed tracking-wide text-gray-200"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{
-                duration: animation.duration.slow,
-                delay: animation.stagger,
-                ease: easing,
-              }}
-            >
-              {description}
-            </motion.p>
+          <Reveal className="space-y-6">
+            <Reveal delay={1}>
+              <p className="font-montserrat text-xs md:text-sm font-medium leading-relaxed tracking-wide text-gray-200">
+                {description}
+              </p>
+            </Reveal>
 
-            <motion.div
-              className="pt-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{
-                duration: animation.duration.slow,
-                delay: animation.stagger * 2,
-                ease: easing,
-              }}
-            >
+            <Reveal delay={2} className="pt-2">
               <UnifiedLink
                 href={ctaHref}
                 className="group inline-flex items-center gap-2 border-b-2 border-white pb-1 font-bank-gothic text-base md:text-lg font-medium uppercase tracking-wider text-white transition-colors hover:border-gray-400 hover:text-gray-400"
@@ -121,16 +69,17 @@ export default function ContentBlockTwo({
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </UnifiedLink>
-            </motion.div>
-          </motion.div>
+            </Reveal>
+          </Reveal>
 
-          {/* Vertical Image (Secondary) - centered in column; crop via secondaryImagePosition (CSS var so img gets it) */}
-          <motion.div
+          {/* Vertical Image (Secondary) */}
+          <Reveal
+            direction="left"
+            delay={1}
             className="content-block-two-secondary relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl lg:w-4/5 hidden md:block"
             style={{
               ["--secondary-object-position" as string]: secondaryImagePosition,
             }}
-            {...fadeInLeft}
           >
             <Image
               src={images.secondary}
@@ -139,13 +88,14 @@ export default function ContentBlockTwo({
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-          </motion.div>
+          </Reveal>
         </div>
 
         {/* Right Column: Large Landscape Image (Primary) */}
-        <motion.div
+        <Reveal
+          direction="right"
+          delay={2}
           className="flex items-stretch lg:col-span-8 lg:pl-6 order-1 lg:order-2"
-          {...fadeInRight}
         >
           <div className="relative w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01] min-h-[250px]" style={{ willChange: "transform" }}>
             <Image
@@ -156,22 +106,12 @@ export default function ContentBlockTwo({
               sizes="(max-width: 768px) 100vw, 66vw"
             />
           </div>
-        </motion.div>
+        </Reveal>
 
-        {/* Mobile only: Show secondary image below everything if needed, or hide it to save space? 
-            Currently hiding on mobile (hidden md:block above) to avoid clutter, as the primary image is strong enough.
-            If you want it on mobile, we can add it back here or remove the 'hidden'. 
-            I'll keep it hidden on very small screens for now to focus on the content.
-        */}
-        <motion.div
+        {/* Mobile secondary image */}
+        <Reveal
+          delay={3}
           className="block md:hidden order-3 space-y-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{
-            duration: animation.duration.slow,
-            delay: animation.stagger * 3,
-            ease: easing,
-          }}
         >
           <div
             className="content-block-two-secondary relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl"
@@ -187,7 +127,7 @@ export default function ContentBlockTwo({
               sizes="(max-width: 768px) 100vw, 33vw"
             />
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </Module>
   );

@@ -205,6 +205,17 @@ body {
     0 0 16px rgba(255, 255, 255, 0.5);
 }
 
+/* Reduced motion: instantly show content, skip all transitions/animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Star twinkle animation */
 @keyframes twinkle {
   0%,

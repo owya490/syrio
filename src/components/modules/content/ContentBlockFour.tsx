@@ -1,11 +1,9 @@
 "use client";
 
 import UnifiedLink from "@/components/elements/Link";
-import { animation } from "@/config/design";
+import { Reveal } from "@/components/animation";
 import { sharedMessages } from "@/config/messages";
-import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 import Module from "../Module";
 
 interface ContentBlockFourProps {
@@ -36,30 +34,6 @@ export default function ContentBlockFour({
   boxPosition = "lg:left-0",
   boxSize = "h-[85%] w-[75%]",
 }: ContentBlockFourProps) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-
-  const easing = [0.4, 0, 0.2, 1] as const;
-
-  const fadeInLeft = {
-    initial: { opacity: 0, x: -30 },
-    animate: isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 },
-    transition: {
-      duration: animation.duration.slow,
-      ease: easing,
-    },
-  };
-
-  const fadeInRight = {
-    initial: { opacity: 0, x: 30 },
-    animate: isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 },
-    transition: {
-      duration: animation.duration.slow,
-      delay: animation.stagger,
-      ease: easing,
-    },
-  };
-
   // Light Theme, Image Left (Roger Style)
   const bgColorClass = "bg-white";
   const textColor = "text-black";
@@ -73,14 +47,11 @@ export default function ContentBlockFour({
       className={`overflow-visible py-16 md:py-24 ${bgColorClass} ${textColor}`}
       data-white-section="true"
     >
-      <div
-        ref={containerRef}
-        className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24"
-      >
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
         {/* Image Column (Left) */}
-        <motion.div
+        <Reveal
+          direction="left"
           className="relative mx-auto flex w-full max-w-sm md:max-w-md items-center justify-center lg:max-w-full order-1 lg:order-1"
-          {...fadeInLeft}
         >
           {/* Black Background Box */}
           <div
@@ -99,23 +70,15 @@ export default function ContentBlockFour({
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Text Column (Right) */}
-        <motion.div
+        <Reveal
+          direction="right"
+          delay={1}
           className="flex flex-col space-y-8 md:space-y-12 order-2 lg:order-2"
-          {...fadeInRight}
         >
-          <motion.div
-            className="space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay: animation.stagger * 2,
-              ease: easing,
-            }}
-          >
+          <Reveal delay={2} className="space-y-4">
             {subtitle && (
               <h3
                 className={`font-bank-gothic text-lg md:text-xl font-medium uppercase tracking-widest ${textColor}`}
@@ -133,47 +96,30 @@ export default function ContentBlockFour({
             >
               {role}
             </h2>
-          </motion.div>
+          </Reveal>
 
-          <motion.ul
-            className="space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay: animation.stagger * 3,
-              ease: easing,
-            }}
-          >
-            {achievements.map((item, index) => (
-              <motion.li
-                key={index}
-                className={`font-montserrat text-sm md:text-base font-normal tracking-wide ${subTextColor}`}
-                initial={{ opacity: 0, x: 20 }}
-                animate={
-                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
-                }
-                transition={{
-                  duration: animation.duration.slow,
-                  delay: animation.stagger * 3 + index * animation.stagger,
-                  ease: easing,
-                }}
-              >
-                {item}
-              </motion.li>
-            ))}
-          </motion.ul>
+          <Reveal delay={3} className="space-y-4">
+            <ul className="space-y-4">
+              {achievements.map((item, index) => (
+                <Reveal
+                  key={index}
+                  direction="right"
+                  delay={3 + index}
+                  distance={20}
+                >
+                  <li
+                    className={`font-montserrat text-sm md:text-base font-normal tracking-wide ${subTextColor}`}
+                  >
+                    {item}
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </Reveal>
 
-          <motion.div
+          <Reveal
+            delay={4 + achievements.length}
             className="pt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: animation.duration.slow,
-              delay:
-                animation.stagger * 4 + achievements.length * animation.stagger,
-              ease: easing,
-            }}
           >
             <UnifiedLink
               href={ctaHref}
@@ -196,8 +142,8 @@ export default function ContentBlockFour({
                 <path d="m12 5 7 7-7 7" />
               </svg>
             </UnifiedLink>
-          </motion.div>
-        </motion.div>
+          </Reveal>
+        </Reveal>
       </div>
     </Module>
   );

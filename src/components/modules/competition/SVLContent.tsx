@@ -2,37 +2,16 @@
 
 import { svlMessages } from "@/app/competition/svl/messages";
 import { DecorativeLines } from "@/components/decorative";
+import { Reveal } from "@/components/animation";
 import UnifiedLink from "@/components/elements/Link";
 import Module from "@/components/modules/Module";
 import Text from "@/components/typography/Text";
-import { animation, tracking } from "@/config/design";
+import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import { links } from "@/config/links";
-import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-
-const easing = [0.4, 0, 0.2, 1] as const;
 
 export default function SVLContent() {
-  const heroSectionRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const buttonRef = useRef(null);
-  const teamSectionRef = useRef(null);
-  const ctaSectionRef = useRef(null);
-
-  const [isMounted, setIsMounted] = useState(false);
-  const heroInView = useInView(heroSectionRef, { once: true, amount: 0.2 });
-  const descriptionInView = useInView(descriptionRef, { once: true, amount: 0.2 });
-  const buttonInView = useInView(buttonRef, { once: true, amount: 0.2 });
-  const teamInView = useInView(teamSectionRef, { once: true, amount: 0.2 });
-  const ctaInView = useInView(ctaSectionRef, { once: true, amount: 0.2 });
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsMounted(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       {/* VNSW Info Section - With Background Image */}
@@ -56,75 +35,48 @@ export default function SVLContent() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-8 md:pt-12">
-          {/* VNSW Logo - Top part of image asset */}
-          <div ref={heroSectionRef} className="flex justify-center mb-6 md:mb-8">
-            <motion.div
-              className="relative w-full max-w-7xl aspect-[16/2.7] overflow-hidden"
-              initial={false}
-              animate={isMounted || heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-              transition={{ duration: 0.8, ease: easing }}
-              style={{ opacity: 0, y: 60 }}
-            >
-              <div
-                className="absolute inset-0 bg-no-repeat"
-                style={{
-                  backgroundImage:
-                    "url('/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_SVL_ICONS_SVL.png')",
-                  backgroundPosition: "center top",
-                  backgroundSize: "100% auto",
-                  backgroundRepeat: "no-repeat",
-                }}
-              />
-            </motion.div>
+          {/* VNSW Logo */}
+          <div className="flex justify-center mb-6 md:mb-8">
+            <Reveal hero distance={60} duration={0.8}>
+              <div className="relative w-full max-w-7xl aspect-[16/2.7] overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-no-repeat"
+                  style={{
+                    backgroundImage:
+                      "url('/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_SVL_ICONS_SVL.png')",
+                    backgroundPosition: "center top",
+                    backgroundSize: "100% auto",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                />
+              </div>
+            </Reveal>
           </div>
 
           {/* Description Text */}
-          <div
-            ref={descriptionRef}
-            className="text-center space-y-4 mb-6 md:mb-8 max-w-full md:max-w-3xl lg:max-w-4xl mx-auto px-4 md:px-0"
-          >
-            <motion.div
-              initial={false}
-              animate={isMounted || descriptionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, ease: easing }}
-              style={{ opacity: 0, y: 40 }}
-            >
+          <div className="text-center space-y-4 mb-6 md:mb-8 max-w-full md:max-w-3xl lg:max-w-4xl mx-auto px-4 md:px-0">
+            <Reveal hero distance={40} duration={0.8}>
               <Text size="base" className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed">
                 {svlMessages.description.paragraph1}
               </Text>
-            </motion.div>
-            <motion.div
-              initial={false}
-              animate={isMounted || descriptionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, delay: animation.stagger, ease: easing }}
-              style={{ opacity: 0, y: 40 }}
-            >
+            </Reveal>
+            <Reveal hero delay={1} distance={40} duration={0.8}>
               <Text size="base" className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed">
                 {svlMessages.description.paragraph2}
               </Text>
-            </motion.div>
-            <motion.div
-              initial={false}
-              animate={isMounted || descriptionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, delay: animation.stagger * 2, ease: easing }}
-              style={{ opacity: 0, y: 40 }}
-            >
+            </Reveal>
+            <Reveal hero delay={2} distance={40} duration={0.8}>
               <Text size="base" className="text-syrio-white/80 font-archivo text-sm md:text-base leading-relaxed">
                 {svlMessages.description.paragraph3}
                 <br />
                 {svlMessages.description.vnswNote}
               </Text>
-            </motion.div>
+            </Reveal>
           </div>
 
-          {/* VNSW SVL/YSVL Button - Bottom part of image asset */}
-          <div ref={buttonRef} className="flex justify-center mt-6 md:mt-8">
-            <motion.div
-              initial={false}
-              animate={isMounted || buttonInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-              transition={{ duration: 0.8, ease: easing }}
-              style={{ opacity: 0, y: 60 }}
-            >
+          {/* VNSW SVL/YSVL Button */}
+          <div className="flex justify-center mt-6 md:mt-8">
+            <Reveal hero distance={60} duration={0.8}>
               <UnifiedLink
                 href={links.external.volleyballNSW}
                 className="hover:opacity-90 transition-opacity duration-300 relative w-full max-w-7xl aspect-[16/4] overflow-hidden block"
@@ -140,35 +92,28 @@ export default function SVLContent() {
                   }}
                 />
               </UnifiedLink>
-            </motion.div>
+            </Reveal>
           </div>
 
           {/* Representative Team Section */}
-          <div ref={teamSectionRef} className="mt-16 text-center">
-            <motion.h3
-              className={`font-bank-gothic text-lg md:text-xl tracking-[${tracking.normal}] text-syrio-white uppercase`}
-              initial={false}
-              animate={isMounted || teamInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, ease: easing }}
-              style={{ opacity: 0, y: 40 }}
-            >
-              {svlMessages.team.titleLine1}
-              <br />
-              {svlMessages.team.titleLine2}
-            </motion.h3>
+          <div className="mt-16 text-center">
+            <Reveal hero distance={40} duration={0.8}>
+              <h3
+                className={`font-bank-gothic text-lg md:text-xl tracking-[${tracking.normal}] text-syrio-white uppercase`}
+              >
+                {svlMessages.team.titleLine1}
+                <br />
+                {svlMessages.team.titleLine2}
+              </h3>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* "GOT WHAT IT TAKES?" Section with Image Asset */}
+      {/* "GOT WHAT IT TAKES?" Section */}
       <Module className="py-0 bg-syrio-black" contentClassName="px-0">
-        <div ref={ctaSectionRef} className="w-full">
-          <motion.div
-            initial={false}
-            animate={isMounted || ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-            transition={{ duration: 0.8, ease: easing }}
-            style={{ opacity: 0, y: 60 }}
-          >
+        <div className="w-full">
+          <Reveal hero distance={60} duration={0.8}>
             <UnifiedLink
               href={svlMessages.cta.href}
               className="block hover:opacity-90 transition-opacity duration-300"
@@ -181,7 +126,7 @@ export default function SVLContent() {
                 className="w-full h-auto"
               />
             </UnifiedLink>
-          </motion.div>
+          </Reveal>
         </div>
       </Module>
     </>

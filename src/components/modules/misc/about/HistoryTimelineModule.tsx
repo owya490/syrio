@@ -1,12 +1,11 @@
 "use client";
 
 import { historyMessages } from "@/app/history/messages";
+import { Reveal } from "@/components/animation";
 import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import { sharedMessages } from "@/config/messages";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
 interface TimelineSection {
   heading: string;
@@ -24,17 +23,14 @@ interface TimelineEntry {
   closing?: string;
 }
 
-function TimelineCard({ entry, index }: { entry: TimelineEntry; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
-
+function TimelineCard({ entry }: { entry: TimelineEntry }) {
   return (
-    <motion.div
-      ref={ref}
+    <Reveal
+      direction="none"
+      duration={0.5}
+      delay={1}
+      amount={0.15}
       className="relative pl-8 md:pl-16 pb-16 last:pb-0"
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
     >
       {/* Timeline dot */}
       <div className="absolute left-0 top-1 w-3 h-3 bg-[#e2c87a] rounded-full z-10" />
@@ -60,7 +56,7 @@ function TimelineCard({ entry, index }: { entry: TimelineEntry; index: number })
         ))}
       </div>
 
-      {/* Simple heading + items (e.g. 2023 "SyrioVolley entered:") */}
+      {/* Simple heading + items */}
       {entry.heading && (
         <p className="font-montserrat text-sm md:text-base text-syrio-white font-semibold mb-3">
           {entry.heading}
@@ -77,7 +73,7 @@ function TimelineCard({ entry, index }: { entry: TimelineEntry; index: number })
         </ul>
       )}
 
-      {/* Sub-sections (e.g. 2025/2026 with multiple headings) */}
+      {/* Sub-sections */}
       {entry.sections && (
         <div className="space-y-6 mb-6">
           {entry.sections.map((section, i) => (
@@ -111,17 +107,11 @@ function TimelineCard({ entry, index }: { entry: TimelineEntry; index: number })
           {entry.closing}
         </p>
       )}
-    </motion.div>
+    </Reveal>
   );
 }
 
 export default function HistoryTimelineModule() {
-  const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true, amount: 0.3 });
-
-  const whoWeAreRef = useRef(null);
-  const whoWeAreInView = useInView(whoWeAreRef, { once: true, amount: 0.2 });
-
   const { hero, timeline, whoWeAre } = historyMessages;
 
   return (
@@ -135,12 +125,11 @@ export default function HistoryTimelineModule() {
       >
         <div className="relative z-10 max-w-3xl mx-auto">
           {/* Header */}
-          <motion.div
-            ref={headerRef}
+          <Reveal
+            direction="none"
+            duration={0.6}
+            amount={0.3}
             className="text-center mb-20"
-            initial={{ opacity: 0 }}
-            animate={headerInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6 }}
           >
             <p className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}>
               {hero.tagline}
@@ -151,7 +140,7 @@ export default function HistoryTimelineModule() {
             <p className="font-montserrat text-base md:text-lg text-[#e2c87a] tracking-wide">
               {hero.subtitle}
             </p>
-          </motion.div>
+          </Reveal>
 
           {/* Timeline entries */}
           <div className="relative">
@@ -159,7 +148,7 @@ export default function HistoryTimelineModule() {
             <div className="absolute left-[5px] top-0 bottom-0 w-px bg-syrio-white/20" />
 
             {timeline.map((entry, index) => (
-              <TimelineCard key={entry.year} entry={entry} index={index} />
+              <TimelineCard key={entry.year} entry={entry} />
             ))}
           </div>
         </div>
@@ -170,12 +159,10 @@ export default function HistoryTimelineModule() {
         className="py-20 bg-syrio-black border-t border-syrio-blue/30"
         contentClassName="px-4 md:px-8"
       >
-        <motion.div
-          ref={whoWeAreRef}
+        <Reveal
+          direction="none"
+          duration={0.6}
           className="relative z-10 max-w-3xl mx-auto text-center"
-          initial={{ opacity: 0 }}
-          animate={whoWeAreInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.6 }}
         >
           <h2 className="font-bank-gothic text-3xl md:text-4xl tracking-wider mb-8">
             {whoWeAre.title}
@@ -197,7 +184,7 @@ export default function HistoryTimelineModule() {
           <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed">
             {whoWeAre.closing}
           </p>
-        </motion.div>
+        </Reveal>
       </Module>
     </>
   );
