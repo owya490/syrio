@@ -116,14 +116,6 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
 
   // Render calendar
   const renderCalendar = () => {
-    if (events.length === 0) {
-      return (
-        <p className="text-sm font-archivo text-syrio-white/60 mb-4">
-          {eventMessages.calendar.noSessions}
-        </p>
-      );
-    }
-
     return (
       <DayPicker
         mode="single"
@@ -187,16 +179,6 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
 
   // Render events section
   const renderEventsSection = (isMobile: boolean) => {
-    if (events.length === 0) {
-      return isMobile ? null : (
-        <div className="min-h-[300px] flex items-start pt-12">
-          <p className="text-sm font-archivo text-syrio-white/60">
-            {eventMessages.calendar.noSessions}
-          </p>
-        </div>
-      );
-    }
-
     return (
       <div className={isMobile ? "" : "min-h-[300px]"}>
         {renderEventsHeading(isMobile)}
@@ -207,15 +189,28 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
     );
   };
 
+  if (events.length === 0) {
+    return (
+      <div className="pt-4 sm:pt-6 md:pt-8 px-2 sm:px-4 md:px-0 flex justify-center items-center min-h-[300px]">
+        <div className="flex flex-col items-center text-center space-y-3">
+          <p className="font-bank-gothic text-xl uppercase tracking-widest text-syrio-white/50">
+            No Upcoming Sessions
+          </p>
+          <p className="font-archivo text-sm text-syrio-white/30 leading-relaxed">
+            Check back soon — new training sessions will be announced here.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-4 sm:pt-6 md:pt-8 px-2 sm:px-4 md:px-0">
       {/* Mobile & Tablet: Stacked Layout */}
       <div className="md:hidden space-y-6">
         <div className="flex justify-center">{renderCalendar()}</div>
 
-        {events.length > 0 && (
-          <div className="px-2 sm:px-0">{renderEventsSection(true)}</div>
-        )}
+        <div className="px-2 sm:px-0">{renderEventsSection(true)}</div>
       </div>
 
       {/* Desktop: Side by Side Layout */}
