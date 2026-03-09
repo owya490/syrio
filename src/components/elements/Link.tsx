@@ -47,9 +47,12 @@ export default function UnifiedLink({
   }
 
   const handleClick = (e: React.MouseEvent) => {
+    const isHashOnlyLink = href.startsWith("#");
     const normalized = href.replace(/#.*$/, "").replace(/\/$/, "") || "/";
     const current = pathname.replace(/\/$/, "") || "/";
-    if (normalized !== current) {
+    const isSamePageHashLink = href.includes("#") && normalized === current;
+
+    if (!isHashOnlyLink && !isSamePageHashLink && normalized !== current) {
       startNavigation(href);
     }
     onClick?.();
