@@ -1,5 +1,6 @@
 "use client";
 
+import ChrisEasterEgg from "@/components/coaching/ChrisEasterEgg";
 import UnifiedLink from "@/components/elements/Link";
 import { Reveal } from "@/components/animation";
 import { sharedMessages } from "@/config/messages";
@@ -71,7 +72,10 @@ export default function ContentBlockThree({
             <h1
               className={`font-bank-gothic text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-widest ${textColor}`}
             >
-              {name}
+              <ChrisEasterEgg
+              name={name}
+              className={`font-bank-gothic text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-widest ${textColor}`}
+            />
             </h1>
             <h2
               className={`font-montserrat text-3xl md:text-3xl lg:text-4xl font-bold tracking-wider ${textColor}`}

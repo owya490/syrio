@@ -416,6 +416,24 @@ body {
   object-position: var(--secondary-object-position, center center) !important;
 }
 
+/* Chris easter egg firework */
+@keyframes chris-firework {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--tx, 80px), var(--ty, 0)) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-chris-firework {
+  animation: chris-firework 1s ease-out forwards;
+  left: 50%;
+  top: 50%;
+}
+
 /* Prose overrides for syrio dark theme */
 .prose-syrio {
   --tw-prose-body: rgba(255, 255, 255, 0.8);

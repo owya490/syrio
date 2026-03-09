@@ -1,9 +1,8 @@
-import ContentBlockThree from "@/components/modules/content/ContentBlockThree";
-import ContentBlockFour from "@/components/modules/content/ContentBlockFour";
 import CardModule from "@/components/modules/cards/CardModule";
+import ContentBlockFour from "@/components/modules/content/ContentBlockFour";
+import ContentBlockThree from "@/components/modules/content/ContentBlockThree";
 import Module from "@/components/modules/Module";
 import { backgroundImages } from "@/config/images";
-import Image from "next/image";
 import { coachingMessages } from "./messages";
 
 export default function Coaching() {
@@ -13,39 +12,19 @@ export default function Coaching() {
     <main className="bg-syrio-black text-syrio-white overflow-x-hidden">
       {/* Section 1 - Header with text and images */}
       <Module
-        className="min-h-screen overflow-visible bg-syrio-black"
-        contentClassName="!px-4 md:!px-8 relative min-h-screen flex items-center justify-center !max-w-none"
+        className="py-20 md:py-28 overflow-visible bg-syrio-black"
+        contentClassName="!px-4 md:!px-8 relative flex items-center justify-center !max-w-none"
       >
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Text */}
-            <div>
-              <h1 className="font-bank-gothic text-4xl lg:text-6xl tracking-wider text-syrio-white whitespace-nowrap">
+            {/* Centered header text */}
+            <div className="col-span-2 flex flex-col items-center text-center">
+              <h1 className="font-bank-gothic text-4xl lg:text-6xl tracking-wider text-syrio-white">
                 {coachingMessages.header.title}
               </h1>
-              <h2 className="font-bank-gothic text-2xl lg:text-3xl tracking-wider text-syrio-white text-right mt-2">
+              <h2 className="font-bank-gothic text-2xl lg:text-3xl tracking-wider text-syrio-white mt-2">
                 {coachingMessages.header.year}
               </h2>
-            </div>
-
-            {/* Right side - Images */}
-            <div className="relative flex items-center justify-center overflow-visible">
-              <div className="relative w-[160%] aspect-3/4 z-10 -mr-12">
-                <Image
-                  src={coachingMessages.header.images.yao.src}
-                  alt={coachingMessages.header.images.yao.alt}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="relative w-[120%] aspect-3/4 z-0 -ml-12">
-                <Image
-                  src={coachingMessages.header.images.roger.src}
-                  alt={coachingMessages.header.images.roger.alt}
-                  fill
-                  className="object-contain"
-                />
-              </div>
             </div>
           </div>
         </div>
