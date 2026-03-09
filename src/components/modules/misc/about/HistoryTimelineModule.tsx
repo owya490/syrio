@@ -6,6 +6,7 @@ import Module from "@/components/modules/Module";
 import { tracking } from "@/config/design";
 import { backgroundImages } from "@/config/images";
 import { sharedMessages } from "@/config/messages";
+import Image from "next/image";
 
 interface TimelineSection {
   heading: string;
@@ -21,9 +22,16 @@ interface TimelineEntry {
   items?: string[];
   sections?: TimelineSection[];
   closing?: string;
+  image?: string;
 }
 
-function TimelineCard({ entry }: { entry: TimelineEntry }) {
+function TimelineCard({
+  entry,
+  index,
+}: {
+  entry: TimelineEntry;
+  index: number;
+}) {
   return (
     <Reveal
       direction="none"
@@ -42,71 +50,107 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
         </span>
       </div>
 
-      {/* Title */}
-      <h3 className={`font-bank-gothic text-2xl md:text-3xl tracking-[${tracking.normal}] text-syrio-white mb-6`}>
-        {entry.title}
-      </h3>
+      {/* Content + image row */}
+      <div
+        className={`flex flex-col gap-6 lg:gap-8 items-start lg:items-center ${
+          index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+        }`}
+      >
+        {/* Text content */}
+        <div className="flex-1 min-w-0">
+          {/* Title */}
+          <h3
+            className={`font-bank-gothic text-2xl md:text-3xl tracking-[${tracking.normal}] text-syrio-white mb-6`}
+          >
+            {entry.title}
+          </h3>
 
-      {/* Paragraphs */}
-      <div className="space-y-4 mb-6">
-        {entry.paragraphs.map((p, i) => (
-          <p key={i} className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed">
-            {p}
-          </p>
-        ))}
-      </div>
+          {/* Paragraphs */}
+          <div className="space-y-4 mb-6">
+            {entry.paragraphs.map((p, i) => (
+              <p
+                key={i}
+                className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed"
+              >
+                {p}
+              </p>
+            ))}
+          </div>
 
-      {/* Simple heading + items */}
-      {entry.heading && (
-        <p className="font-montserrat text-sm md:text-base text-syrio-white font-semibold mb-3">
-          {entry.heading}
-        </p>
-      )}
-      {entry.items && (
-        <ul className="space-y-2 mb-6 pl-4">
-          {entry.items.map((item, i) => (
-            <li key={i} className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3">
-              <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      )}
+          {/* Simple heading + items */}
+          {entry.heading && (
+            <p className="font-montserrat text-sm md:text-base text-syrio-white font-semibold mb-3">
+              {entry.heading}
+            </p>
+          )}
+          {entry.items && (
+            <ul className="space-y-2 mb-6 pl-4">
+              {entry.items.map((item, i) => (
+                <li
+                  key={i}
+                  className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3"
+                >
+                  <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
 
-      {/* Sub-sections */}
-      {entry.sections && (
-        <div className="space-y-6 mb-6">
-          {entry.sections.map((section, i) => (
-            <div key={i}>
-              <h4 className="font-bank-gothic text-lg tracking-wider text-syrio-white mb-2">
-                {section.heading}
-              </h4>
-              {section.description && (
-                <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed">
-                  {section.description}
-                </p>
-              )}
-              {section.items && (
-                <ul className="space-y-2 pl-4 mt-2">
-                  {section.items.map((item, j) => (
-                    <li key={j} className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3">
-                      <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
+          {/* Sub-sections */}
+          {entry.sections && (
+            <div className="space-y-6 mb-6">
+              {entry.sections.map((section, i) => (
+                <div key={i}>
+                  <h4 className="font-bank-gothic text-lg tracking-wider text-syrio-white mb-2">
+                    {section.heading}
+                  </h4>
+                  {section.description && (
+                    <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed">
+                      {section.description}
+                    </p>
+                  )}
+                  {section.items && (
+                    <ul className="space-y-2 pl-4 mt-2">
+                      {section.items.map((item, j) => (
+                        <li
+                          key={j}
+                          className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3"
+                        >
+                          <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          )}
 
-      {/* Closing paragraph */}
-      {entry.closing && (
-        <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed italic border-l-2 border-syrio-gold/40 pl-4">
-          {entry.closing}
-        </p>
-      )}
+          {/* Closing paragraph */}
+          {entry.closing && (
+            <p className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed italic border-l-2 border-syrio-gold/40 pl-4">
+              {entry.closing}
+            </p>
+          )}
+        </div>
+
+        {/* Image */}
+        {entry.image && (
+          <div className="shrink-0 w-full max-w-xs mx-auto">
+            <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-syrio-gold/20">
+              <Image
+                src={entry.image}
+                alt={`${entry.year} - ${entry.title}`}
+                fill
+                sizes="(max-width: 768px) 80vw, 240px"
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </Reveal>
   );
 }
@@ -123,7 +167,7 @@ export default function HistoryTimelineModule() {
         backgroundImageAlt={sharedMessages.backgroundAlts.timeline}
         contentClassName="px-4 md:px-8"
       >
-        <div className="relative z-10 max-w-3xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto">
           {/* Header */}
           <Reveal
             direction="none"
@@ -131,7 +175,7 @@ export default function HistoryTimelineModule() {
             amount={0.3}
             className="text-center mb-20"
           >
-            <p className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}>
+<p className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}>
               {hero.tagline}
             </p>
             <h2 className="font-bank-gothic text-4xl md:text-5xl tracking-wider mb-4">
@@ -148,7 +192,7 @@ export default function HistoryTimelineModule() {
             <div className="absolute left-[5px] top-0 bottom-0 w-px bg-syrio-white/20" />
 
             {timeline.map((entry, index) => (
-              <TimelineCard key={entry.year} entry={entry} />
+              <TimelineCard key={entry.year} entry={entry} index={index} />
             ))}
           </div>
         </div>
