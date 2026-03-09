@@ -4,16 +4,17 @@ import UnifiedLink from "@/components/elements/Link";
 import ContentContainer from "@/components/modules/ContentContainer";
 import { animation, imageSizes } from "@/config/design";
 import { sharedMessages } from "@/config/messages";
+import { useSubNav } from "@/contexts/SubNavContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { DesktopNavbarLinks, DesktopNavbarOverlay } from "./DesktopNavbar";
 import { MobileNavbarButton, MobileNavbarOverlay } from "./MobileNavbar";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [openSubNav, setOpenSubNav] = useState<string | null>(null);
+  const { openSubNav, setOpenSubNav } = useSubNav();
   const [hasScrolled, setHasScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -21,7 +22,7 @@ export default function Navbar() {
   useEffect(() => {
     setOpenSubNav(null);
     setIsOpen(false);
-  }, [pathname]);
+  }, [pathname, setOpenSubNav]);
 
   useEffect(() => {
     const handleScroll = () => {
