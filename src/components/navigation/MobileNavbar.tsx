@@ -174,7 +174,7 @@ export function MobileNavbarOverlay({ isOpen, setIsOpen }: MobileNavbarProps) {
                         <UnifiedLink
                           href={subItem.route}
                           onClick={() => setIsOpen(false)}
-                          className="block"
+                          className="block border border-syrio-white/20 bg-syrio-black/50 rounded-lg hover:border-syrio-white/40 hover-syrio-glow-white transition-all duration-300 p-6"
                         >
                           <Image
                             src={`/${subItem.logo}`}
