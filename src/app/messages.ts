@@ -1,7 +1,6 @@
 export const homeMessages = {
   hero: {
-    backgroundImage:
-      "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HOME PAGE.png",
+    backgroundImage: "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_HOME PAGE.png",
     backgroundImageAlt: "Team Background",
     goldAccentImage:
       "/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GOLD ACCENT_SHOP 副本.png",
@@ -12,17 +11,36 @@ export const homeMessages = {
     tagline: "SPARK YOUR",
     title: "R I S E",
     subtitle: "IN OVER-THRIVE",
-    description: "With the belief that excellence is built through consistency, accountability, and shared purpose, Syrio focuses on more than just results. We value how athletes train, compete, and support one another—on and off the court. Our programs combine technical development, tactical under-standing, and physical preparation with an emphasis on mindset, communication, and team cohesion. Whether athletes are progressing from social competitions or preparing for league and representative environments, Syrio provides a clear and supportive pathway for growth.",
+    description:
+      "With the belief that excellence is built through consistency, accountability, and shared purpose, Syrio focuses on more than just results. We value how athletes train, compete, and support one another—on and off the court. Our programs combine technical development, tactical under-standing, and physical preparation with an emphasis on mindset, communication, and team cohesion. Whether athletes are progressing from social competitions or preparing for league and representative environments, Syrio provides a clear and supportive pathway for growth.",
     cta: "OUR HISTORY",
   },
   programs: {
     title: "Which Program is right for you?",
-    subtitle: "We've got something for athletes of all ages and experience levels",
+    subtitle:
+      "We've got something for athletes of all ages and experience levels",
     cards: [
-      { label: "TRAININGS", href: "/svl/trainings", image: "/WEBSITE MATERIAL/HOME - TRAININGS.JPG" },
-      { label: "COMPETITIONS", href: "/svl/competitions", image: "/WEBSITE MATERIAL/HOME - COMPETITION.jpg" },
-      { label: "OPEN SVL", href: "/open-svl", image: "/WEBSITE MATERIAL/HOME - OPEN SVL.jpg" },
-      { label: "YSVL", href: "/svl/ysvl", image: "/WEBSITE MATERIAL/HOME - YSVL (1).JPG" },
+      {
+        label: "TRAININGS",
+        href: "/sessions/intensive-skill-development",
+        image: "/WEBSITE MATERIAL/HOME - TRAININGS.JPG",
+      },
+      {
+        label: "COMPETITIONS",
+        href: "/competition",
+        image: "/WEBSITE MATERIAL/HOME - COMPETITION.jpg",
+        openSubNav: "COMPETITION",
+      },
+      {
+        label: "OPEN SVL",
+        href: "/competition/svl",
+        image: "/WEBSITE MATERIAL/HOME - OPEN SVL.jpg",
+      },
+      {
+        label: "YSVL",
+        href: "/competition/svl",
+        image: "/WEBSITE MATERIAL/HOME - YSVL (1).JPG",
+      },
     ],
   },
   sessions: {
@@ -51,4 +69,3 @@ export const homeMessages = {
     title: "partner",
   },
 };
-

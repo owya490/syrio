@@ -1,17 +1,19 @@
 "use client";
 
+import { Reveal } from "@/components/animation";
 import ChrisEasterEgg from "@/components/coaching/ChrisEasterEgg";
 import UnifiedLink from "@/components/elements/Link";
-import { Reveal } from "@/components/animation";
 import Module from "@/components/modules/Module";
 import { backgroundImages } from "@/config/images";
 import { sharedMessages } from "@/config/messages";
+import { useSubNav } from "@/contexts/SubNavContext";
 import Image from "next/image";
 
 interface ProgramCard {
   label: string;
   href: string;
   image: string;
+  openSubNav?: string;
 }
 
 interface CardModuleProps {
@@ -27,6 +29,8 @@ export default function CardModule({
   cards,
   className = "",
 }: CardModuleProps) {
+  const { setOpenSubNav } = useSubNav();
+
   const getCardWidth = () => {
     const count = cards.length;
     if (count === 2) return "md:w-[calc((100%-1.5rem)/2)]";
@@ -81,33 +85,64 @@ export default function CardModule({
               distance={40}
               className={`shrink-0 w-full min-w-full snap-center md:min-w-0 ${getCardWidth()} md:snap-none`}
             >
-              <UnifiedLink
-                href={card.href}
-                className="group relative flex flex-col"
-              >
-                {/* Card Image */}
-                <div
-                  className={`relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`}
+              {card.openSubNav ? (
+                <button
+                  type="button"
+                  onClick={() => setOpenSubNav(card.openSubNav!)}
+                  className="group relative flex flex-col w-full text-left"
                 >
-                  <Image
-                    src={card.image}
-                    alt={card.label}
-                    fill
-                    sizes={getImageSizes()}
-                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                {/* Card Label */}
-                <div className="mt-3 flex items-center gap-2">
-                  <ChrisEasterEgg
-                    name={card.label}
-                    className="font-bank-gothic text-sm md:text-base tracking-wider border-b border-transparent group-hover:border-syrio-gold transition-colors text-syrio-white"
-                  />
-                  <span className="text-lg transition-transform group-hover:translate-x-1 text-syrio-white">
-                    →
-                  </span>
-                </div>
-              </UnifiedLink>
+                  {/* Card Image */}
+                  <div
+                    className={`relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`}
+                  >
+                    <Image
+                      src={card.image}
+                      alt={card.label}
+                      fill
+                      sizes={getImageSizes()}
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  {/* Card Label */}
+                  <div className="mt-3 flex items-center gap-2">
+                    <ChrisEasterEgg
+                      name={card.label}
+                      className="font-bank-gothic text-sm md:text-base tracking-wider border-b border-transparent group-hover:border-syrio-gold transition-colors text-syrio-white"
+                    />
+                    <span className="text-lg transition-transform group-hover:translate-x-1 text-syrio-white">
+                      →
+                    </span>
+                  </div>
+                </button>
+              ) : (
+                <UnifiedLink
+                  href={card.href}
+                  className="group relative flex flex-col"
+                >
+                  {/* Card Image */}
+                  <div
+                    className={`relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`}
+                  >
+                    <Image
+                      src={card.image}
+                      alt={card.label}
+                      fill
+                      sizes={getImageSizes()}
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  {/* Card Label */}
+                  <div className="mt-3 flex items-center gap-2">
+                    <ChrisEasterEgg
+                      name={card.label}
+                      className="font-bank-gothic text-sm md:text-base tracking-wider border-b border-transparent group-hover:border-syrio-gold transition-colors text-syrio-white"
+                    />
+                    <span className="text-lg transition-transform group-hover:translate-x-1 text-syrio-white">
+                      →
+                    </span>
+                  </div>
+                </UnifiedLink>
+              )}
             </Reveal>
           ))}
         </div>
