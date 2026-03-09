@@ -11,7 +11,10 @@ export const historyMessages = {
     {
       year: "2023",
       title: "FOUNDATION & ESTABLISHMENT",
+<<<<<<< HEAD
       image: "/MULTIMEDIA ASSETS/HISTORY - 2023 M.jpg",
+=======
+>>>>>>> 41d3a381d73c9e03a9ab1fbb6c781654bd98e89a
       paragraphs: [
         "Founded in 2023 in Sydney, SyrioVolley Academy was established by three passionate co-founders of Chinese background who shared a bold vision — to introduce disciplined, high-performance Asian training philosophies into the local volleyball landscape.",
         "From day one, our mission has been clear: To create Sydney's premier volleyball training environment built on structure, intensity, accountability, and long-term athlete development.",
@@ -27,7 +30,10 @@ export const historyMessages = {
     {
       year: "2024",
       title: "ADVERSITY & RESILIENCE",
+<<<<<<< HEAD
       image: "/MULTIMEDIA ASSETS/HISTORY - 2024 W.jpg",
+=======
+>>>>>>> 41d3a381d73c9e03a9ab1fbb6c781654bd98e89a
       paragraphs: [
         "Our second year brought significant challenges.",
         "Due to unforeseen family circumstances affecting two co-founders, leadership transitioned to the remaining founder, who stepped into the role of Principal. At the same time:",
@@ -43,7 +49,10 @@ export const historyMessages = {
     {
       year: "2025",
       title: "BREAKTHROUGH & EXPANSION",
+<<<<<<< HEAD
       image: "/MULTIMEDIA ASSETS/HISTORY - 2025 W2.jpg",
+=======
+>>>>>>> 41d3a381d73c9e03a9ab1fbb6c781654bd98e89a
       paragraphs: [
         "Through persistence and disciplined rebuilding, 2025 marked a turning point.",
       ],
@@ -69,7 +78,10 @@ export const historyMessages = {
     {
       year: "2026",
       title: "THE FUTURE",
+<<<<<<< HEAD
       image: "/MULTIMEDIA ASSETS/HISTORY 2026 M.jpg",
+=======
+>>>>>>> 41d3a381d73c9e03a9ab1fbb6c781654bd98e89a
       paragraphs: [
         "With stability secured and momentum growing, 2026 represents evolution.",
       ],
