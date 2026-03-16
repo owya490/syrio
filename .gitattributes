@@ -1,0 +1,2 @@
+public/MULTIMEDIA[[:space:]]ASSETS/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+public/MULTIMEDIA[[:space:]]ASSETS/**/*.png filter=lfs diff=lfs merge=lfs -text
