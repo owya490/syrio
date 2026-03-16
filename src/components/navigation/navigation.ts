@@ -36,6 +36,7 @@ export const navigation = {
     // { english: "SHOP", chinese: "SHOP", route: "/shop" },
     { english: "ABOUT", chinese: "ABOUT", route: "/about" },
     { english: "HISTORY", chinese: "HISTORY", route: "/history" },
+    { english: "NEWS", chinese: "NEWS", route: links.social.instagram },
   ],
 
   tagline: "SYDNEY'S PREMIER VOLLEYBALL ACADEMY",
