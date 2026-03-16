@@ -45,7 +45,7 @@ function TimelineCard({
 
       {/* Year badge */}
       <div className="mb-4">
-        <span className="font-bank-gothic text-syrio-gold text-sm tracking-widest">
+        <span className="font-bank-gothic text-syrio-gold text-base md:text-lg tracking-widest">
           {entry.year}
         </span>
       </div>
@@ -90,7 +90,9 @@ function TimelineCard({
                   key={i}
                   className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3"
                 >
-                  <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
+                  <span className="text-syrio-gold mt-1.5 shrink-0">
+                    &#9670;
+                  </span>
                   {item}
                 </li>
               ))}
@@ -117,7 +119,9 @@ function TimelineCard({
                           key={j}
                           className="font-montserrat text-sm md:text-base text-syrio-white/80 leading-relaxed flex items-start gap-3"
                         >
-                          <span className="text-syrio-gold mt-1.5 shrink-0">&#9670;</span>
+                          <span className="text-syrio-gold mt-1.5 shrink-0">
+                            &#9670;
+                          </span>
                           {item}
                         </li>
                       ))}
@@ -175,7 +179,9 @@ export default function HistoryTimelineModule() {
             amount={0.3}
             className="text-center mb-20"
           >
-<p className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}>
+            <p
+              className={`font-bank-gothic text-sm tracking-[${tracking.wide}] text-syrio-white/60 mb-2`}
+            >
               {hero.tagline}
             </p>
             <h2 className="font-bank-gothic text-4xl md:text-5xl tracking-wider mb-4">
@@ -219,7 +225,10 @@ export default function HistoryTimelineModule() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-10">
             {whoWeAre.values.map((value, i) => (
-              <p key={i} className="font-montserrat text-sm text-syrio-gold tracking-wide italic">
+              <p
+                key={i}
+                className="font-montserrat text-sm text-syrio-gold tracking-wide italic"
+              >
                 {value}
               </p>
             ))}
