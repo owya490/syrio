@@ -14,6 +14,8 @@ interface ProgramCard {
   href: string;
   image: string;
   openSubNav?: string;
+  /** Optional Tailwind scale/transform classes for the image (e.g. scale-95). */
+  imageScale?: string;
 }
 
 interface CardModuleProps {
@@ -21,6 +23,8 @@ interface CardModuleProps {
   subtitle?: string;
   cards: ProgramCard[];
   className?: string;
+  /** Use "contain" for portraits so the full image fits inside the frame (e.g. staff cards). */
+  imageFit?: "cover" | "contain";
 }
 
 export default function CardModule({
@@ -28,6 +32,7 @@ export default function CardModule({
   subtitle,
   cards,
   className = "",
+  imageFit = "cover",
 }: CardModuleProps) {
   const { setOpenSubNav } = useSubNav();
 
@@ -51,6 +56,20 @@ export default function CardModule({
     if (count === 3) return "(max-width: 768px) 100vw, 33vw";
     return "(max-width: 768px) 100vw, 25vw";
   };
+
+  const getImageClassName = (cardScale?: string) => {
+    const base =
+      imageFit === "contain"
+        ? "object-contain object-[center_bottom] transition-[filter] duration-500 group-hover:brightness-110"
+        : "object-cover object-center transition-transform duration-500 group-hover:scale-105";
+    return cardScale ? `${base} ${cardScale}` : base;
+  };
+
+  /** Portrait strip: same frame height on md+ so heads/feet line up across cards */
+  const imageFrameClassName =
+    imageFit === "contain"
+      ? `relative w-full overflow-hidden bg-syrio-black/90 aspect-3/4 ${getAspectRatio()} md:aspect-auto md:h-[280px] lg:h-[300px]`
+      : `relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`;
 
   return (
     <Module
@@ -77,30 +96,28 @@ export default function CardModule({
         </div>
 
         {/* Program Cards */}
-        <div className="flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory md:snap-none pb-2 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
+        <div className="flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory md:snap-none md:items-stretch pb-2 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
           {cards.map((card, index) => (
             <Reveal
               key={card.label}
               delay={index + 2}
               distance={40}
-              className={`shrink-0 w-full min-w-full snap-center md:min-w-0 ${getCardWidth()} md:snap-none`}
+              className={`flex h-full min-h-0 w-full min-w-full shrink-0 flex-col snap-center md:min-w-0 ${getCardWidth()} md:snap-none`}
             >
               {card.openSubNav ? (
                 <button
                   type="button"
                   onClick={() => setOpenSubNav(card.openSubNav!)}
-                  className="group relative flex flex-col w-full text-left"
+                  className="group relative flex h-full w-full flex-col text-left"
                 >
                   {/* Card Image */}
-                  <div
-                    className={`relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`}
-                  >
+                  <div className={imageFrameClassName}>
                     <Image
                       src={card.image}
                       alt={card.label}
                       fill
                       sizes={getImageSizes()}
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className={getImageClassName(card.imageScale)}
                     />
                   </div>
                   {/* Card Label */}
@@ -117,18 +134,16 @@ export default function CardModule({
               ) : (
                 <UnifiedLink
                   href={card.href}
-                  className="group relative flex flex-col"
+                  className="group relative flex h-full w-full flex-col"
                 >
                   {/* Card Image */}
-                  <div
-                    className={`relative aspect-3/4 ${getAspectRatio()} w-full overflow-hidden`}
-                  >
+                  <div className={imageFrameClassName}>
                     <Image
                       src={card.image}
                       alt={card.label}
                       fill
                       sizes={getImageSizes()}
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className={getImageClassName(card.imageScale)}
                     />
                   </div>
                   {/* Card Label */}

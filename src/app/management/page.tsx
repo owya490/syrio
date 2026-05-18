@@ -28,10 +28,12 @@ export default function Management() {
       <CardModule
         title={managementMessages.team.title}
         subtitle={managementMessages.team.subtitle}
+        imageFit="contain"
         cards={staff.map((member) => ({
           label: member.name,
           href: `#${member.id}`,
-          image: "/MULTIMEDIA ASSETS/CLUB/33.png",
+          image: member.image ?? managementMessages.team.defaultImage,
+          imageScale: member.cardImageScale,
         }))}
       />
 
@@ -43,15 +45,23 @@ export default function Management() {
               name={member.name}
               role={member.role}
               achievements={member.achievements}
-              imageSrc="/MULTIMEDIA ASSETS/CLUB/33.png"
+              imageSrc={
+                member.image ?? "/MULTIMEDIA ASSETS/CLUB/33.png"
+              }
+              imageScale={member.imageScale}
+              imageTranslate={member.imageTranslate}
             />
           ) : (
             <ContentBlockThree
               name={member.name}
               role={member.role}
               achievements={member.achievements}
-              imageSrc="/MULTIMEDIA ASSETS/CLUB/Yao.png"
+              imageSrc={
+                member.image ?? "/MULTIMEDIA ASSETS/CLUB/Yao.png"
+              }
               backgroundImage="/WEBSITE MATERIAL/2026 SYRIO WEBSITE FILE_GENERIC BACKGROUND_ABOUT.png"
+              imageScale={member.imageScale}
+              imageTranslate={member.imageTranslate}
             />
           )}
         </div>

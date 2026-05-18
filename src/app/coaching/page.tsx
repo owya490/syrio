@@ -25,6 +25,9 @@ export default function Coaching() {
               <h2 className="font-bank-gothic text-2xl lg:text-3xl tracking-wider text-syrio-white mt-2">
                 {coachingMessages.header.year}
               </h2>
+              <p className="mt-6 max-w-2xl mx-auto font-montserrat text-sm md:text-base text-syrio-white/75 leading-relaxed">
+                {coachingMessages.header.lead}
+              </p>
             </div>
           </div>
         </div>
@@ -34,10 +37,12 @@ export default function Coaching() {
       <CardModule
         title={coachingMessages.coaches.title}
         subtitle={coachingMessages.coaches.subtitle}
+        imageFit="contain"
         cards={staff.map((coach) => ({
           label: coach.name,
           href: `#${coach.id}`,
-          image: coachingMessages.coaches.defaultImage,
+          image: coach.image ?? coachingMessages.coaches.defaultImage,
+          imageScale: coach.cardImageScale,
         }))}
       />
 
@@ -49,15 +54,25 @@ export default function Coaching() {
               name={coach.name}
               role={coach.role}
               achievements={coach.achievements}
-              imageSrc={coachingMessages.header.images.roger.src}
+              imageSrc={
+                coach.image ??
+                coachingMessages.header.images.roger.src
+              }
+              imageScale={coach.imageScale}
+              imageTranslate={coach.imageTranslate}
             />
           ) : (
             <ContentBlockThree
               name={coach.name}
               role={coach.role}
               achievements={coach.achievements}
-              imageSrc={coachingMessages.header.images.yao.src}
+              imageSrc={
+                coach.image ??
+                coachingMessages.header.images.yao.src
+              }
               backgroundImage={backgroundImages.background}
+              imageScale={coach.imageScale}
+              imageTranslate={coach.imageTranslate}
             />
           )}
         </div>
