@@ -18,8 +18,6 @@ interface ContentBlockFourProps {
   // Dynamic Layout Props
   imageScale?: string;
   imageTranslate?: string;
-  boxPosition?: string;
-  boxSize?: string;
 }
 
 export default function ContentBlockFour({
@@ -30,10 +28,8 @@ export default function ContentBlockFour({
   ctaLabel = sharedMessages.contentBlocks.enquireMore,
   ctaHref = "/contact",
   imageSrc,
-  imageScale = "scale-110 md:scale-105",
-  imageTranslate = "translate-y-[5%] md:translate-y-[-5%] translate-x-[-5%] lg:md:translate-x-[-15%]",
-  boxPosition = "lg:left-0",
-  boxSize = "h-[85%] w-[75%]",
+  imageScale = "scale-100",
+  imageTranslate = "",
 }: ContentBlockFourProps) {
   // Light Theme, Image Left (Roger Style)
   const bgColorClass = "bg-white";
@@ -49,27 +45,25 @@ export default function ContentBlockFour({
       data-white-section="true"
     >
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
-        {/* Image Column (Left) */}
+        {/* Image Column (Left) — single frame clips image + scale on md+ */}
         <Reveal
           direction="left"
           className="relative mx-auto flex w-full max-w-sm md:max-w-md items-center justify-center lg:max-w-full order-1 lg:order-1"
         >
-          {/* Black Background Box */}
           <div
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 ${boxPosition} ${boxSize} -translate-y-1/2 shadow-2xl ${inputBoxColor}`}
-          />
-
-          {/* Image */}
-          <div
-            className={`relative z-10 aspect-[3/4] w-[90%] md:w-[85%] flex justify-center items-end mx-auto lg:mx-0 ${imageTranslate}`}
+            className={`relative mx-auto aspect-[3/4] w-[90%] max-w-md overflow-hidden shadow-2xl md:w-[min(100%,26rem)] ${inputBoxColor}`}
           >
-            <Image
-              src={imageSrc}
-              alt={name}
-              fill
-              className={`object-contain object-bottom origin-bottom ${imageScale}`}
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            <div
+              className={`absolute inset-0 overflow-hidden ${imageTranslate || "translate-x-0 translate-y-0"}`}
+            >
+              <Image
+                src={imageSrc}
+                alt={name}
+                fill
+                className={`object-contain object-[center_bottom] origin-bottom ${imageScale}`}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </Reveal>
 

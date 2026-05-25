@@ -19,8 +19,6 @@ interface ContentBlockThreeProps {
   // Dynamic Layout Props
   imageScale?: string; // e.g. "scale-110 md:scale-125"
   imageTranslate?: string; // e.g. "translate-y-[-5%] translate-x-[5%]"
-  boxPosition?: string; // e.g. "right-0" or custom "right-10"
-  boxSize?: string; // e.g. "h-[85%] w-[75%]"
 }
 
 export default function ContentBlockThree({
@@ -32,10 +30,8 @@ export default function ContentBlockThree({
   ctaHref = "/contact",
   imageSrc,
   backgroundImage,
-  imageScale = "scale-110 md:scale-125",
-  imageTranslate = "translate-y-[-5%] md:translate-y-[-5%] translate-x-[5%] lg:md:translate-x-[15%]",
-  boxPosition = "lg:right-0",
-  boxSize = "h-[85%] w-[75%]",
+  imageScale = "scale-100",
+  imageTranslate = "",
 }: ContentBlockThreeProps) {
   // Dark Theme, Image Right (Yao Style)
   const bgColorClass = "bg-[#020617]"; // Custom Navy
@@ -131,28 +127,26 @@ export default function ContentBlockThree({
           </Reveal>
         </Reveal>
 
-        {/* Image Column (Right) */}
+        {/* Image Column (Right) — single frame clips image + scale on md+ */}
         <Reveal
           direction="right"
           delay={1}
           className="relative mx-auto flex w-full max-w-sm md:max-w-md items-center justify-center lg:max-w-full order-1 lg:order-2"
         >
-          {/* White Background Box */}
           <div
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto ${boxPosition} ${boxSize} -translate-y-1/2 shadow-2xl ${inputBoxColor}`}
-          />
-
-          {/* Image */}
-          <div
-            className={`relative z-20 aspect-[3/4] w-[90%] md:w-[85%] translate-y-[-7%] flex justify-center items-end mx-auto lg:mx-0 ${imageTranslate}`}
+            className={`relative mx-auto aspect-[3/4] w-[90%] max-w-md overflow-hidden shadow-2xl md:w-[min(100%,26rem)] ${inputBoxColor}`}
           >
-            <Image
-              src={imageSrc}
-              alt={name}
-              fill
-              className={`object-contain object-bottom origin-bottom ${imageScale}`}
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            <div
+              className={`absolute inset-0 overflow-hidden ${imageTranslate || "translate-x-0 translate-y-0"}`}
+            >
+              <Image
+                src={imageSrc}
+                alt={name}
+                fill
+                className={`object-contain object-[center_bottom] origin-bottom ${imageScale}`}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </Reveal>
       </div>
