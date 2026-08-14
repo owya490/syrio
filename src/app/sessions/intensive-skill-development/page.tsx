@@ -5,12 +5,16 @@ import { backgroundImages } from "@/config/images";
 import { fetchSessionEvents, SessionEvent } from "@/types/sessions";
 import { sessionsMessages } from "../messages";
 
+// Sportshub events change whenever an organiser publishes a session.
+// Without ISR this route is prerendered once at build and never refreshed.
+export const revalidate = 60;
+
 export default async function IntensiveSkillDevelopment() {
   let events: SessionEvent[] = [];
   try {
     events = await fetchSessionEvents();
-  } catch {
-    // Events will remain empty; calendar handles the empty state
+  } catch (error) {
+    console.error("Failed to fetch Sportshub session events:", error);
   }
 
   return (

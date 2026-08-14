@@ -8,6 +8,11 @@
 const DEV_SITE_URL = "http://localhost:3000";
 const PROD_SITE_URL = "https://www.sportshub.net.au";
 
+const DEV_API_URL =
+  "https://australia-southeast1-socialsports-44162.cloudfunctions.net/globalAppController";
+const PROD_API_URL =
+  "https://australia-southeast1-socialsportsprod.cloudfunctions.net/globalAppController";
+
 function isProd(): boolean {
   return process.env.NODE_ENV === "production";
 }
@@ -19,7 +24,7 @@ function isProd(): boolean {
 export function getSportshubApiUrl(): string {
   const env = process.env.NEXT_PUBLIC_SPORTSHUB_API_URL;
   if (env) return env;
-  throw new Error("NEXT_PUBLIC_SPORTSHUB_API_URL is not set");
+  return isProd() ? PROD_API_URL : DEV_API_URL;
 }
 
 /**

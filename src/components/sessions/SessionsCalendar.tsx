@@ -12,17 +12,34 @@ interface SessionsCalendarProps {
   events: SessionEvent[];
 }
 
+function asDate(value: Date | string): Date {
+  return value instanceof Date ? value : new Date(value);
+}
+
 export default function SessionsCalendar({ events }: SessionsCalendarProps) {
+  const parsedEvents = useMemo(
+    () =>
+      events.map((event) => ({
+        ...event,
+        startDate: asDate(event.startDate),
+        endDate: asDate(event.endDate),
+        registrationDeadline: event.registrationDeadline
+          ? asDate(event.registrationDeadline)
+          : undefined,
+      })),
+    [events],
+  );
+
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [month, setMonth] = useState<Date>(new Date());
 
   // Initialize on mount
   useEffect(() => {
-    if (events.length > 0) {
+    if (parsedEvents.length > 0) {
       const today = startOfDay(new Date());
 
       // Find all upcoming events
-      const upcomingEvents = events.filter((event) => {
+      const upcomingEvents = parsedEvents.filter((event) => {
         const eventDate = startOfDay(event.startDate);
         return eventDate >= today;
       });
@@ -39,12 +56,12 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
         setMonth(closestEventDate);
       }
     }
-  }, [events]);
+  }, [parsedEvents]);
 
   // Get dates that have events
   const eventDates = useMemo(() => {
-    return events.map((event) => startOfDay(event.startDate));
-  }, [events]);
+    return parsedEvents.map((event) => startOfDay(event.startDate));
+  }, [parsedEvents]);
 
   // Calculate the date range for navigation limits
   const { startMonth, endMonth } = useMemo(() => {
@@ -65,11 +82,11 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
   // Get events for the selected date
   const eventsForSelectedDate = useMemo(() => {
     if (!selectedDate) return [];
-    return events.filter((event) => {
+    return parsedEvents.filter((event) => {
       const eventDate = startOfDay(event.startDate);
       return isSameDay(eventDate, selectedDate);
     });
-  }, [selectedDate, events]);
+  }, [selectedDate, parsedEvents]);
 
   // Handle date selection
   const handleDateSelect = useCallback((date: Date | undefined) => {
@@ -82,7 +99,7 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
   // Disabled date logic
   const isDateDisabled = useCallback(
     (date: Date) => {
-      if (events.length === 0) return true;
+      if (parsedEvents.length === 0) return true;
       const dateStart = startOfDay(date);
       const today = startOfDay(new Date());
       if (dateStart < today) return true;
@@ -90,7 +107,7 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
         isSameDay(eventDate, dateStart),
       );
     },
-    [events.length, eventDates],
+    [parsedEvents.length, eventDates],
   );
 
   // Styled modifier for event dates
@@ -189,7 +206,7 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
     );
   };
 
-  if (events.length === 0) {
+  if (parsedEvents.length === 0) {
     return (
       <div className="pt-4 sm:pt-6 md:pt-8 px-2 sm:px-4 md:px-0 flex justify-center items-center min-h-[300px]">
         <div className="flex flex-col items-center text-center space-y-3">
