@@ -3,7 +3,7 @@
 import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
 import { isSameDay, startOfDay } from "date-fns";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import SessionEventCard from "./SessionEventCard";
@@ -14,6 +14,19 @@ interface SessionsCalendarProps {
 
 function asDate(value: Date | string): Date {
   return value instanceof Date ? value : new Date(value);
+}
+
+function getClosestUpcomingDate(events: SessionEvent[]): Date | undefined {
+  const today = startOfDay(new Date());
+  const upcomingEvents = events
+    .filter((event) => {
+      const eventDate = startOfDay(event.startDate);
+      return !Number.isNaN(eventDate.getTime()) && eventDate >= today;
+    })
+    .sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
+
+  if (upcomingEvents.length === 0) return undefined;
+  return startOfDay(upcomingEvents[0].startDate);
 }
 
 export default function SessionsCalendar({ events }: SessionsCalendarProps) {
@@ -30,33 +43,16 @@ export default function SessionsCalendar({ events }: SessionsCalendarProps) {
     [events],
   );
 
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [month, setMonth] = useState<Date>(new Date());
+  const closestEventDate = useMemo(
+    () => getClosestUpcomingDate(parsedEvents),
+    [parsedEvents],
+  );
 
-  // Initialize on mount
-  useEffect(() => {
-    if (parsedEvents.length > 0) {
-      const today = startOfDay(new Date());
-
-      // Find all upcoming events
-      const upcomingEvents = parsedEvents.filter((event) => {
-        const eventDate = startOfDay(event.startDate);
-        return eventDate >= today;
-      });
-
-      if (upcomingEvents.length > 0) {
-        // Sort by date and get the closest one
-        upcomingEvents.sort(
-          (a, b) => a.startDate.getTime() - b.startDate.getTime(),
-        );
-        const closestEventDate = startOfDay(upcomingEvents[0].startDate);
-
-        // Select the date and navigate to its month on all screen sizes
-        setSelectedDate(closestEventDate);
-        setMonth(closestEventDate);
-      }
-    }
-  }, [parsedEvents]);
+  // Select the next session during render so SSR shows the card, not an empty prompt.
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    closestEventDate,
+  );
+  const [month, setMonth] = useState<Date>(closestEventDate ?? new Date());
 
   // Get dates that have events
   const eventDates = useMemo(() => {
