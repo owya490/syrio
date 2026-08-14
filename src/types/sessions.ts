@@ -171,6 +171,8 @@ export async function fetchSessionEvents(): Promise<SessionEvent[]> {
       endpointType: "GET_SYRIO_EVENTS",
       data: {},
     }),
+    // Keep this page from being frozen as a one-off static snapshot at build time.
+    next: { revalidate: 60 },
   });
 
   if (!response.ok) {
@@ -223,6 +225,7 @@ export async function fetchEventById(eventId: string): Promise<SessionEvent> {
         eventId,
       },
     }),
+    next: { revalidate: 60 },
   });
 
   if (!response.ok) {
