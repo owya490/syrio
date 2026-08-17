@@ -1,13 +1,16 @@
 "use client";
 
+import BookingSelect from "@/components/events/BookingSelect";
 import EventInfoRow from "@/components/events/EventInfoRow";
 import SyrioBookingButton from "@/components/events/SyrioBookingButton";
 import SyrioContactButton from "@/components/events/SyrioContactButton";
-import { MAX_TICKETS_PER_ORDER } from "@/constants/events";
+import TicketTypeSelect from "@/components/events/TicketTypeSelect";
+import { useEventTicketTypeCheckout } from "@/components/events/useEventTicketTypeCheckout";
 import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
+import { formatPriceInCents } from "@/utils/eventTicketTypes";
 import { format } from "date-fns";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 interface EventBookingPanelModuleProps {
   event: SessionEvent;
@@ -19,37 +22,51 @@ export default function EventBookingPanelModule({
   className = "",
 }: EventBookingPanelModuleProps) {
   const [loading, setLoading] = useState(false);
-  const [ticketCount, setTicketCount] = useState(1);
-
-  const allowedTicketCounts = useMemo(
-    () =>
-      Array.from(
-        { length: Math.min(event.vacancy, MAX_TICKETS_PER_ORDER) },
-        (_, i) => i + 1,
-      ),
-    [event.vacancy],
-  );
-
-  const safeTicketCount = allowedTicketCounts.includes(ticketCount)
-    ? ticketCount
-    : (allowedTicketCounts[0] ?? 1);
+  const {
+    usesTicketTypes,
+    showTypeSelector,
+    activeTypes,
+    selectedTypeId,
+    handleTicketTypeChange,
+    effectiveVacancy,
+    effectivePrice,
+    effectiveEventTicketTypeId,
+    allCounts,
+    attendeeCount,
+    setAttendeeCount,
+    typeSoldOut,
+    allTypesSoldOut,
+  } = useEventTicketTypeCheckout({
+    eventTicketTypes: event.eventTicketTypes,
+    vacancy: event.vacancy,
+    priceInCents: event.priceInCents,
+    maxTicketsPerTransaction: event.maxTicketsPerTransaction,
+  });
 
   const formatTime = (date: Date) => format(date, "h:mm a");
   const formatDate = (date: Date) => format(date, "EEEE, MMMM d, yyyy");
 
+  const vacancyCount = usesTicketTypes ? effectiveVacancy : event.vacancy;
   const vacancyText = event.hideVacancy
     ? eventMessages.booking.vacancy.spotsAvailable
-    : `${event.vacancy} ${event.vacancy === 1 ? eventMessages.booking.vacancy.spot : eventMessages.booking.vacancy.spots} ${eventMessages.booking.vacancy.available}`;
+    : `${vacancyCount} ${vacancyCount === 1 ? eventMessages.booking.vacancy.spot : eventMessages.booking.vacancy.spots} ${eventMessages.booking.vacancy.available}${showTypeSelector ? ` ${eventMessages.booking.vacancy.forThisType}` : ""}`;
 
-  // Check event state
   const now = new Date();
   const eventInPast = now > event.endDate;
   const registrationClosed =
     (event.registrationDeadline && now > event.registrationDeadline) ||
     event.paused;
-  const soldOut = event.vacancy === 0;
 
-  // Determine what button/state to show
+  const ticketTypeSelect = showTypeSelector ? (
+    <TicketTypeSelect
+      activeTypes={activeTypes}
+      selectedTypeId={selectedTypeId}
+      onChange={handleTicketTypeChange}
+      hideVacancy={event.hideVacancy}
+      disabled={loading}
+    />
+  ) : null;
+
   const getBookingCTA = () => {
     if (registrationClosed) {
       return (
@@ -77,7 +94,7 @@ export default function EventBookingPanelModule({
       );
     }
 
-    if (soldOut) {
+    if (allTypesSoldOut) {
       return (
         <div className="text-center py-4">
           <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
@@ -92,51 +109,58 @@ export default function EventBookingPanelModule({
       );
     }
 
-    // Show Book Now or Contact Now based on paymentsActive
     if (event.paymentsActive) {
       return (
         <>
-          <div className="mb-4">
-            <label
-              htmlFor="ticket-count"
-              className="font-archivo text-sm text-syrio-white/80 block mb-2"
-            >
-              {eventMessages.booking.labels.ticketCount}
-            </label>
-            <select
-              id="ticket-count"
-              value={safeTicketCount}
-              onChange={(e) => setTicketCount(Number(e.target.value))}
-              disabled={loading}
-              className="font-archivo w-full text-syrio-white bg-syrio-black/50 border border-syrio-white/20 rounded-lg pl-4 pr-12 py-2 focus:outline-none focus:border-syrio-white/40 disabled:opacity-50 disabled:cursor-not-allowed [&>option]:bg-syrio-black [&>option]:text-syrio-white appearance-none bg-no-repeat bg-[length:1.25rem_1.25rem] bg-[right_1rem_center]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-              }}
-            >
-              {allowedTicketCounts.map((count) => (
-                <option key={count} value={count}>
-                  {count} {count > 1 ? eventMessages.booking.tickets : eventMessages.booking.ticket}
-                </option>
-              ))}
-            </select>
-          </div>
-          <SyrioBookingButton
-            eventId={event.id}
-            ticketCount={safeTicketCount}
-            className="w-full justify-center inline-flex items-center gap-2 bg-syrio-white text-syrio-black font-montserrat font-bold tracking-wider text-sm px-8 py-3 border-2 border-syrio-white hover-syrio-glow-white hover:bg-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-            onLoadingChange={setLoading}
-          />
+          {ticketTypeSelect}
+          {typeSoldOut ? (
+            <div className="text-center py-4">
+              <h3 className="font-bank-gothic text-lg uppercase tracking-widest text-syrio-white mb-1">
+                {eventMessages.booking.status.soldOut}
+              </h3>
+              <p className="font-archivo text-sm text-syrio-white/60">
+                {eventMessages.booking.status.typeSoldOut}
+              </p>
+            </div>
+          ) : (
+            <>
+              <BookingSelect
+                id="ticket-count"
+                key={selectedTypeId ?? "ticket-count"}
+                label={eventMessages.booking.labels.ticketCount}
+                value={String(attendeeCount)}
+                onChange={(value) => setAttendeeCount(Number(value))}
+                disabled={loading}
+              >
+                {allCounts.map((count) => (
+                  <option key={count} value={count}>
+                    {count}{" "}
+                    {count > 1
+                      ? eventMessages.booking.tickets
+                      : eventMessages.booking.ticket}
+                  </option>
+                ))}
+              </BookingSelect>
+              <SyrioBookingButton
+                eventId={event.id}
+                ticketCount={attendeeCount}
+                eventTicketTypeId={effectiveEventTicketTypeId}
+                className="w-full justify-center inline-flex items-center gap-2 bg-syrio-white text-syrio-black font-montserrat font-bold tracking-wider text-sm px-8 py-3 border-2 border-syrio-white hover-syrio-glow-white hover:bg-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                onLoadingChange={setLoading}
+              />
+            </>
+          )}
         </>
       );
-    } else {
-      return (
-        <SyrioContactButton
-          eventLink={event.eventLink}
-          organiserId={event.organiserId}
-          className="w-full justify-center inline-flex items-center gap-2 bg-syrio-white text-syrio-black font-montserrat font-bold tracking-wider text-sm px-8 py-3 border-2 border-syrio-white hover-syrio-glow-white hover:bg-transparent"
-        />
-      );
     }
+
+    return (
+      <SyrioContactButton
+        eventLink={event.eventLink}
+        organiserId={event.organiserId}
+        className="w-full justify-center inline-flex items-center gap-2 bg-syrio-white text-syrio-black font-montserrat font-bold tracking-wider text-sm px-8 py-3 border-2 border-syrio-white hover-syrio-glow-white hover:bg-transparent"
+      />
+    );
   };
 
   const googleMapsUrl = event.locationLatLng
@@ -147,12 +171,10 @@ export default function EventBookingPanelModule({
     <div
       className={`border border-syrio-white/40 bg-syrio-black/50 p-6 lg:p-8 rounded-lg space-y-6 ${className}`}
     >
-      {/* Title */}
       <h3 className="font-bank-gothic text-xl uppercase tracking-widest text-syrio-white">
         {eventMessages.details.title}
       </h3>
 
-      {/* Info Rows */}
       <div className="space-y-5">
         <EventInfoRow
           icon={
@@ -215,7 +237,7 @@ export default function EventBookingPanelModule({
           }
         />
 
-        {event.registrationDeadline && (
+        {event.registrationDeadline ? (
           <EventInfoRow
             icon={
               <svg
@@ -235,9 +257,8 @@ export default function EventBookingPanelModule({
             label={eventMessages.booking.labels.registrationDeadline}
             value={formatDate(event.registrationDeadline)}
           />
-        )}
+        ) : null}
 
-        {/* Availability + Price on same row */}
         <div className="flex items-end justify-between gap-4">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 text-syrio-white/80 w-5 h-5 mt-0.5">
@@ -265,29 +286,27 @@ export default function EventBookingPanelModule({
             </div>
           </div>
           <p className="font-bank-gothic text-2xl tracking-wider text-syrio-white whitespace-nowrap">
-            ${(event.priceInCents / 100).toFixed(2)}
+            {formatPriceInCents(effectivePrice)}
           </p>
         </div>
       </div>
 
-      {/* Booking CTA (Book Now, Contact Now, or Status Message) */}
       <div className="pt-4">{getBookingCTA()}</div>
 
-      {/* Additional Info */}
-      {(event.waitlistEnabled || event.bookingApprovalEnabled) && (
+      {event.waitlistEnabled || event.bookingApprovalEnabled ? (
         <div className="pt-4 border-t border-syrio-white/10 space-y-2">
-          {event.waitlistEnabled && (
+          {event.waitlistEnabled ? (
             <p className="font-archivo text-xs text-syrio-white/60">
               {eventMessages.booking.info.waitlistAvailable}
             </p>
-          )}
-          {event.bookingApprovalEnabled && (
+          ) : null}
+          {event.bookingApprovalEnabled ? (
             <p className="font-archivo text-xs text-syrio-white/60">
               {eventMessages.booking.info.approvalRequired}
             </p>
-          )}
+          ) : null}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

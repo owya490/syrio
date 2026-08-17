@@ -15,12 +15,14 @@ export const eventMessages = {
       registrationDeadline: "Registration Deadline",
       availability: "Availability",
       ticketCount: "Number of tickets",
+      ticketType: "Ticket type",
     },
     vacancy: {
       spotsAvailable: "Spots available",
       spot: "spot",
       spots: "spots",
       available: "available",
+      forThisType: "for this type",
     },
     status: {
       registrationClosed: "Registration Closed",
@@ -33,6 +35,7 @@ export const eventMessages = {
       soldOutWaitlist:
         "Join the waitlist to be notified if spots become available.",
       soldOutDefault: "Please check back later.",
+      typeSoldOut: "This ticket type is sold out. Try another type.",
     },
     info: {
       waitlistAvailable: "Waitlist available if event is full",
@@ -40,6 +43,10 @@ export const eventMessages = {
     },
     ticket: "Ticket",
     tickets: "Tickets",
+    ticketType: {
+      soldOutSuffix: "(Sold out)",
+      left: "left",
+    },
   },
   success: {
     booking: {

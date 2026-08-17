@@ -2,6 +2,7 @@
 
 import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
+import { eventHasRegistrationForm } from "@/utils/eventTicketTypes";
 import EventBookingPanelModule from "./EventBookingPanelModule";
 
 interface EventDetailsModuleProps {
@@ -53,13 +54,13 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
             </div>
           )}
 
-          {event.formId && (
+          {eventHasRegistrationForm(event) ? (
             <div className="border border-syrio-white/40 bg-syrio-white/5 p-4 rounded-lg">
               <p className="font-archivo text-sm text-syrio-white/70">
                 {eventMessages.details.formNotice}
               </p>
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Right Column - Booking Panel */}

@@ -7,6 +7,7 @@ import { useState } from "react";
 interface SyrioBookingButtonProps {
   eventId: string;
   ticketCount: number;
+  eventTicketTypeId: string | null;
   className?: string;
   onLoadingChange?: (loading: boolean) => void;
 }
@@ -14,17 +15,27 @@ interface SyrioBookingButtonProps {
 export default function SyrioBookingButton({
   eventId,
   ticketCount,
+  eventTicketTypeId,
   className = "",
   onLoadingChange,
 }: SyrioBookingButtonProps) {
   const [loading, setLoading] = useState(false);
+  const checkoutUnavailable = eventTicketTypeId === null;
 
   const handleBookNow = async () => {
+    if (eventTicketTypeId === null) {
+      return;
+    }
+
     setLoading(true);
     onLoadingChange?.(true);
 
     try {
-      const { fulfilmentSessionId } = await initFulfilmentSession(eventId, ticketCount);
+      const { fulfilmentSessionId } = await initFulfilmentSession(
+        eventId,
+        ticketCount,
+        eventTicketTypeId,
+      );
 
       if (!fulfilmentSessionId) {
         throw new Error("Failed to initialize fulfilment session");
@@ -51,7 +62,8 @@ export default function SyrioBookingButton({
     <button
       type="button"
       onClick={handleBookNow}
-      disabled={loading}
+      disabled={loading || checkoutUnavailable}
+      aria-disabled={checkoutUnavailable}
       className={className}
     >
       {loading ? eventMessages.bookingButton.booking : eventMessages.bookingButton.bookNow}
