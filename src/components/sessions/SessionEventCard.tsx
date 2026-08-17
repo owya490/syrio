@@ -3,6 +3,7 @@
 import UnifiedLink from "@/components/elements/Link";
 import { eventMessages } from "@/config/eventMessages";
 import { SessionEvent } from "@/types/sessions";
+import { formatPriceInCents } from "@/utils/eventTicketTypes";
 import { format } from "date-fns";
 import Image from "next/image";
 
@@ -49,7 +50,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
                 {formatDate(event.startDate)}
               </p>
               <p className="font-bank-gothic text-[0.65rem] sm:text-xs text-syrio-white uppercase flex-shrink-0">
-                ${(event.priceInCents / 100).toFixed(2)}
+                {formatPriceInCents(event.priceInCents)}
               </p>
             </div>
 
@@ -94,7 +95,7 @@ export default function SessionEventCard({ event }: SessionEventCardProps) {
                 {formatDate(event.startDate)}
               </p>
               <p className="font-bank-gothic text-xs text-syrio-white uppercase flex-shrink-0">
-                ${(event.priceInCents / 100).toFixed(2)}
+                {formatPriceInCents(event.priceInCents)}
               </p>
             </div>
             <h4 className="font-bank-gothic text-lg lg:text-xl uppercase tracking-wider text-syrio-white leading-tight">

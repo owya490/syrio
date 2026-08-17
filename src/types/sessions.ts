@@ -6,6 +6,11 @@
  */
 
 import { getSportshubApiUrl, getSportshubEventUrl } from "@/config/sportshub";
+import {
+  EventTicketType,
+  EventTicketTypesMap,
+} from "@/types/eventTicketTypes";
+import { resolveEventInventory } from "@/utils/eventTicketTypes";
 
 /**
  * Frontend representation of a session event
@@ -40,6 +45,8 @@ export type SessionEvent = {
   eventTags?: string[];
   formId?: string;
   bookingApprovalEnabled?: boolean;
+  maxTicketsPerTransaction?: number;
+  eventTicketTypes?: EventTicketTypesMap;
 };
 
 /**
@@ -82,6 +89,8 @@ type BackendEventData = {
   eventTags?: string[];
   formId?: string;
   bookingApprovalEnabled?: boolean;
+  maxTicketsPerTransaction?: number;
+  eventTicketTypes?: Record<string, Partial<EventTicketType> & { id?: string }>;
 };
 
 /**
@@ -116,10 +125,47 @@ function parseBackendDate(value: string): Date {
   return date;
 }
 
+function parseEventTicketTypes(
+  raw: BackendEventData["eventTicketTypes"],
+): EventTicketTypesMap | undefined {
+  if (!raw || typeof raw !== "object") {
+    return undefined;
+  }
+
+  const parsed: EventTicketTypesMap = {};
+  for (const [key, value] of Object.entries(raw)) {
+    if (!value || typeof value !== "object") {
+      continue;
+    }
+    const id = value.id || key;
+    if (!id) {
+      continue;
+    }
+    parsed[id] = {
+      id,
+      name: value.name ?? "",
+      price: value.price ?? 0,
+      capacity: value.capacity ?? 0,
+      vacancy: value.vacancy ?? 0,
+      formId: value.formId ?? null,
+    };
+  }
+
+  return Object.keys(parsed).length > 0 ? parsed : undefined;
+}
+
 /**
  * Transform backend event data to frontend SessionEvent format
  */
 function toSessionEvent(backendEvent: BackendEventData): SessionEvent {
+  const eventTicketTypes = parseEventTicketTypes(backendEvent.eventTicketTypes);
+  const inventory = resolveEventInventory({
+    eventTicketTypes,
+    price: backendEvent.price,
+    capacity: backendEvent.capacity,
+    vacancy: backendEvent.vacancy,
+  });
+
   return {
     id: backendEvent.eventId,
     name: backendEvent.name,
@@ -128,9 +174,9 @@ function toSessionEvent(backendEvent: BackendEventData): SessionEvent {
     endDate: parseBackendDate(backendEvent.endDate),
     location: backendEvent.location,
     locationLatLng: backendEvent.locationLatLng,
-    priceInCents: backendEvent.price,
-    capacity: backendEvent.capacity,
-    vacancy: backendEvent.vacancy,
+    priceInCents: inventory.price,
+    capacity: inventory.capacity,
+    vacancy: inventory.vacancy,
     image: backendEvent.image,
     thumbnail: backendEvent.thumbnail || backendEvent.image,
     eventUrl: getSportshubEventUrl(
@@ -150,6 +196,8 @@ function toSessionEvent(backendEvent: BackendEventData): SessionEvent {
     eventTags: backendEvent.eventTags,
     formId: backendEvent.formId,
     bookingApprovalEnabled: backendEvent.bookingApprovalEnabled ?? false,
+    maxTicketsPerTransaction: backendEvent.maxTicketsPerTransaction,
+    eventTicketTypes,
   };
 }
 

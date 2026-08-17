@@ -10,6 +10,7 @@ type FulfilmentEntityId = string;
 type InitCheckoutFulfilmentSessionRequest = {
   eventId: string;
   numTickets: number;
+  eventTicketTypeId: string;
 };
 
 type InitCheckoutFulfilmentSessionResponse = {
@@ -37,16 +38,19 @@ type UnifiedResponse<T> = {
 /**
  * Initialize a checkout fulfilment session.
  * When called from Syrio, passes successRedirectUrl so Stripe redirects to the Syrio success page.
+ * eventTicketTypeId is required by Sportshub (same as the social-sports Book Now flow).
  */
 export async function initFulfilmentSession(
   eventId: string,
   numTickets: number,
+  eventTicketTypeId: string,
 ): Promise<InitCheckoutFulfilmentSessionResponse> {
   const request: UnifiedRequest<InitCheckoutFulfilmentSessionRequest> = {
     endpointType: "INIT_FULFILMENT_SESSION",
     data: {
       eventId,
       numTickets,
+      eventTicketTypeId,
     },
   };
 
