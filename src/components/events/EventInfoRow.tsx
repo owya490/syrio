@@ -16,7 +16,7 @@ export default function EventInfoRow({
   className = "",
 }: EventInfoRowProps) {
   return (
-    <div className={`flex items-start gap-3 ${className}`}>
+    <div className={`flex items-start gap-3 min-w-0 ${className}`}>
       <div className="flex-shrink-0 text-syrio-white/80 w-5 h-5 mt-0.5">
         {icon}
       </div>
@@ -25,11 +25,11 @@ export default function EventInfoRow({
           {label}
         </p>
         {typeof value === "string" ? (
-          <p className="font-archivo text-sm text-syrio-white/90 leading-relaxed">
+          <p className="font-archivo text-sm text-syrio-white/90 leading-relaxed break-words">
             {value}
           </p>
         ) : (
-          <div className="font-archivo text-sm text-syrio-white/90 leading-relaxed">
+          <div className="font-archivo text-sm text-syrio-white/90 leading-relaxed break-words">
             {value}
           </div>
         )}

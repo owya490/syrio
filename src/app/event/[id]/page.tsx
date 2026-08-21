@@ -92,7 +92,7 @@ export default function EventDetailPage() {
 
       {/* Centered container for event content with max width */}
       <div className="w-full flex justify-center px-4 md:px-6 lg:px-8">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-5xl">
           {/* Event Image - prominently displayed below header */}
           {event.image && (
             <EventImageModule image={event.image} alt={event.name} />

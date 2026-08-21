@@ -21,7 +21,7 @@ export default function EventImageModule({
             src={image}
             alt={alt}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 896px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1024px"
             className="object-cover"
             priority
           />

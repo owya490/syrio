@@ -14,6 +14,7 @@ export const eventMessages = {
       location: "Location",
       registrationDeadline: "Registration Deadline",
       availability: "Availability",
+      price: "Price",
       ticketCount: "Number of tickets",
       ticketType: "Ticket type",
     },
