@@ -296,15 +296,11 @@ export default function EventBookingPanelModule({
             </svg>
           }
           label={eventMessages.booking.labels.price}
-          value={
-            <p className="font-bank-gothic text-xl tracking-wide text-syrio-white">
-              {formatPriceInCents(effectivePrice)}
-            </p>
-          }
+          value={formatPriceInCents(effectivePrice)}
         />
       </div>
 
-      <div className="pt-4">{getBookingCTA()}</div>
+      <div className="pt-2 border-t border-syrio-white/10">{getBookingCTA()}</div>
 
       {event.waitlistEnabled || event.bookingApprovalEnabled ? (
         <div className="pt-4 border-t border-syrio-white/10 space-y-2">
