@@ -12,9 +12,9 @@ interface EventDetailsModuleProps {
 export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
   return (
     <section className="py-16 md:py-20 lg:py-24">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
         {/* Left Column - Event Description and Tags */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-7 min-w-0 space-y-8">
           {/* Description Section */}
           <div>
             <h2 className="font-bank-gothic text-2xl md:text-3xl uppercase tracking-widest text-syrio-white mb-6">
@@ -64,8 +64,8 @@ export default function EventDetailsModule({ event }: EventDetailsModuleProps) {
         </div>
 
         {/* Right Column - Booking Panel */}
-        <div className="lg:col-span-1">
-          <div className="lg:sticky lg:top-8">
+        <div className="lg:col-span-5 min-w-0">
+          <div className="lg:sticky lg:top-8 min-w-0">
             <EventBookingPanelModule event={event} />
           </div>
         </div>
